@@ -9,7 +9,7 @@ import DashboardLayout from "./components/layouts/DashboardLayout";
 import DonorProfile from "./pages/donor/DonorProfile";
 
 import AdminDashboard from "./pages/admin/AdminDashboard";
-import AdminFacilities from "./pages/admin/AdminFacilities";
+
 import HospitalDashboard from "./pages/hospital/HospitalDashboard";
 import BloodCamps from "./pages/bloodlab/BloodCamps";
 import BloodlabDashboard from "./pages/bloodlab/BloodlabDashboard";
@@ -49,15 +49,15 @@ function App() {
           <Route path="camps" element={<DonorCampsList />} />
           <Route path="history" element={<DonorDonationHistory />} />
         </Route>
-      
+
         <Route path="/hospital" element={<ProtectedRoute><DashboardLayout userRole="hospital" /></ProtectedRoute>}>
           <Route index element={<HospitalDashboard />} />
           <Route path="blood-request-create" element={<HospitalRequestBlood />} />
           <Route path="blood-request-history" element={<HospitalRequestHistory />} />
           <Route path="inventory" element={<HospitalBloodStock />} />
           <Route path="donors" element={<DonorDirectory />} />
-       </Route>
-      
+        </Route>
+
         <Route path="/lab" element={<ProtectedRoute><DashboardLayout userRole="blood-lab" /></ProtectedRoute>}>
           <Route index element={<BloodlabDashboard />} />
           <Route path="inventory" element={<BloodStock />} />
@@ -66,7 +66,7 @@ function App() {
           <Route path="requests" element={<LabManageRequests />} />
           <Route path="donor" element={<BloodLabDonor />} />
         </Route>
-        
+
         <Route path="/admin" element={<ProtectedRoute><DashboardLayout userRole="admin" /></ProtectedRoute>}>
           <Route index element={<AdminDashboard />} />
           <Route path="verification" element={<AdminFacilities />} />

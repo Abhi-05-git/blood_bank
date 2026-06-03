@@ -1,9 +1,9 @@
 import React from 'react';
-import { 
-  Heart, 
-  Users, 
-  Shield, 
-  Award, 
+import {
+  Heart,
+
+  Shield,
+  Award,
   Target,
   Droplet,
   Clock,
@@ -84,7 +84,7 @@ const AboutUs = () => {
             Saving Lives, One Drop at a Time
           </h1>
           <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto opacity-90">
-            We are a dedicated platform connecting blood donors with those in need, 
+            We are a dedicated platform connecting blood donors with those in need,
             making blood donation accessible, safe, and impactful.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -122,8 +122,8 @@ const AboutUs = () => {
             <div>
               <h2 className="text-4xl font-bold text-gray-900 mb-6">Our Mission</h2>
               <p className="text-lg text-gray-700 mb-6">
-                To create a world where no one dies waiting for blood. We bridge the gap 
-                between voluntary blood donors and patients, ensuring timely access to 
+                To create a world where no one dies waiting for blood. We bridge the gap
+                between voluntary blood donors and patients, ensuring timely access to
                 safe blood when it's needed most.
               </p>
               <div className="space-y-4">
@@ -144,15 +144,15 @@ const AboutUs = () => {
             <div className="bg-white p-8 rounded-2xl shadow-lg">
               <h3 className="text-3xl font-bold text-gray-900 mb-6">Our Vision</h3>
               <p className="text-lg text-gray-700 mb-6">
-                We envision a future where blood transfusion becomes a hassle-free process 
-                for every patient, supported by a robust network of committed donors and 
+                We envision a future where blood transfusion becomes a hassle-free process
+                for every patient, supported by a robust network of committed donors and
                 advanced technology.
               </p>
               <div className="bg-red-50 p-6 rounded-lg">
                 <Award className="w-12 h-12 text-red-600 mb-4" />
                 <h4 className="text-xl font-semibold text-gray-900 mb-2">Quality Promise</h4>
                 <p className="text-gray-700">
-                  Every unit of blood goes through 12 rigorous quality checks to ensure 
+                  Every unit of blood goes through 12 rigorous quality checks to ensure
                   maximum safety for both donors and recipients.
                 </p>
               </div>
@@ -197,8 +197,8 @@ const AboutUs = () => {
             {team.map((member, index) => (
               <div key={index} className="bg-white rounded-2xl shadow-lg overflow-hidden group hover:shadow-xl transition-all duration-300">
                 <div className="h-48 bg-gradient-to-r from-red-400 to-red-600 relative overflow-hidden">
-                  <img 
-                    src={member.image} 
+                  <img
+                    src={member.image}
                     alt={member.name}
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                   />
@@ -220,7 +220,7 @@ const AboutUs = () => {
         <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
           <h2 className="text-4xl font-bold mb-6">Ready to Make a Difference?</h2>
           <p className="text-xl mb-8 opacity-90">
-            Join thousands of heroes who are saving lives through blood donation. 
+            Join thousands of heroes who are saving lives through blood donation.
             Your single donation can save up to 3 lives.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
