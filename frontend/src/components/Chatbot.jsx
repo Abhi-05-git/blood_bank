@@ -46,7 +46,7 @@ const Chatbot = () => {
     }
   }, [isOpen]);
 
-  // Check API health on mount and periodically
+
   useEffect(() => {
     const checkApiHealth = async () => {
       try {
@@ -72,7 +72,7 @@ const Chatbot = () => {
     setInput("");
     setError(null);
 
-    // Add user message to chat
+
     setMessages((prev) => [...prev, { role: "user", content: userMessage }]);
     setIsLoading(true);
 
@@ -162,16 +162,15 @@ const Chatbot = () => {
                 <h3 className="font-semibold text-sm">BBMS Assistant</h3>
                 <div className="flex items-center gap-1.5">
                   <span
-                    className={`w-2 h-2 rounded-full ${
-                      apiHealthy ? "bg-green-400" : "bg-yellow-400"
-                    }`}
+                    className={`w-2 h-2 rounded-full ${apiHealthy ? "bg-green-400" : "bg-yellow-400"
+                      }`}
                   />
                   <span className="text-xs opacity-80">
                     {isOffline
                       ? "Offline mode"
                       : apiHealthy
-                      ? "Online"
-                      : "Checking..."}
+                        ? "Online"
+                        : "Checking..."}
                   </span>
                 </div>
               </div>
@@ -210,9 +209,8 @@ const Chatbot = () => {
             {messages.map((msg, index) => (
               <div
                 key={index}
-                className={`flex gap-2 ${
-                  msg.role === "user" ? "justify-end" : "justify-start"
-                }`}
+                className={`flex gap-2 ${msg.role === "user" ? "justify-end" : "justify-start"
+                  }`}
               >
                 {msg.role === "assistant" && (
                   <div className="w-7 h-7 rounded-full bg-red-100 flex items-center justify-center shrink-0 mt-1">
@@ -220,13 +218,12 @@ const Chatbot = () => {
                   </div>
                 )}
                 <div
-                  className={`max-w-[80%] rounded-2xl px-3.5 py-2.5 text-sm leading-relaxed ${
-                    msg.role === "user"
+                  className={`max-w-[80%] rounded-2xl px-3.5 py-2.5 text-sm leading-relaxed ${msg.role === "user"
                       ? "bg-red-600 text-white rounded-br-md"
                       : msg.isError
-                      ? "bg-red-50 text-red-700 border border-red-200 rounded-bl-md"
-                      : "bg-white text-gray-800 border border-gray-200 shadow-sm rounded-bl-md"
-                  }`}
+                        ? "bg-red-50 text-red-700 border border-red-200 rounded-bl-md"
+                        : "bg-white text-gray-800 border border-gray-200 shadow-sm rounded-bl-md"
+                    }`}
                 >
                   {msg.isError && (
                     <div className="flex items-center gap-1.5 mb-1">
@@ -301,11 +298,10 @@ const Chatbot = () => {
       {/* Toggle Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className={`p-4 rounded-full shadow-lg transition-all duration-300 hover:scale-105 ${
-          isOpen
+        className={`p-4 rounded-full shadow-lg transition-all duration-300 hover:scale-105 ${isOpen
             ? "bg-gray-700 text-white hover:bg-gray-800"
             : "bg-red-600 text-white hover:bg-red-700"
-        }`}
+          }`}
         title={isOpen ? "Close chat" : "Open chat"}
       >
         {isOpen ? <X size={24} /> : <MessageCircle size={24} />}
