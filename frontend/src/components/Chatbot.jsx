@@ -72,7 +72,7 @@ const Chatbot = () => {
     setInput("");
     setError(null);
 
-
+    // Add user message to chat
     setMessages((prev) => [...prev, { role: "user", content: userMessage }]);
     setIsLoading(true);
 

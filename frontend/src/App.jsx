@@ -9,7 +9,7 @@ import DashboardLayout from "./components/layouts/DashboardLayout";
 import DonorProfile from "./pages/donor/DonorProfile";
 
 import AdminDashboard from "./pages/admin/AdminDashboard";
-
+import AdminFacilities from "./pages/admin/AdminFacilities";
 import HospitalDashboard from "./pages/hospital/HospitalDashboard";
 import BloodCamps from "./pages/bloodlab/BloodCamps";
 import BloodlabDashboard from "./pages/bloodlab/BloodlabDashboard";
