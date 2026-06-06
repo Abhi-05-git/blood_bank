@@ -23,12 +23,7 @@ import HospitalRequestBlood from "./pages/hospital/HospitalRequestBlood";
 import HospitalRequestHistory from "./pages/hospital/HospitalRequestHistory";
 import HospitalBloodStock from "./pages/hospital/HospitalBloodStock";
 import BloodLabDonor from "./pages/bloodlab/BloodLabDonor";
-import DonorDirectory from "./pages/hospital/DonorDirectory";
-import About from "./components/about/About";
-import Contact from "./components/contact/Contact";
-import DonorDonationHistory from "./pages/donor/DonorDonationHistory";
-import Chatbot from "./components/Chatbot";
-import DonorRecommendationSystem from "./components/DonorRecommendationSystem";
+
 
 function App() {
   return (
@@ -67,12 +62,7 @@ function App() {
           <Route path="donor" element={<BloodLabDonor />} />
         </Route>
 
-        <Route path="/admin" element={<ProtectedRoute><DashboardLayout userRole="admin" /></ProtectedRoute>}>
-          <Route index element={<AdminDashboard />} />
-          <Route path="verification" element={<AdminFacilities />} />
-          <Route path="donors" element={<GetAllDonors />} />
-          <Route path="facilities" element={<GetAllFacilities />} />
-        </Route>
+
       </Routes>
       <Chatbot />
     </>
