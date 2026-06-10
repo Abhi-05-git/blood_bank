@@ -95,7 +95,7 @@ const Footer = () => {
           <div>
             <h3 className="text-lg font-semibold mb-6 text-white flex items-center gap-2">
               <div className="w-1 h-4 bg-red-500 rounded-full"></div>
-              For Donors
+              Donors
             </h3>
             <ul className="space-y-3">
               {donorResources.map((link, index) => (
