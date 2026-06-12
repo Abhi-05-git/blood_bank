@@ -52,7 +52,7 @@ const DonorRecommendationSystem = () => {
 
     try {
       // Build query parameters
-      let url = `http://localhost:5001/api/recommend-donors?bloodGroup=${encodeURIComponent(bloodGroup)}`;
+      let url = `http://localhost:5000/api/recommend-donors?bloodGroup=${encodeURIComponent(bloodGroup)}`;
 
       if (latitude && longitude) {
         url += `&lat=${encodeURIComponent(latitude)}&lng=${encodeURIComponent(longitude)}`;
@@ -137,11 +137,10 @@ const DonorRecommendationSystem = () => {
                     key={bg}
                     type="button"
                     onClick={() => setBloodGroup(bg)}
-                    className={`py-2 px-3 rounded-lg font-semibold transition-all ${
-                      bloodGroup === bg
+                    className={`py-2 px-3 rounded-lg font-semibold transition-all ${bloodGroup === bg
                         ? "bg-red-600 text-white shadow-lg"
                         : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-                    }`}
+                      }`}
                   >
                     {bg}
                   </button>
@@ -288,11 +287,10 @@ const DonorRecommendationSystem = () => {
 
                     {/* Eligible Status */}
                     <div className="flex items-center gap-2">
-                      <span className={`inline-block px-2 py-1 rounded text-xs font-bold ${
-                        donor.eligibleToDonate
+                      <span className={`inline-block px-2 py-1 rounded text-xs font-bold ${donor.eligibleToDonate
                           ? "bg-green-100 text-green-800"
                           : "bg-gray-100 text-gray-800"
-                      }`}>
+                        }`}>
                         {donor.eligibleToDonate ? "✓ Eligible" : "⊘ Not Eligible"}
                       </span>
                     </div>

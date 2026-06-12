@@ -255,7 +255,7 @@ const DashboardLayout = ({ userRole = "donor" }) => {
           background: `linear-gradient(135deg, ${theme.primary[50]} 0%, white 50%, ${theme.primary[50]} 100%)`,
         }}
       >
-        {/* Left Section */}
+
         <div className="flex items-center gap-3">
           <button
             onClick={() => setSidebarOpen(!sidebarOpen)}
@@ -265,7 +265,6 @@ const DashboardLayout = ({ userRole = "donor" }) => {
             {sidebarOpen ? <X size={20} /> : <Menu size={20} />}
           </button>
 
-          {/* Logo and Title */}
           <div className="flex items-center gap-3">
             <div className="p-2 rounded-xl bg-red-100 shadow-sm">
               <ClipboardPlus size={20} className="text-red-600" />
