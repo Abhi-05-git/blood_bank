@@ -52,7 +52,7 @@ const DonorRecommendationSystem = () => {
 
     try {
       // Build query parameters
-      let url = `http://localhost:5000/api/recommend-donors?bloodGroup=${encodeURIComponent(bloodGroup)}`;
+      let url = `http://localhost:500/api/recommend-donors?bloodGroup=${encodeURIComponent(bloodGroup)}`;
 
       if (latitude && longitude) {
         url += `&lat=${encodeURIComponent(latitude)}&lng=${encodeURIComponent(longitude)}`;
