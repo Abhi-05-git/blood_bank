@@ -265,6 +265,7 @@ const DashboardLayout = ({ userRole = "donor" }) => {
             {sidebarOpen ? <X size={20} /> : <Menu size={20} />}
           </button>
 
+          {/* Logo and Title */}
           <div className="flex items-center gap-3">
             <div className="p-2 rounded-xl bg-red-100 shadow-sm">
               <ClipboardPlus size={20} className="text-red-600" />
