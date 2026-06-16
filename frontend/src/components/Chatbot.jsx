@@ -46,7 +46,7 @@ const Chatbot = () => {
     }
   }, [isOpen]);
 
-
+  // Check API health on mount and periodically
   useEffect(() => {
     const checkApiHealth = async () => {
       try {
@@ -140,12 +140,6 @@ const Chatbot = () => {
     setIsOffline(false);
   };
 
-  const handleKeyDown = (e) => {
-    if (e.key === "Enter" && !e.shiftKey) {
-      e.preventDefault();
-      handleSend();
-    }
-  };
 
   return (
     <div className="fixed bottom-4 right-4 z-50 flex flex-col items-end">
@@ -219,10 +213,10 @@ const Chatbot = () => {
                 )}
                 <div
                   className={`max-w-[80%] rounded-2xl px-3.5 py-2.5 text-sm leading-relaxed ${msg.role === "user"
-                      ? "bg-red-600 text-white rounded-br-md"
-                      : msg.isError
-                        ? "bg-red-50 text-red-700 border border-red-200 rounded-bl-md"
-                        : "bg-white text-gray-800 border border-gray-200 shadow-sm rounded-bl-md"
+                    ? "bg-red-600 text-white rounded-br-md"
+                    : msg.isError
+                      ? "bg-red-50 text-red-700 border border-red-200 rounded-bl-md"
+                      : "bg-white text-gray-800 border border-gray-200 shadow-sm rounded-bl-md"
                     }`}
                 >
                   {msg.isError && (
@@ -260,7 +254,7 @@ const Chatbot = () => {
             <div ref={messagesEndRef} />
           </div>
 
-          {/* Input Area */}
+
           <form
             onSubmit={handleSend}
             className="border-t border-gray-200 p-3 bg-white shrink-0"
@@ -299,8 +293,8 @@ const Chatbot = () => {
       <button
         onClick={() => setIsOpen(!isOpen)}
         className={`p-4 rounded-full shadow-lg transition-all duration-300 hover:scale-105 ${isOpen
-            ? "bg-gray-700 text-white hover:bg-gray-800"
-            : "bg-red-600 text-white hover:bg-red-700"
+          ? "bg-gray-700 text-white hover:bg-gray-800"
+          : "bg-red-600 text-white hover:bg-red-700"
           }`}
         title={isOpen ? "Close chat" : "Open chat"}
       >
