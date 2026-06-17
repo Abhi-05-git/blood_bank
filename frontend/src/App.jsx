@@ -70,7 +70,7 @@ function App() {
         <Route path="/admin" element={<ProtectedRoute><DashboardLayout userRole="admin" /></ProtectedRoute>}>
           <Route index element={<AdminDashboard />} />
           <Route path="verification" element={<AdminFacilities />} />
-          <Route path="donors" element={<GetAllDonor />} />
+          <Route path="donors" element={<GetAllDonors />} />
           <Route path="facilities" element={<GetAllFacilities />} />
         </Route>
       </Routes>
