@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { 
-  Droplets, 
-  PlusCircle, 
-  MinusCircle, 
-  RefreshCw, 
+import {
+  Droplets,
+  PlusCircle,
+  MinusCircle,
+  RefreshCw,
   AlertTriangle,
   Beaker,
   TrendingDown
@@ -16,13 +16,13 @@ const BloodStock = () => {
   const [loading, setLoading] = useState(true);
   const [submitting, setSubmitting] = useState(false);
   const [action, setAction] = useState("add");
-  const [form, setForm] = useState({ 
-    bloodType: "", 
-    quantity: "" 
+  const [form, setForm] = useState({
+    bloodType: "",
+    quantity: ""
   });
 
   const token = localStorage.getItem("token");
-  const API_URL = "http://localhost:5001/api/blood-lab";
+  const API_URL = "http://localhost:500/api/blood-lab";
 
   // Blood types for dropdown
   const bloodTypes = ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"];
@@ -35,7 +35,7 @@ const BloodStock = () => {
         `${API_URL}/blood/stock`,
         { headers: { Authorization: `Bearer ${token}` } }
       );
-      console .log("Fetched Stock Data:", data);
+      console.log("Fetched Stock Data:", data);
       if (data.success) {
         setStock(data.data || []);
       } else {
@@ -56,7 +56,7 @@ const BloodStock = () => {
   // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     if (!form.bloodType || !form.quantity) {
       toast.error("Please fill all fields");
       return;
@@ -72,8 +72,8 @@ const BloodStock = () => {
     try {
       const endpoint = action === "add" ? "/blood/add" : "/blood/remove";
       const { data } = await axios.post(
-        `${API_URL}${endpoint}`, 
-        form, 
+        `${API_URL}${endpoint}`,
+        form,
         {
           headers: { Authorization: `Bearer ${token}` },
         }
@@ -114,7 +114,7 @@ const BloodStock = () => {
             Manage your blood inventory and track stock levels
           </p>
         </div>
-        
+
         <button
           onClick={fetchStock}
           disabled={loading}
@@ -198,11 +198,10 @@ const BloodStock = () => {
             <button
               type="submit"
               disabled={submitting}
-              className={`w-full flex items-center justify-center gap-2 py-2 px-4 rounded-lg text-white font-medium transition-colors ${
-                action === "add"
+              className={`w-full flex items-center justify-center gap-2 py-2 px-4 rounded-lg text-white font-medium transition-colors ${action === "add"
                   ? "bg-green-600 hover:bg-green-700 disabled:bg-green-400"
                   : "bg-red-600 hover:bg-red-700 disabled:bg-red-400"
-              }`}
+                }`}
             >
               {submitting ? (
                 <RefreshCw className="w-4 h-4 animate-spin" />
@@ -256,16 +255,15 @@ const BloodStock = () => {
                 {stock.map((item) => {
                   const isLowStock = item.quantity < 10;
                   const isCritical = item.quantity < 5;
-                  
+
                   return (
                     <tr key={item._id} className="border-b hover:bg-gray-50 transition-colors">
                       <td className="p-3">
                         <span className="font-medium text-gray-800">{item.bloodGroup}</span>
                       </td>
                       <td className="p-3">
-                        <span className={`font-bold ${
-                          isCritical ? 'text-red-600' : isLowStock ? 'text-amber-600' : 'text-gray-800'
-                        }`}>
+                        <span className={`font-bold ${isCritical ? 'text-red-600' : isLowStock ? 'text-amber-600' : 'text-gray-800'
+                          }`}>
                           {item.quantity} units
                         </span>
                       </td>
