@@ -18,7 +18,7 @@ import {
 } from "lucide-react";
 import { toast } from "react-hot-toast";
 
-const API_URL = "http://localhost:5001/api/donor";
+const API_URL = "http://localhost:500/api/donor";
 
 const DonorDonationHistory = () => {
   const [history, setHistory] = useState([]);
@@ -429,11 +429,10 @@ const DonorDonationHistory = () => {
                     <div className="flex flex-row lg:items-center justify-between gap-4">
                       <div className="flex items-start gap-4 flex-1">
                         <div
-                          className={`p-3 rounded-xl ${
-                            isRecent
+                          className={`p-3 rounded-xl ${isRecent
                               ? "bg-green-100 text-green-600"
                               : "bg-blue-100 text-blue-600"
-                          }`}
+                            }`}
                         >
                           <Droplet className="w-6 h-6" />
                         </div>

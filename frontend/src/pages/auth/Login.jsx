@@ -28,7 +28,7 @@ export default function Login() {
     }
 
     try {
-      const res = await fetch("http://localhost:5001/api/auth/login", {
+      const res = await fetch("http://localhost:500/api/auth/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
@@ -62,12 +62,12 @@ export default function Login() {
         (role === "donor"
           ? "/donor"
           : role === "hospital"
-          ? "/hospital"
-          : role === "blood-lab"
-          ? "/lab"
-          : role === "admin"
-          ? "/admin"
-          : "/");
+            ? "/hospital"
+            : role === "blood-lab"
+              ? "/lab"
+              : role === "admin"
+                ? "/admin"
+                : "/");
 
       // ✅ Navigate to the dashboard or home
       navigate(targetPath, { replace: true });

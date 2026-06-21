@@ -13,10 +13,10 @@ const app = express();
 
 // CORS configuration - must be before any routes
 const corsOptions = {
-  origin: function(origin, callback) {
+  origin: function (origin, callback) {
     // Allow requests with no origin (like mobile apps or curl requests)
     if (!origin) return callback(null, true);
-    
+
     // List of allowed origins
     const allowedOrigins = [
       'http://localhost:5173',
@@ -24,13 +24,13 @@ const corsOptions = {
       'http://127.0.0.1:5173',
       'http://127.0.0.1:5174'
     ];
-    
+
     // Check if the origin is in the allowed list or is a local network origin
-    const isAllowed = allowedOrigins.includes(origin) || 
+    const isAllowed = allowedOrigins.includes(origin) ||
       origin.match(/^http:\/\/192\.168\.\d+\.\d+:5173$/) ||
       origin.match(/^http:\/\/10\.\d+\.\d+\.\d+:5173$/) ||
       origin.match(/^http:\/\/172\.(1[6-9]|2\d|3[01])\.\d+\.\d+:5173$/);
-    
+
     if (isAllowed) {
       callback(null, true);
     } else {
@@ -89,5 +89,5 @@ mongoose
   .then(() => console.log("MongoDB Connected ✅"))
   .catch((err) => console.log("MongoDB Error ❌", err));
 
-const PORT = process.env.PORT || 5001;
+const PORT = process.env.PORT || 500;
 app.listen(PORT, () => console.log(`Server running on port ${PORT} 🚀`));

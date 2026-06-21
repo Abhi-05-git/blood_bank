@@ -20,7 +20,7 @@ import {
 } from "lucide-react";
 
 // NOTE: Using localStorage and hardcoded URL for API connection as per previous context.
-const API_BASE_URL = "http://localhost:5001/api";
+const API_BASE_URL = "http://localhost:500/api";
 
 // Define a default structured object for operating hours
 const defaultOperatingHours = {
@@ -200,7 +200,7 @@ const LabProfile = () => {
       toast.error("Please fix validation errors before saving");
       return;
     }
-    
+
     // Prepare data payload, excluding internal state keys if necessary, 
     // but current formData structure aligns with the necessary updates.
     const payload = formData;
@@ -310,7 +310,7 @@ const LabProfile = () => {
     <div className="min-h-screen bg-gradient-to-br from-red-50 to-white p-6">
       <Toaster />
       <div className="max-w-6xl mx-auto">
-        
+
         {/* Header */}
         <div className="bg-white rounded-2xl shadow-lg border border-red-100 p-6 mb-6">
           <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4">
@@ -324,12 +324,12 @@ const LabProfile = () => {
                 </h1>
                 <p className="text-gray-600 mt-1 flex items-center gap-2">
                   <FlaskConical size={16} className="text-red-500" />
-                  {facility.facilityCategory?.toUpperCase() || "BLOOD LAB"} • 
+                  {facility.facilityCategory?.toUpperCase() || "BLOOD LAB"} •
                   <span className="font-mono text-sm">{facility.registrationNumber}</span>
                 </p>
               </div>
             </div>
-            
+
             <div className="flex gap-3">
               {isEditing ? (
                 <>
@@ -365,10 +365,10 @@ const LabProfile = () => {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          
+
           {/* Left Sidebar - Verification Details and Quick Contact */}
           <div className="lg:col-span-1 space-y-6">
-            
+
             {/* Status Card */}
             <div className="bg-white rounded-2xl shadow-lg border border-red-100 p-6">
               <h3 className="text-lg font-semibold text-gray-800 mb-4 flex items-center gap-2">
@@ -378,27 +378,26 @@ const LabProfile = () => {
               <div className="space-y-4">
                 <div className="flex justify-between items-center">
                   <span className="text-sm text-gray-600">Status</span>
-                  <span className={`px-3 py-1 rounded-full text-xs font-bold ${
-                    facility.status === "approved"
+                  <span className={`px-3 py-1 rounded-full text-xs font-bold ${facility.status === "approved"
                       ? "bg-green-100 text-green-700"
                       : facility.status === "pending"
-                      ? "bg-yellow-100 text-yellow-700"
-                      : "bg-red-100 text-red-700"
-                  }`}>
+                        ? "bg-yellow-100 text-yellow-700"
+                        : "bg-red-100 text-red-700"
+                    }`}>
                     {facility.status?.charAt(0).toUpperCase() + facility.status?.slice(1)}
                   </span>
                 </div>
-                
+
                 <div className="flex justify-between items-center">
                   <span className="text-sm text-gray-600">Category</span>
                   <span className="text-sm font-medium text-gray-800">{facility.facilityCategory || "N/A"}</span>
                 </div>
-                
+
                 <div className="flex justify-between items-center">
                   <span className="text-sm text-gray-600">Registration</span>
                   <span className="text-sm font-mono text-gray-800">{facility.registrationNumber}</span>
                 </div>
-                
+
                 {facility.approvedAt && (
                   <div className="flex justify-between items-center">
                     <span className="text-sm text-gray-600">Approved On</span>
@@ -440,7 +439,7 @@ const LabProfile = () => {
           {/* Main Content - Editable Form */}
           <div className="lg:col-span-2">
             <div className="bg-white rounded-2xl shadow-lg border border-red-100 p-6">
-              
+
               {/* General Facility Details (Name, Category) */}
               <div className="mb-8">
                 <h3 className="text-xl font-semibold text-gray-800 mb-4 flex items-center gap-2">
@@ -448,7 +447,7 @@ const LabProfile = () => {
                   Facility Profile
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  
+
                   {/* Name Input */}
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -460,11 +459,10 @@ const LabProfile = () => {
                       value={formData.name}
                       onChange={handleChange}
                       disabled={!isEditing}
-                      className={`w-full px-4 py-3 rounded-xl border ${
-                        isEditing
+                      className={`w-full px-4 py-3 rounded-xl border ${isEditing
                           ? "border-gray-300 bg-white focus:ring-2 focus:ring-red-500 focus:border-red-500"
                           : "bg-gray-50 border-gray-200"
-                      }`}
+                        }`}
                       placeholder="e.g., Central Diagnostics Lab"
                     />
                   </div>
@@ -480,11 +478,10 @@ const LabProfile = () => {
                       value={formData.facilityCategory}
                       onChange={handleChange}
                       disabled={!isEditing}
-                      className={`w-full px-4 py-3 rounded-xl border ${
-                        isEditing
+                      className={`w-full px-4 py-3 rounded-xl border ${isEditing
                           ? "border-gray-300 bg-white focus:ring-2 focus:ring-red-500 focus:border-red-500"
                           : "bg-gray-50 border-gray-200"
-                      }`}
+                        }`}
                       placeholder="e.g., Blood Lab, Radiology Center"
                     />
                   </div>
@@ -498,7 +495,7 @@ const LabProfile = () => {
                   Contact Information
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  
+
                   {/* Phone Number */}
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -510,11 +507,10 @@ const LabProfile = () => {
                       value={formData.phone}
                       onChange={handleChange}
                       disabled={!isEditing}
-                      className={`w-full px-4 py-3 rounded-xl border ${
-                        isEditing
+                      className={`w-full px-4 py-3 rounded-xl border ${isEditing
                           ? "border-gray-300 bg-white focus:ring-2 focus:ring-red-500 focus:border-red-500"
                           : "bg-gray-50 border-gray-200"
-                      } ${errors.phone ? "border-red-500" : ""}`}
+                        } ${errors.phone ? "border-red-500" : ""}`}
                       placeholder="10-digit phone number"
                     />
                     {errors.phone && (
@@ -533,11 +529,10 @@ const LabProfile = () => {
                       value={formData.emergencyContact}
                       onChange={handleChange}
                       disabled={!isEditing}
-                      className={`w-full px-4 py-3 rounded-xl border ${
-                        isEditing
+                      className={`w-full px-4 py-3 rounded-xl border ${isEditing
                           ? "border-gray-300 bg-white focus:ring-2 focus:ring-red-500 focus:border-red-500"
                           : "bg-gray-50 border-gray-200"
-                      } ${errors.emergencyContact ? "border-red-500" : ""}`}
+                        } ${errors.emergencyContact ? "border-red-500" : ""}`}
                       placeholder="Emergency contact number"
                     />
                     {errors.emergencyContact && (
@@ -556,11 +551,10 @@ const LabProfile = () => {
                       value={formData.contactPerson}
                       onChange={handleChange}
                       disabled={!isEditing}
-                      className={`w-full px-4 py-3 rounded-xl border ${
-                        isEditing
+                      className={`w-full px-4 py-3 rounded-xl border ${isEditing
                           ? "border-gray-300 bg-white focus:ring-2 focus:ring-red-500 focus:border-red-500"
                           : "bg-gray-50 border-gray-200"
-                      }`}
+                        }`}
                       placeholder="Primary contact person name"
                     />
                   </div>
@@ -585,13 +579,11 @@ const LabProfile = () => {
                         value={formData.address?.[field] || ""}
                         onChange={handleChange}
                         disabled={!isEditing}
-                        className={`w-full px-4 py-3 rounded-xl border ${
-                          isEditing
+                        className={`w-full px-4 py-3 rounded-xl border ${isEditing
                             ? "border-gray-300 bg-white focus:ring-2 focus:ring-red-500 focus:border-red-500"
                             : "bg-gray-50 border-gray-200"
-                        } ${
-                          field === "pincode" && errors["address.pincode"] ? "border-red-500" : ""
-                        }`}
+                          } ${field === "pincode" && errors["address.pincode"] ? "border-red-500" : ""
+                          }`}
                         placeholder={`Enter ${field === "pincode" ? "PIN code" : field}`}
                       />
                       {field === "pincode" && errors["address.pincode"] && (
@@ -609,7 +601,7 @@ const LabProfile = () => {
                   Operating Hours
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  
+
                   {/* Weekdays */}
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -621,11 +613,10 @@ const LabProfile = () => {
                       value={formData.operatingHours.weekdays}
                       onChange={handleChange}
                       disabled={!isEditing}
-                      className={`w-full px-4 py-3 rounded-xl border ${
-                        isEditing
+                      className={`w-full px-4 py-3 rounded-xl border ${isEditing
                           ? "border-gray-300 bg-white focus:ring-2 focus:ring-red-500 focus:border-red-500"
                           : "bg-gray-50 border-gray-200"
-                      }`}
+                        }`}
                       placeholder="e.g., 9:00 AM to 5:00 PM"
                     />
                   </div>
@@ -641,11 +632,10 @@ const LabProfile = () => {
                       value={formData.operatingHours.weekends}
                       onChange={handleChange}
                       disabled={!isEditing}
-                      className={`w-full px-4 py-3 rounded-xl border ${
-                        isEditing
+                      className={`w-full px-4 py-3 rounded-xl border ${isEditing
                           ? "border-gray-300 bg-white focus:ring-2 focus:ring-red-500 focus:border-red-500"
                           : "bg-gray-50 border-gray-200"
-                      }`}
+                        }`}
                       placeholder="e.g., 9:00 AM to 1:00 PM or Closed"
                     />
                   </div>
@@ -661,11 +651,10 @@ const LabProfile = () => {
                       onChange={handleChange}
                       disabled={!isEditing}
                       rows={2}
-                      className={`w-full px-4 py-3 rounded-xl border ${
-                        isEditing
+                      className={`w-full px-4 py-3 rounded-xl border ${isEditing
                           ? "border-gray-300 bg-white focus:ring-2 focus:ring-red-500 focus:border-red-500"
                           : "bg-gray-50 border-gray-200"
-                      }`}
+                        }`}
                       placeholder="e.g., Emergency services available 24/7."
                     />
                   </div>

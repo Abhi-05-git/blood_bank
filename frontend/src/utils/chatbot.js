@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:5001/api/chatbot";
+const API_URL = "http://localhost:500/api/chatbot";
 
 export const sendMessage = async (message, sessionId = null) => {
   try {

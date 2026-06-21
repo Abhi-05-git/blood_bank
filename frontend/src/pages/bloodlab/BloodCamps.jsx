@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { 
-  Calendar, 
-  Clock, 
-  MapPin, 
-  Users, 
-  Plus, 
-  Trash2, 
+import {
+  Calendar,
+  Clock,
+  MapPin,
+  Users,
+  Plus,
+  Trash2,
   Edit3,
   Search,
   ChevronDown,
@@ -62,7 +62,7 @@ const BloodCamps = () => {
 
   const token = localStorage.getItem("token");
   // Fixed API URL - removed /blood-lab if it doesn't exist
-  const API_URL = "http://localhost:5001/api/blood-lab";
+  const API_URL = "http://localhost:500/api/blood-lab";
 
   console.log("🔧 BloodCamps Component State:", {
     campsCount: camps.length,
@@ -126,7 +126,7 @@ const BloodCamps = () => {
     try {
       setLoading(true);
       console.log("🔄 Fetching camps with filters:", { ...filters, page });
-      
+
       const queryParams = new URLSearchParams({
         status: filters.status,
         page: page.toString(),
@@ -141,7 +141,7 @@ const BloodCamps = () => {
       console.log("📡 API URL:", url);
 
       const res = await fetch(url, {
-        headers: { 
+        headers: {
           Authorization: `Bearer ${token}`,
           'Content-Type': 'application/json'
         },
@@ -165,17 +165,17 @@ const BloodCamps = () => {
 
       const data = await res.json();
       console.log("✅ API Response data:", data);
-      
+
       if (data.success) {
         const campsData = data.data?.camps || data.camps || [];
         const calculatedStats = calculateStats(campsData);
-        
+
         console.log("📊 Setting camps data:", {
           campsCount: campsData.length,
           pagination: data.data?.pagination || data.pagination,
           stats: calculatedStats
         });
-        
+
         setCamps(campsData);
         setPagination(data.data?.pagination || data.pagination || {
           currentPage: 1,
@@ -217,7 +217,7 @@ const BloodCamps = () => {
   const updateCampStatus = async (campId, newStatus) => {
     try {
       console.log("🔄 Updating camp status:", { campId, newStatus });
-      
+
       // Try different endpoint variations
       const endpoints = [
         `${API_URL}/camps/${campId}/status`,
@@ -230,7 +230,7 @@ const BloodCamps = () => {
       for (const url of endpoints) {
         try {
           console.log("🔗 Trying endpoint:", url);
-          
+
           const payload = { status: newStatus };
           const res = await fetch(url, {
             method: "PATCH",
@@ -307,7 +307,7 @@ const BloodCamps = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setSubmitting(true);
-    
+
     console.log("📤 Form submission started:", { formData, editingCamp: editingCamp?._id });
 
     const formErrors = validateForm(formData);
@@ -425,7 +425,7 @@ const BloodCamps = () => {
   const handleDeleteCamp = async (id) => {
     console.log("🗑️ Deleting camp:", id);
     if (!window.confirm("Are you sure you want to delete this camp? This action cannot be undone.")) return;
-    
+
     try {
       // Try different endpoint variations
       const endpoints = [
@@ -441,7 +441,7 @@ const BloodCamps = () => {
 
           const res = await fetch(url, {
             method: "DELETE",
-            headers: { 
+            headers: {
               Authorization: `Bearer ${token}`,
               'Content-Type': 'application/json'
             },
@@ -517,7 +517,7 @@ const BloodCamps = () => {
   // Get available status actions for a camp - FIXED to include Completed
   const getAvailableActions = (camp) => {
     const baseActions = [];
-    
+
     switch (camp.status) {
       case 'Upcoming':
         baseActions.push(
@@ -579,7 +579,7 @@ const BloodCamps = () => {
               }}
               className="flex items-center bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg shadow-md transition-colors"
             >
-              <Plus size={18} className="mr-2" /> 
+              <Plus size={18} className="mr-2" />
               {showForm ? 'Cancel' : 'Add Camp'}
             </button>
           </div>
@@ -656,9 +656,9 @@ const BloodCamps = () => {
             <button
               onClick={() => {
                 console.log("🔄 Toggling sort order");
-                setFilters(prev => ({ 
-                  ...prev, 
-                  sortOrder: prev.sortOrder === 'desc' ? 'asc' : 'desc' 
+                setFilters(prev => ({
+                  ...prev,
+                  sortOrder: prev.sortOrder === 'desc' ? 'asc' : 'desc'
                 }))
               }}
               className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
@@ -678,7 +678,7 @@ const BloodCamps = () => {
               <Droplet className="w-5 h-5 text-red-600" />
               {editingCamp ? 'Edit Blood Camp' : 'Add New Blood Camp'}
             </h2>
-            
+
             <div className="grid md:grid-cols-2 gap-4">
               {/* Title */}
               <div className="md:col-span-2">
@@ -689,9 +689,8 @@ const BloodCamps = () => {
                   type="text"
                   value={formData.title}
                   onChange={(e) => handleInputChange('title', e.target.value)}
-                  className={`w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-red-500 focus:border-red-500 ${
-                    errors.title ? 'border-red-500' : ''
-                  }`}
+                  className={`w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-red-500 focus:border-red-500 ${errors.title ? 'border-red-500' : ''
+                    }`}
                   placeholder="Enter camp title"
                 />
                 {errors.title && <p className="text-red-500 text-sm mt-1">{errors.title}</p>}
@@ -706,9 +705,8 @@ const BloodCamps = () => {
                   type="date"
                   value={formData.date}
                   onChange={(e) => handleInputChange('date', e.target.value)}
-                  className={`w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-red-500 focus:border-red-500 ${
-                    errors.date ? 'border-red-500' : ''
-                  }`}
+                  className={`w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-red-500 focus:border-red-500 ${errors.date ? 'border-red-500' : ''
+                    }`}
                 />
                 {errors.date && <p className="text-red-500 text-sm mt-1">{errors.date}</p>}
               </div>
@@ -723,9 +721,8 @@ const BloodCamps = () => {
                     type="time"
                     value={formData.startTime}
                     onChange={(e) => handleInputChange('startTime', e.target.value)}
-                    className={`w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-red-500 focus:border-red-500 ${
-                      errors.startTime ? 'border-red-500' : ''
-                    }`}
+                    className={`w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-red-500 focus:border-red-500 ${errors.startTime ? 'border-red-500' : ''
+                      }`}
                   />
                   {errors.startTime && <p className="text-red-500 text-sm mt-1">{errors.startTime}</p>}
                 </div>
@@ -737,9 +734,8 @@ const BloodCamps = () => {
                     type="time"
                     value={formData.endTime}
                     onChange={(e) => handleInputChange('endTime', e.target.value)}
-                    className={`w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-red-500 focus:border-red-500 ${
-                      errors.endTime ? 'border-red-500' : ''
-                    }`}
+                    className={`w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-red-500 focus:border-red-500 ${errors.endTime ? 'border-red-500' : ''
+                      }`}
                   />
                   {errors.endTime && <p className="text-red-500 text-sm mt-1">{errors.endTime}</p>}
                 </div>
@@ -754,9 +750,8 @@ const BloodCamps = () => {
                   type="text"
                   value={formData.venue}
                   onChange={(e) => handleInputChange('venue', e.target.value)}
-                  className={`w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-red-500 focus:border-red-500 ${
-                    errors.venue ? 'border-red-500' : ''
-                  }`}
+                  className={`w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-red-500 focus:border-red-500 ${errors.venue ? 'border-red-500' : ''
+                    }`}
                   placeholder="Enter venue name"
                 />
                 {errors.venue && <p className="text-red-500 text-sm mt-1">{errors.venue}</p>}
@@ -770,9 +765,8 @@ const BloodCamps = () => {
                   type="text"
                   value={formData.city}
                   onChange={(e) => handleInputChange('city', e.target.value)}
-                  className={`w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-red-500 focus:border-red-500 ${
-                    errors.city ? 'border-red-500' : ''
-                  }`}
+                  className={`w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-red-500 focus:border-red-500 ${errors.city ? 'border-red-500' : ''
+                    }`}
                   placeholder="Enter city"
                 />
                 {errors.city && <p className="text-red-500 text-sm mt-1">{errors.city}</p>}
@@ -786,9 +780,8 @@ const BloodCamps = () => {
                   type="text"
                   value={formData.state}
                   onChange={(e) => handleInputChange('state', e.target.value)}
-                  className={`w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-red-500 focus:border-red-500 ${
-                    errors.state ? 'border-red-500' : ''
-                  }`}
+                  className={`w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-red-500 focus:border-red-500 ${errors.state ? 'border-red-500' : ''
+                    }`}
                   placeholder="Enter state"
                 />
                 {errors.state && <p className="text-red-500 text-sm mt-1">{errors.state}</p>}
@@ -802,9 +795,8 @@ const BloodCamps = () => {
                   type="text"
                   value={formData.pincode}
                   onChange={(e) => handleInputChange('pincode', e.target.value)}
-                  className={`w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-red-500 focus:border-red-500 ${
-                    errors.pincode ? 'border-red-500' : ''
-                  }`}
+                  className={`w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-red-500 focus:border-red-500 ${errors.pincode ? 'border-red-500' : ''
+                    }`}
                   placeholder="6-digit pincode"
                   maxLength={6}
                 />
@@ -821,9 +813,8 @@ const BloodCamps = () => {
                   min="1"
                   value={formData.expectedDonors}
                   onChange={(e) => handleInputChange('expectedDonors', e.target.value)}
-                  className={`w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-red-500 focus:border-red-500 ${
-                    errors.expectedDonors ? 'border-red-500' : ''
-                  }`}
+                  className={`w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-red-500 focus:border-red-500 ${errors.expectedDonors ? 'border-red-500' : ''
+                    }`}
                   placeholder="Expected number of donors"
                 />
                 {errors.expectedDonors && <p className="text-red-500 text-sm mt-1">{errors.expectedDonors}</p>}
@@ -901,7 +892,7 @@ const BloodCamps = () => {
               {camps.map((camp) => {
                 console.log("🎪 Rendering camp card:", camp._id, camp.title);
                 const availableActions = getAvailableActions(camp);
-                
+
                 return (
                   <div
                     key={camp._id}

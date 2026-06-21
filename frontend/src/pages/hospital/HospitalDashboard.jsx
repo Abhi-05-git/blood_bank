@@ -41,7 +41,7 @@ const HospitalDashboard = () => {
         }
 
         // Fetch hospital profile
-        const profileRes = await fetch("http://localhost:5001/api/facility/profile", {
+        const profileRes = await fetch("http://localhost:500/api/facility/profile", {
           headers: { Authorization: `Bearer ${token}` },
         });
 
@@ -61,12 +61,12 @@ const HospitalDashboard = () => {
         }
 
         // Fetch blood stock
-        const stockRes = await axios.get("http://localhost:5001/api/hospital/blood/stock", {
+        const stockRes = await axios.get("http://localhost:500/api/hospital/blood/stock", {
           headers: { Authorization: `Bearer ${token}` },
         });
 
         // Fetch blood requests
-        const requestsRes = await axios.get("http://localhost:5001/api/hospital/blood/requests", {
+        const requestsRes = await axios.get("http://localhost:500/api/hospital/blood/requests", {
           headers: { Authorization: `Bearer ${token}` },
         });
 
@@ -76,7 +76,7 @@ const HospitalDashboard = () => {
         // Calculate stats
         const totalUnits = stockData.reduce((sum, item) => sum + item.quantity, 0);
         const lowStock = stockData.filter(item => item.quantity < 5).length;
-        
+
         const today = new Date();
         const nextWeek = new Date(today);
         nextWeek.setDate(today.getDate() + 7);
@@ -162,13 +162,13 @@ const HospitalDashboard = () => {
   const getStockStatus = (quantity, expiryDate) => {
     const today = new Date();
     const expiry = new Date(expiryDate);
-    
+
     if (expiry <= today) {
       return { status: "expired", color: "bg-red-100 text-red-800", icon: AlertTriangle };
     }
-    
+
     const daysUntilExpiry = Math.ceil((expiry - today) / (1000 * 60 * 60 * 24));
-    
+
     if (daysUntilExpiry <= 3) {
       return { status: "critical", color: "bg-red-100 text-red-800", icon: AlertTriangle };
     } else if (daysUntilExpiry <= 7) {
@@ -236,13 +236,13 @@ const HospitalDashboard = () => {
                 <div>
                   <h2 className="text-2xl font-semibold text-gray-800">{hospital.name}</h2>
                   <p className="text-gray-500">{hospital.email}</p>
-                  
+
                   <div className="flex flex-wrap gap-4 mt-3">
                     <p className="text-gray-600 flex items-center gap-2">
                       <MapPin className="w-4 h-4 text-red-500" />
                       {hospital.address}
                     </p>
-                    
+
                     <p className="text-gray-600 flex items-center gap-2">
                       <Phone className="w-4 h-4 text-red-500" />
                       {hospital.phone}
@@ -328,7 +328,7 @@ const HospitalDashboard = () => {
               <Droplet className="w-5 h-5 text-red-600" />
               Blood Inventory
             </h3>
-            
+
             {bloodStock.length === 0 ? (
               <div className="text-center py-8">
                 <Droplet className="w-12 h-12 text-gray-400 mx-auto mb-3" />
@@ -345,7 +345,7 @@ const HospitalDashboard = () => {
                 {bloodStock.slice(0, 6).map((item) => {
                   const status = getStockStatus(item.quantity, item.expiryDate);
                   const StatusIcon = status.icon;
-                  
+
                   return (
                     <div key={item._id} className="flex items-center justify-between p-3 border border-gray-200 rounded-lg">
                       <div className="flex items-center gap-3">
@@ -361,7 +361,7 @@ const HospitalDashboard = () => {
                     </div>
                   );
                 })}
-                
+
                 {bloodStock.length > 6 && (
                   <button
                     onClick={() => window.location.href = '/hospital/blood-stock'}
@@ -380,7 +380,7 @@ const HospitalDashboard = () => {
               <Activity className="w-5 h-5 text-red-600" />
               Recent Blood Requests
             </h3>
-            
+
             {requests.length === 0 ? (
               <div className="text-center py-8">
                 <Activity className="w-12 h-12 text-gray-400 mx-auto mb-3" />
@@ -396,16 +396,15 @@ const HospitalDashboard = () => {
                         {request.units} units • {request.labId?.name || 'Unknown Lab'}
                       </div>
                     </div>
-                    <span className={`px-2 py-1 rounded text-xs font-medium ${
-                      request.status === 'accepted' ? 'bg-green-100 text-green-800' :
-                      request.status === 'rejected' ? 'bg-red-100 text-red-800' :
-                      'bg-yellow-100 text-yellow-800'
-                    }`}>
+                    <span className={`px-2 py-1 rounded text-xs font-medium ${request.status === 'accepted' ? 'bg-green-100 text-green-800' :
+                        request.status === 'rejected' ? 'bg-red-100 text-red-800' :
+                          'bg-yellow-100 text-yellow-800'
+                      }`}>
                       {request.status}
                     </span>
                   </div>
                 ))}
-                
+
                 {requests.length > 5 && (
                   <button
                     onClick={() => window.location.href = '/hospital/request-history'}
@@ -426,7 +425,7 @@ const HospitalDashboard = () => {
               <Clock className="w-5 h-5 text-red-600" />
               Recent Logins
             </h3>
-            
+
             {loginHistory.length === 0 ? (
               <p className="text-gray-500 text-center py-4">No login history available</p>
             ) : (
@@ -452,7 +451,7 @@ const HospitalDashboard = () => {
               <History className="w-5 h-5 text-red-600" />
               Recent Activity
             </h3>
-            
+
             {recentActivity.length === 0 ? (
               <p className="text-gray-500 text-center py-4">No recent activity</p>
             ) : (

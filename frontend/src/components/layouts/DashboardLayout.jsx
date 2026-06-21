@@ -148,7 +148,7 @@ const DashboardLayout = ({ userRole = "donor" }) => {
 
       while (attempt < maxRetries) {
         try {
-          const res = await fetch("http://localhost:5001/api/auth/profile", {
+          const res = await fetch("http://localhost:500/api/auth/profile", {
             headers: { Authorization: `Bearer ${token}` },
           });
 
@@ -372,8 +372,8 @@ const DashboardLayout = ({ userRole = "donor" }) => {
                       setSidebarOpen(false);
                     }}
                     className={`flex items-center gap-3 w-full p-3 rounded-xl transition-all duration-200 relative group ${isActive
-                        ? "shadow-md font-semibold transform scale-[1.02]"
-                        : "hover:shadow-md hover:transform hover:scale-[1.02] hover:bg-red-50"
+                      ? "shadow-md font-semibold transform scale-[1.02]"
+                      : "hover:shadow-md hover:transform hover:scale-[1.02] hover:bg-red-50"
                       } ${isActive ? "text-white" : "text-gray-700 hover:text-red-700"
                       }`}
                     style={{

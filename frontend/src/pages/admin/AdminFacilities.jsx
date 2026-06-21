@@ -26,7 +26,7 @@ const FacilityApproval = () => {
   const [refreshing, setRefreshing] = useState(false);
 
   const token = localStorage.getItem("token");
-  const API_URL = "http://localhost:5001/api/admin";
+  const API_URL = "http://localhost:500/api/admin";
 
   // Fetch pending facilities
   const fetchPendingFacilities = async (showToast = false) => {
@@ -35,9 +35,9 @@ const FacilityApproval = () => {
       else setLoading(true);
 
       console.log("🔄 Fetching facilities...");
-      
+
       const res = await fetch(`${API_URL}/facilities`, {
-        headers: { 
+        headers: {
           Authorization: `Bearer ${token}`,
           'Content-Type': 'application/json'
         },
@@ -53,11 +53,11 @@ const FacilityApproval = () => {
 
       const data = await res.json();
       console.log("✅ Facilities data:", data);
-      
+
       // Filter to show only pending facilities for approval
       const pendingFacilities = data.facilities?.filter(f => f.status === "pending") || [];
       setFacilities(pendingFacilities);
-      
+
       if (showToast) {
         toast.success(`Found ${pendingFacilities.length} pending facilities`);
       }
@@ -127,14 +127,14 @@ const FacilityApproval = () => {
 
     try {
       const res = await fetch(`${API_URL}/facility/reject/${facilityId}`, {
-            // 👇 FIX: Change method to PUT for status update
-            method: "PUT", 
-            headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${token}`,
-            },
-            body: JSON.stringify({ rejectionReason }),
-        });
+        // 👇 FIX: Change method to PUT for status update
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ rejectionReason }),
+      });
 
       const data = await res.json();
       console.log("📨 Rejection response:", data);
@@ -161,7 +161,7 @@ const FacilityApproval = () => {
       toast.error("Document not available");
       return;
     }
-    
+
     console.log("📄 Opening document:", documentUrl);
     window.open(documentUrl, '_blank', 'noopener,noreferrer');
   };
@@ -184,18 +184,18 @@ const FacilityApproval = () => {
 
   const getStatusBadge = (status) => {
     const statusConfig = {
-      pending: { 
-        color: "bg-yellow-100 text-yellow-800 border-yellow-200", 
+      pending: {
+        color: "bg-yellow-100 text-yellow-800 border-yellow-200",
         icon: Clock,
         label: "Pending Review"
       },
-      approved: { 
-        color: "bg-green-100 text-green-800 border-green-200", 
+      approved: {
+        color: "bg-green-100 text-green-800 border-green-200",
         icon: CheckCircle,
         label: "Approved"
       },
-      rejected: { 
-        color: "bg-red-100 text-red-800 border-red-200", 
+      rejected: {
+        color: "bg-red-100 text-red-800 border-red-200",
         icon: XCircle,
         label: "Rejected"
       },
@@ -215,11 +215,10 @@ const FacilityApproval = () => {
   const getFacilityTypeBadge = (type) => {
     const isHospital = type === "Hospital";
     return (
-      <span className={`inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-medium border ${
-        isHospital 
-          ? "bg-blue-100 text-blue-800 border-blue-200" 
+      <span className={`inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-medium border ${isHospital
+          ? "bg-blue-100 text-blue-800 border-blue-200"
           : "bg-purple-100 text-purple-800 border-purple-200"
-      }`}>
+        }`}>
         <Building size={12} />
         {type || "Facility"}
       </span>
@@ -259,7 +258,7 @@ const FacilityApproval = () => {
                 Review and verify hospital and blood lab registration requests
               </p>
             </div>
-            
+
             <button
               onClick={() => fetchPendingFacilities(true)}
               disabled={refreshing}
@@ -295,7 +294,7 @@ const FacilityApproval = () => {
               <Building className="w-5 h-5 text-red-600" />
               Pending Requests ({facilities.length})
             </h2>
-            
+
             {facilities.length === 0 ? (
               <div className="text-center py-12 bg-white rounded-2xl shadow-lg border border-red-100">
                 <CheckCircle className="w-16 h-16 text-green-400 mx-auto mb-4" />
@@ -307,11 +306,10 @@ const FacilityApproval = () => {
               facilities.map((facility) => (
                 <div
                   key={facility._id}
-                  className={`bg-white rounded-2xl shadow-lg border-2 p-6 cursor-pointer transition-all duration-200 hover:shadow-xl ${
-                    selectedFacility?._id === facility._id 
-                      ? "border-red-300 bg-red-50" 
+                  className={`bg-white rounded-2xl shadow-lg border-2 p-6 cursor-pointer transition-all duration-200 hover:shadow-xl ${selectedFacility?._id === facility._id
+                      ? "border-red-300 bg-red-50"
                       : "border-red-100 hover:border-red-300"
-                  }`}
+                    }`}
                   onClick={() => {
                     console.log("🎯 Selecting facility:", facility._id);
                     setSelectedFacility(facility);
@@ -395,7 +393,7 @@ const FacilityApproval = () => {
                   <Building className="w-5 h-5 text-red-600" />
                   Review Facility
                 </h2>
-                
+
                 {/* Facility Details */}
                 <div className="space-y-6">
                   <div className="grid grid-cols-2 gap-4">

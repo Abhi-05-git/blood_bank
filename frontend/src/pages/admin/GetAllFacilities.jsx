@@ -20,7 +20,7 @@ import {
   Building2
 } from 'lucide-react';
 
-const API_URL = "http://localhost:5001/api/admin";
+const API_URL = "http://localhost:500/api/admin";
 
 function GetAllFacilities() {
   const [facilities, setFacilities] = useState([]);
@@ -47,7 +47,7 @@ function GetAllFacilities() {
       else setLoading(true);
 
       console.log("🔄 Fetching facilities...");
-      
+
       const res = await fetch(`${API_URL}/facilities`, {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -86,21 +86,21 @@ function GetAllFacilities() {
   // Filter and sort facilities
   const filteredFacilities = facilities
     .filter(facility => {
-      const matchesSearch = !filters.search || 
+      const matchesSearch = !filters.search ||
         facility.name?.toLowerCase().includes(filters.search.toLowerCase()) ||
         facility.email?.toLowerCase().includes(filters.search.toLowerCase()) ||
         facility.registrationNumber?.toLowerCase().includes(filters.search.toLowerCase()) ||
         facility.phone?.includes(filters.search);
-      
+
       const matchesType = filters.facilityType === 'all' || facility.facilityType === filters.facilityType;
-      
+
       const matchesStatus = filters.status === 'all' || facility.status === filters.status;
-      
+
       return matchesSearch && matchesType && matchesStatus;
     })
     .sort((a, b) => {
       let aValue, bValue;
-      
+
       switch (filters.sortBy) {
         case 'name':
           aValue = a.name?.toLowerCase();
@@ -118,7 +118,7 @@ function GetAllFacilities() {
           aValue = a.name?.toLowerCase();
           bValue = b.name?.toLowerCase();
       }
-      
+
       if (filters.sortOrder === 'desc') {
         return aValue < bValue ? 1 : -1;
       }
@@ -134,7 +134,7 @@ function GetAllFacilities() {
         label: "Approved"
       },
       rejected: {
-        color: "bg-red-100 text-red-800 border-red-200", 
+        color: "bg-red-100 text-red-800 border-red-200",
         icon: <XCircle size={12} />,
         label: "Rejected"
       },
@@ -158,13 +158,12 @@ function GetAllFacilities() {
   const getTypeBadge = (type) => {
     const typeDisplay = type.split('-').map(s => s.charAt(0).toUpperCase() + s.slice(1)).join(' ');
     const isHospital = type === 'hospital';
-    
+
     return (
-      <span className={`inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs font-bold border ${
-        isHospital 
-          ? 'bg-blue-50 text-blue-700 border-blue-200' 
+      <span className={`inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs font-bold border ${isHospital
+          ? 'bg-blue-50 text-blue-700 border-blue-200'
           : 'bg-purple-50 text-purple-700 border-purple-200'
-      }`}>
+        }`}>
         <Building2 size={10} />
         {typeDisplay}
       </span>
@@ -197,7 +196,7 @@ function GetAllFacilities() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-red-50 to-white p-6">
       <div className="max-w-7xl mx-auto">
-        
+
         {/* Header */}
         <div className="mb-8">
           <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4 mb-6">
@@ -212,7 +211,7 @@ function GetAllFacilities() {
                 </p>
               </div>
             </div>
-            
+
             <button
               onClick={() => fetchAllFacilities(true)}
               disabled={refreshing}
@@ -249,7 +248,7 @@ function GetAllFacilities() {
             </div>
           </div>
         </div>
-        
+
         {/* Filters */}
         <div className="bg-white rounded-2xl shadow-lg border border-red-100 p-6 mb-6">
           <div className="flex flex-col lg:flex-row gap-4">
@@ -265,7 +264,7 @@ function GetAllFacilities() {
                 />
               </div>
             </div>
-            
+
             <select
               value={filters.facilityType}
               onChange={(e) => setFilters(prev => ({ ...prev, facilityType: e.target.value }))}
@@ -278,7 +277,7 @@ function GetAllFacilities() {
                 </option>
               ))}
             </select>
-            
+
             <select
               value={filters.status}
               onChange={(e) => setFilters(prev => ({ ...prev, status: e.target.value }))}
@@ -291,7 +290,7 @@ function GetAllFacilities() {
                 </option>
               ))}
             </select>
-            
+
             <select
               value={filters.sortBy}
               onChange={(e) => setFilters(prev => ({ ...prev, sortBy: e.target.value }))}
@@ -301,11 +300,11 @@ function GetAllFacilities() {
               <option value="status">Sort by Status</option>
               <option value="type">Sort by Type</option>
             </select>
-            
+
             <button
-              onClick={() => setFilters(prev => ({ 
-                ...prev, 
-                sortOrder: prev.sortOrder === 'asc' ? 'desc' : 'asc' 
+              onClick={() => setFilters(prev => ({
+                ...prev,
+                sortOrder: prev.sortOrder === 'asc' ? 'desc' : 'asc'
               }))}
               className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
             >
@@ -349,8 +348,8 @@ function GetAllFacilities() {
               {facilities.length === 0 ? 'No Facilities Found' : 'No Matching Facilities'}
             </h3>
             <p className="text-gray-600">
-              {facilities.length === 0 
-                ? 'The medical facility database is currently empty.' 
+              {facilities.length === 0
+                ? 'The medical facility database is currently empty.'
                 : 'No facilities match your current search criteria.'}
             </p>
             {filters.search && (
@@ -389,12 +388,12 @@ function GetAllFacilities() {
                     <Tag className="w-4 h-4 text-red-500 flex-shrink-0" />
                     <span className="text-gray-700 font-medium">Reg: {facility.registrationNumber}</span>
                   </div>
-                  
+
                   <div className="flex items-center gap-3 text-sm">
                     <Phone className="w-4 h-4 text-red-500 flex-shrink-0" />
                     <span className="text-gray-700">{facility.phone || 'Not provided'}</span>
                   </div>
-                  
+
                   <div className="flex items-center gap-3 text-sm">
                     <Briefcase className="w-4 h-4 text-red-500 flex-shrink-0" />
                     <span className="text-gray-700 capitalize">{facility.facilityCategory || 'General'}</span>
@@ -402,9 +401,8 @@ function GetAllFacilities() {
 
                   {/* Operational Status */}
                   <div className="flex items-center gap-3 text-sm">
-                    <Clock className={`w-4 h-4 flex-shrink-0 ${
-                      facility.is24x7 ? 'text-green-500' : 'text-gray-500'
-                    }`} />
+                    <Clock className={`w-4 h-4 flex-shrink-0 ${facility.is24x7 ? 'text-green-500' : 'text-gray-500'
+                      }`} />
                     <span className="text-gray-700 font-medium">
                       {facility.is24x7 ? '24/7 Service Available' : `Hours: ${facility.operatingHours?.open || 'N/A'} - ${facility.operatingHours?.close || 'N/A'}`}
                     </span>

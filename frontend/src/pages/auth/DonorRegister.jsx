@@ -71,7 +71,7 @@ const calculateAge = (dobString) => {
   const today = new Date();
   let age = today.getFullYear() - birthDate.getFullYear();
   const monthDiff = today.getMonth() - birthDate.getMonth();
-  
+
   if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
     age--;
   }
@@ -130,7 +130,7 @@ export default function DonorRegisterForm() {
           address: { ...prev.address, [field]: value },
         };
       }
-      
+
       return {
         ...prev,
         [name]: type === "checkbox" ? checked : value,
@@ -154,7 +154,7 @@ export default function DonorRegisterForm() {
   const handleBlur = (e) => {
     const { name } = e.target;
     setTouched(prev => ({ ...prev, [name]: true }));
-    
+
     // Validate single field
     validateField(name);
   };
@@ -162,7 +162,7 @@ export default function DonorRegisterForm() {
   // Validate single field
   const validateField = (fieldName) => {
     let value;
-    
+
     if (fieldName.includes(".")) {
       const [parent, child] = fieldName.split(".");
       if (parent === "healthInfo") {
@@ -173,9 +173,9 @@ export default function DonorRegisterForm() {
     } else {
       value = formData[fieldName];
     }
-    
+
     const error = validators[fieldName]?.(value, formData);
-    
+
     setErrors(prev => {
       if (error) {
         return { ...prev, [fieldName]: error };
@@ -190,7 +190,7 @@ export default function DonorRegisterForm() {
   // Validate current step
   const validateStep = () => {
     const newErrors = {};
-    
+
     const stepValidations = {
       1: ["fullName", "email", "password", "phone", "emergencyContact"],
       2: ["dob", "gender", "bloodGroup", "healthInfo.weight", "healthInfo.height"],
@@ -199,7 +199,7 @@ export default function DonorRegisterForm() {
 
     stepValidations[step].forEach(field => {
       let value;
-      
+
       if (field.includes(".")) {
         const [parent, child] = field.split(".");
         if (parent === "healthInfo") {
@@ -210,13 +210,13 @@ export default function DonorRegisterForm() {
       } else {
         value = formData[field];
       }
-      
+
       const error = validators[field]?.(value, formData);
       if (error) newErrors[field] = error;
     });
 
     setErrors(newErrors);
-    
+
     // Mark all step fields as touched to show errors
     const newTouched = { ...touched };
     stepValidations[step].forEach(field => {
@@ -251,12 +251,12 @@ export default function DonorRegisterForm() {
     if (e && typeof e.preventDefault === 'function') {
       e.preventDefault();
     }
-    
+
     if (!validateStep()) {
       console.log("Validation failed on step 3. Data not submitted.");
       return;
     }
-    
+
     setIsSubmitting(true);
 
     const age = calculateAge(formData.dob);
@@ -274,10 +274,10 @@ export default function DonorRegisterForm() {
       address: formData.address,
       role: "donor",
     };
-    
-        const API_URL = "http://localhost:5001/api/auth/register"; 
 
-    
+    const API_URL = "http://localhost:500/api/auth/register";
+
+
     console.log("Submitting Donor Data:", submissionPayload);
 
     try {
@@ -288,7 +288,7 @@ export default function DonorRegisterForm() {
         },
         body: JSON.stringify(submissionPayload),
       });
-      
+
       if (response.ok) {
         const result = await response.json();
         console.log("Donor Registered Successfully:", result);
@@ -325,7 +325,7 @@ export default function DonorRegisterForm() {
           <p className="text-center mb-4 opacity-90">
             Join our life-saving mission in 3 simple steps
           </p>
-          
+
           {/* Progress Bar */}
           <div className="mb-2 flex justify-between items-center text-sm">
             <span>Step {step} of 3</span>
@@ -360,9 +360,8 @@ export default function DonorRegisterForm() {
                   value={formData.fullName}
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent transition ${
-                    shouldShowError("fullName") ? "border-red-500" : "border-gray-300"
-                  }`}
+                  className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent transition ${shouldShowError("fullName") ? "border-red-500" : "border-gray-300"
+                    }`}
                   placeholder="Enter your full name"
                 />
                 {shouldShowError("fullName") && (
@@ -371,7 +370,7 @@ export default function DonorRegisterForm() {
                   </p>
                 )}
               </div>
-              
+
               <div>
                 <label htmlFor="email" className="block font-medium mb-2">
                   Email <span className="text-red-500">*</span>
@@ -383,9 +382,8 @@ export default function DonorRegisterForm() {
                   value={formData.email}
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent transition ${
-                    shouldShowError("email") ? "border-red-500" : "border-gray-300"
-                  }`}
+                  className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent transition ${shouldShowError("email") ? "border-red-500" : "border-gray-300"
+                    }`}
                   placeholder="Enter email address"
                 />
                 {shouldShowError("email") && (
@@ -407,9 +405,8 @@ export default function DonorRegisterForm() {
                     value={formData.password}
                     onChange={handleChange}
                     onBlur={handleBlur}
-                    className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent transition ${
-                      shouldShowError("password") ? "border-red-500" : "border-gray-300"
-                    }`}
+                    className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent transition ${shouldShowError("password") ? "border-red-500" : "border-gray-300"
+                      }`}
                     placeholder="Enter password (min 8 characters)"
                   />
                   <button
@@ -440,9 +437,8 @@ export default function DonorRegisterForm() {
                     value={formData.phone}
                     onChange={handleChange}
                     onBlur={handleBlur}
-                    className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent transition ${
-                      shouldShowError("phone") ? "border-red-500" : "border-gray-300"
-                    }`}
+                    className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent transition ${shouldShowError("phone") ? "border-red-500" : "border-gray-300"
+                      }`}
                     placeholder="10-digit phone number"
                     maxLength="10"
                   />
@@ -452,7 +448,7 @@ export default function DonorRegisterForm() {
                     </p>
                   )}
                 </div>
-                
+
                 <div>
                   <label htmlFor="emergencyContact" className="block font-medium mb-2">
                     Emergency Contact <span className="text-red-500">*</span>
@@ -464,9 +460,8 @@ export default function DonorRegisterForm() {
                     value={formData.emergencyContact}
                     onChange={handleChange}
                     onBlur={handleBlur}
-                    className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent transition ${
-                      shouldShowError("emergencyContact") ? "border-red-500" : "border-gray-300"
-                    }`}
+                    className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent transition ${shouldShowError("emergencyContact") ? "border-red-500" : "border-gray-300"
+                      }`}
                     placeholder="10-digit emergency contact"
                     maxLength="10"
                   />
@@ -495,9 +490,8 @@ export default function DonorRegisterForm() {
                     value={formData.dob}
                     onChange={handleChange}
                     onBlur={handleBlur}
-                    className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent transition ${
-                      shouldShowError("dob") ? "border-red-500" : "border-gray-300"
-                    }`}
+                    className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent transition ${shouldShowError("dob") ? "border-red-500" : "border-gray-300"
+                      }`}
                   />
                   {shouldShowError("dob") && (
                     <p className="text-red-500 text-sm mt-1 flex items-center">
@@ -510,7 +504,7 @@ export default function DonorRegisterForm() {
                     </p>
                   )}
                 </div>
-                
+
                 <div>
                   <label htmlFor="gender" className="block font-medium mb-2">
                     Gender <span className="text-red-500">*</span>
@@ -521,9 +515,8 @@ export default function DonorRegisterForm() {
                     value={formData.gender}
                     onChange={handleChange}
                     onBlur={handleBlur}
-                    className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent transition ${
-                      shouldShowError("gender") ? "border-red-500" : "border-gray-300"
-                    }`}
+                    className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent transition ${shouldShowError("gender") ? "border-red-500" : "border-gray-300"
+                      }`}
                   >
                     <option value="">Select Gender</option>
                     {GENDERS.map(gender => (
@@ -548,9 +541,8 @@ export default function DonorRegisterForm() {
                   value={formData.bloodGroup}
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent transition ${
-                    shouldShowError("bloodGroup") ? "border-red-500" : "border-gray-300"
-                  }`}
+                  className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent transition ${shouldShowError("bloodGroup") ? "border-red-500" : "border-gray-300"
+                    }`}
                 >
                   <option value="">Select Blood Group</option>
                   {BLOOD_GROUPS.map(group => (
@@ -576,9 +568,8 @@ export default function DonorRegisterForm() {
                     value={formData.healthInfo.weight}
                     onChange={handleChange}
                     onBlur={handleBlur}
-                    className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent transition ${
-                      shouldShowError("healthInfo.weight") ? "border-red-500" : "border-gray-300"
-                    }`}
+                    className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent transition ${shouldShowError("healthInfo.weight") ? "border-red-500" : "border-gray-300"
+                      }`}
                     placeholder="Minimum 45kg"
                     min="45"
                     step="0.1"
@@ -589,7 +580,7 @@ export default function DonorRegisterForm() {
                     </p>
                   )}
                 </div>
-                
+
                 <div>
                   <label htmlFor="height" className="block font-medium mb-2">
                     Height (cm) <span className="text-red-500">*</span>
@@ -601,9 +592,8 @@ export default function DonorRegisterForm() {
                     value={formData.healthInfo.height}
                     onChange={handleChange}
                     onBlur={handleBlur}
-                    className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent transition ${
-                      shouldShowError("healthInfo.height") ? "border-red-500" : "border-gray-300"
-                    }`}
+                    className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent transition ${shouldShowError("healthInfo.height") ? "border-red-500" : "border-gray-300"
+                      }`}
                     placeholder="Height in cm"
                     min="100"
                     step="0.1"
@@ -663,9 +653,8 @@ export default function DonorRegisterForm() {
                   value={formData.address.street}
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent transition ${
-                    shouldShowError("address.street") ? "border-red-500" : "border-gray-300"
-                  }`}
+                  className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent transition ${shouldShowError("address.street") ? "border-red-500" : "border-gray-300"
+                    }`}
                   placeholder="Enter street address"
                 />
                 {shouldShowError("address.street") && (
@@ -692,9 +681,8 @@ export default function DonorRegisterForm() {
                       }));
                     }}
                     onBlur={handleBlur}
-                    className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent transition ${
-                      shouldShowError("address.state") ? "border-red-500" : "border-gray-300"
-                    }`}
+                    className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent transition ${shouldShowError("address.state") ? "border-red-500" : "border-gray-300"
+                      }`}
                   >
                     <option value="">Select State</option>
                     {Object.keys(STATES).map(state => (
@@ -718,9 +706,8 @@ export default function DonorRegisterForm() {
                     value={formData.address.city}
                     onChange={handleChange}
                     onBlur={handleBlur}
-                    className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent transition ${
-                      shouldShowError("address.city") ? "border-red-500" : "border-gray-300"
-                    }`}
+                    className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent transition ${shouldShowError("address.city") ? "border-red-500" : "border-gray-300"
+                      }`}
                     disabled={!formData.address.state}
                   >
                     <option value="">Select City</option>
@@ -747,9 +734,8 @@ export default function DonorRegisterForm() {
                     value={formData.address.pincode}
                     onChange={handleChange}
                     onBlur={handleBlur}
-                    className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent transition ${
-                      shouldShowError("address.pincode") ? "border-red-500" : "border-gray-300"
-                    }`}
+                    className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent transition ${shouldShowError("address.pincode") ? "border-red-500" : "border-gray-300"
+                      }`}
                     placeholder="6-digit pincode"
                     maxLength="6"
                   />
@@ -775,7 +761,7 @@ export default function DonorRegisterForm() {
                 Back
               </button>
             )}
-            
+
             {step < 3 ? (
               <button
                 type="button"

@@ -25,7 +25,7 @@ import {
   CheckCircle2,
 } from "lucide-react";
 
-const API_BASE_URL = "http://localhost:5001/api";
+const API_BASE_URL = "http://localhost:500/api";
 
 const BLOOD_GROUPS = ["A+", "A-", "B+", "B-", "O+", "O-", "AB+", "AB-"];
 const GENDER_OPTIONS = [
@@ -135,10 +135,10 @@ const DonorProfile = () => {
           password: ""
         });
         setDonor({
-            ...data.donor,
-            lastDonation: lastDonationDate, // Use the correct key for the display logic below
-            status: data.donor.status || "active", // Default to active if status is missing
-            donorId: data.donor._id, // Use _id as donorId if a specific one isn't provided
+          ...data.donor,
+          lastDonation: lastDonationDate, // Use the correct key for the display logic below
+          status: data.donor.status || "active", // Default to active if status is missing
+          donorId: data.donor._id, // Use _id as donorId if a specific one isn't provided
         });
       } else {
         throw new Error(data.message);
@@ -202,7 +202,7 @@ const DonorProfile = () => {
     const newErrors = {};
     Object.keys(validationRules).forEach(key => {
       if (key === "password" && !formData.password) return; // Skip password if empty
-      
+
       let value;
       if (key.startsWith("address.")) {
         const addressKey = key.split(".")[1];
@@ -210,7 +210,7 @@ const DonorProfile = () => {
       } else {
         value = formData[key];
       }
-      
+
       const error = validateField(key, value);
       if (error) newErrors[key] = error;
     });
@@ -346,7 +346,7 @@ const DonorProfile = () => {
     <div className="min-h-screen bg-gradient-to-br from-red-50 to-white p-6">
       <Toaster />
       <div className="max-w-6xl mx-auto">
-        
+
         {/* Header */}
         <div className="bg-white rounded-2xl shadow-lg border border-red-100 p-6 mb-6">
           <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4">
@@ -360,12 +360,12 @@ const DonorProfile = () => {
                 </h1>
                 <p className="text-gray-600 mt-1 flex items-center gap-2">
                   <Droplets size={16} className="text-red-500" />
-                  {donor.bloodGroup || "Blood Donor"} • 
+                  {donor.bloodGroup || "Blood Donor"} •
                   <span className="font-mono text-sm">ID: {donor.donorId}</span>
                 </p>
               </div>
             </div>
-            
+
             <div className="flex gap-3">
               {isEditing ? (
                 <>
@@ -401,10 +401,10 @@ const DonorProfile = () => {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          
+
           {/* Left Sidebar - Donor Status and Quick Info */}
           <div className="lg:col-span-1 space-y-6">
-            
+
             {/* Donor Status Card */}
             <div className="bg-white rounded-2xl shadow-lg border border-red-100 p-6">
               <h3 className="text-lg font-semibold text-gray-800 mb-4 flex items-center gap-2">
@@ -414,27 +414,26 @@ const DonorProfile = () => {
               <div className="space-y-4">
                 <div className="flex justify-between items-center">
                   <span className="text-sm text-gray-600">Status</span>
-                  <span className={`px-3 py-1 rounded-full text-xs font-bold ${
-                    donor.status === "active"
+                  <span className={`px-3 py-1 rounded-full text-xs font-bold ${donor.status === "active"
                       ? "bg-green-100 text-green-700"
                       : donor.status === "pending"
-                      ? "bg-yellow-100 text-yellow-700"
-                      : "bg-red-100 text-red-700"
-                  }`}>
+                        ? "bg-yellow-100 text-yellow-700"
+                        : "bg-red-100 text-red-700"
+                    }`}>
                     {donor.status?.charAt(0).toUpperCase() + donor.status?.slice(1)}
                   </span>
                 </div>
-                
+
                 <div className="flex justify-between items-center">
                   <span className="text-sm text-gray-600">Blood Group</span>
                   <span className="text-sm font-bold text-red-600">{donor.bloodGroup || "N/A"}</span>
                 </div>
-                
+
                 <div className="flex justify-between items-center">
                   <span className="text-sm text-gray-600">Donor ID</span>
                   <span className="text-sm font-mono text-gray-800">{donor.donorId}</span>
                 </div>
-                
+
                 {donor.lastDonation && (
                   <div className="flex justify-between items-center">
                     <span className="text-sm text-gray-600">Last Donation</span>
@@ -476,7 +475,7 @@ const DonorProfile = () => {
           {/* Main Content - Editable Form */}
           <div className="lg:col-span-2">
             <div className="bg-white rounded-2xl shadow-lg border border-red-100 p-6">
-              
+
               {/* Personal Details */}
               <div className="mb-8">
                 <h3 className="text-xl font-semibold text-gray-800 mb-4 flex items-center gap-2">
@@ -484,7 +483,7 @@ const DonorProfile = () => {
                   Personal Information
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  
+
                   {/* Full Name */}
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -496,11 +495,10 @@ const DonorProfile = () => {
                       value={formData.fullName}
                       onChange={handleChange}
                       disabled={!isEditing}
-                      className={`w-full px-4 py-3 rounded-xl border ${
-                        isEditing
+                      className={`w-full px-4 py-3 rounded-xl border ${isEditing
                           ? "border-gray-300 bg-white focus:ring-2 focus:ring-red-500 focus:border-red-500"
                           : "bg-gray-50 border-gray-200"
-                      } ${errors.fullName ? "border-red-500" : ""}`}
+                        } ${errors.fullName ? "border-red-500" : ""}`}
                       placeholder="Enter your full name"
                     />
                     {errors.fullName && (
@@ -522,11 +520,10 @@ const DonorProfile = () => {
                       value={formData.phone}
                       onChange={handleChange}
                       disabled={!isEditing}
-                      className={`w-full px-4 py-3 rounded-xl border ${
-                        isEditing
+                      className={`w-full px-4 py-3 rounded-xl border ${isEditing
                           ? "border-gray-300 bg-white focus:ring-2 focus:ring-red-500 focus:border-red-500"
                           : "bg-gray-50 border-gray-200"
-                      } ${errors.phone ? "border-red-500" : ""}`}
+                        } ${errors.phone ? "border-red-500" : ""}`}
                       placeholder="10-digit phone number"
                     />
                     {errors.phone && (
@@ -550,11 +547,10 @@ const DonorProfile = () => {
                       disabled={!isEditing}
                       min="18"
                       max="65"
-                      className={`w-full px-4 py-3 rounded-xl border ${
-                        isEditing
+                      className={`w-full px-4 py-3 rounded-xl border ${isEditing
                           ? "border-gray-300 bg-white focus:ring-2 focus:ring-red-500 focus:border-red-500"
                           : "bg-gray-50 border-gray-200"
-                      } ${errors.age ? "border-red-500" : ""}`}
+                        } ${errors.age ? "border-red-500" : ""}`}
                       placeholder="Your age"
                     />
                     {errors.age && (
@@ -575,11 +571,10 @@ const DonorProfile = () => {
                       value={formData.gender}
                       onChange={handleChange}
                       disabled={!isEditing}
-                      className={`w-full px-4 py-3 rounded-xl border ${
-                        isEditing
+                      className={`w-full px-4 py-3 rounded-xl border ${isEditing
                           ? "border-gray-300 bg-white focus:ring-2 focus:ring-red-500 focus:border-red-500"
                           : "bg-gray-50 border-gray-200"
-                      } ${errors.gender ? "border-red-500" : ""}`}
+                        } ${errors.gender ? "border-red-500" : ""}`}
                     >
                       <option value="">Select Gender</option>
                       {GENDER_OPTIONS.map(option => (
@@ -610,11 +605,10 @@ const DonorProfile = () => {
                       min="45"
                       max="200"
                       step="0.1"
-                      className={`w-full px-4 py-3 rounded-xl border ${
-                        isEditing
+                      className={`w-full px-4 py-3 rounded-xl border ${isEditing
                           ? "border-gray-300 bg-white focus:ring-2 focus:ring-red-500 focus:border-red-500"
                           : "bg-gray-50 border-gray-200"
-                      } ${errors.weight ? "border-red-500" : ""}`}
+                        } ${errors.weight ? "border-red-500" : ""}`}
                       placeholder="Weight in kg"
                     />
                     {errors.weight && (
@@ -635,11 +629,10 @@ const DonorProfile = () => {
                       value={formData.bloodGroup}
                       onChange={handleChange}
                       disabled={!isEditing}
-                      className={`w-full px-4 py-3 rounded-xl border ${
-                        isEditing
+                      className={`w-full px-4 py-3 rounded-xl border ${isEditing
                           ? "border-gray-300 bg-white focus:ring-2 focus:ring-red-500 focus:border-red-500"
                           : "bg-gray-50 border-gray-200"
-                      } ${errors.bloodGroup ? "border-red-500" : ""}`}
+                        } ${errors.bloodGroup ? "border-red-500" : ""}`}
                     >
                       <option value="">Select Blood Group</option>
                       {BLOOD_GROUPS.map(group => (
@@ -676,13 +669,11 @@ const DonorProfile = () => {
                         value={formData.address?.[field] || ""}
                         onChange={handleChange}
                         disabled={!isEditing}
-                        className={`w-full px-4 py-3 rounded-xl border ${
-                          isEditing
+                        className={`w-full px-4 py-3 rounded-xl border ${isEditing
                             ? "border-gray-300 bg-white focus:ring-2 focus:ring-red-500 focus:border-red-500"
                             : "bg-gray-50 border-gray-200"
-                        } ${
-                          errors[`address.${field}`] ? "border-red-500" : ""
-                        }`}
+                          } ${errors[`address.${field}`] ? "border-red-500" : ""
+                          }`}
                         placeholder={`Enter ${field === "pincode" ? "PIN code" : field}`}
                       />
                       {errors[`address.${field}`] && (
@@ -726,11 +717,10 @@ const DonorProfile = () => {
                       name="password"
                       value={formData.password}
                       onChange={handleChange}
-                      className={`w-full px-4 py-3 rounded-xl border ${
-                        isEditing
+                      className={`w-full px-4 py-3 rounded-xl border ${isEditing
                           ? "border-gray-300 bg-white focus:ring-2 focus:ring-red-500 focus:border-red-500"
                           : "bg-gray-50 border-gray-200"
-                      } ${errors.password ? "border-red-500" : ""}`}
+                        } ${errors.password ? "border-red-500" : ""}`}
                       placeholder="Enter new password (min. 6 characters)"
                     />
                     {errors.password && (

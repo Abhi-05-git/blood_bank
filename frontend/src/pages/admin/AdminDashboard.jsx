@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
-import { 
-  Users, 
-  Hospital, 
-  Droplet, 
-  Calendar, 
-  Heart, 
+import {
+  Users,
+  Hospital,
+  Droplet,
+  Calendar,
+  Heart,
   TrendingUp,
   Activity,
   Shield,
@@ -25,7 +25,7 @@ const AdminDashboard = () => {
   const fetchStats = async (showToast = false) => {
     try {
       if (showToast) setRefreshing(true);
-      
+
       const token = localStorage.getItem("token");
       if (!token) {
         window.location.href = "/login";
@@ -33,9 +33,9 @@ const AdminDashboard = () => {
       }
 
       console.log("🔄 Fetching admin dashboard stats...");
-      
-      const res = await fetch("http://localhost:5001/api/admin/dashboard", {
-        headers: { 
+
+      const res = await fetch("http://localhost:500/api/admin/dashboard", {
+        headers: {
           Authorization: `Bearer ${token}`,
           'Content-Type': 'application/json'
         },
@@ -52,7 +52,7 @@ const AdminDashboard = () => {
       const data = await res.json();
       console.log("✅ Dashboard stats:", data);
       setStats(data);
-      
+
       if (showToast) {
         toast.success("Dashboard updated successfully!");
       }
@@ -151,14 +151,14 @@ const AdminDashboard = () => {
         </div>
         <ArrowRight className="w-5 h-5 text-gray-400 group-hover:text-red-600 transition-colors" />
       </div>
-      
+
       <h3 className="text-lg font-semibold text-gray-800 mb-2 group-hover:text-red-600 transition-colors">
         {title}
       </h3>
       <p className="text-gray-600 text-sm mb-4 leading-relaxed">
         {description}
       </p>
-      
+
       <button
         onClick={() => (window.location.href = href)}
         className="w-full bg-red-600 hover:bg-red-700 text-white py-2 px-4 rounded-lg transition-colors flex items-center justify-center gap-2 font-medium"
@@ -216,7 +216,7 @@ const AdminDashboard = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-red-50 to-white p-6">
       <div className="max-w-7xl mx-auto">
-        
+
         {/* Header */}
         <div className="mb-8">
           <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4 mb-6">
@@ -231,7 +231,7 @@ const AdminDashboard = () => {
                 </p>
               </div>
             </div>
-            
+
             <button
               onClick={() => fetchStats(true)}
               disabled={refreshing}
@@ -277,7 +277,7 @@ const AdminDashboard = () => {
               subtitle="Registered blood donors"
               color="red"
             />
-            
+
             <StatCard
               icon={<Hospital className="w-6 h-6" />}
               label="Facilities"
@@ -285,7 +285,7 @@ const AdminDashboard = () => {
               subtitle="Hospitals & Labs"
               color="blue"
             />
-            
+
             <StatCard
               icon={<Droplet className="w-6 h-6" />}
               label="Total Donations"
@@ -293,7 +293,7 @@ const AdminDashboard = () => {
               subtitle="Blood units collected"
               color="green"
             />
-            
+
             <StatCard
               icon={<Calendar className="w-6 h-6" />}
               label="Upcoming Camps"
@@ -301,7 +301,7 @@ const AdminDashboard = () => {
               subtitle="Scheduled blood drives"
               color="purple"
             />
-            
+
             <StatCard
               icon={<Heart className="w-6 h-6" />}
               label="Active Donors"
@@ -328,7 +328,7 @@ const AdminDashboard = () => {
                 icon={<Clock className="w-6 h-6" />}
               />
             )}
-            
+
             {(stats.criticalStock > 0) && (
               <AlertCard
                 type="critical"
@@ -358,7 +358,7 @@ const AdminDashboard = () => {
             <Beaker className="w-5 h-5 text-red-600" />
             Quick Actions
           </h2>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             <QuickActionCard
               icon={<Users className="w-5 h-5" />}
@@ -366,21 +366,21 @@ const AdminDashboard = () => {
               description="View, edit, or remove donors from the blood bank system"
               href="/admin/donors"
             />
-            
+
             <QuickActionCard
               icon={<Hospital className="w-5 h-5" />}
               title="Manage Facilities"
               description="Approve, edit, or manage hospitals and blood laboratories"
               href="/admin/facilities"
             />
-            
+
             <QuickActionCard
               icon={<Droplet className="w-5 h-5" />}
               title="Donation History"
               description="View all donation records, analytics, and reports"
               href="/admin/donations"
             />
-            
+
             <QuickActionCard
               icon={<Calendar className="w-5 h-5" />}
               title="Blood Camps"

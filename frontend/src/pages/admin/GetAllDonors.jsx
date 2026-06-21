@@ -20,7 +20,7 @@ import {
   ChevronUp
 } from 'lucide-react';
 
-const API_URL = "http://localhost:5001/api/admin";
+const API_URL = "http://localhost:500/api/admin";
 
 function GetAllDonors() {
   const [donors, setDonors] = useState([]);
@@ -46,7 +46,7 @@ function GetAllDonors() {
       else setLoading(true);
 
       console.log("🔄 Fetching donors...");
-      
+
       const res = await fetch(`${API_URL}/donors`, {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -85,22 +85,22 @@ function GetAllDonors() {
   // Filter and sort donors
   const filteredDonors = donors
     .filter(donor => {
-      const matchesSearch = !filters.search || 
+      const matchesSearch = !filters.search ||
         donor.fullName?.toLowerCase().includes(filters.search.toLowerCase()) ||
         donor.email?.toLowerCase().includes(filters.search.toLowerCase()) ||
         donor.phone?.includes(filters.search);
-      
+
       const matchesBloodGroup = filters.bloodGroup === 'all' || donor.bloodGroup === filters.bloodGroup;
-      
-      const matchesEligibility = filters.eligibility === 'all' || 
+
+      const matchesEligibility = filters.eligibility === 'all' ||
         (filters.eligibility === 'eligible' && donor.eligibleToDonate) ||
         (filters.eligibility === 'ineligible' && !donor.eligibleToDonate);
-      
+
       return matchesSearch && matchesBloodGroup && matchesEligibility;
     })
     .sort((a, b) => {
       let aValue, bValue;
-      
+
       switch (filters.sortBy) {
         case 'name':
           aValue = a.fullName?.toLowerCase();
@@ -118,7 +118,7 @@ function GetAllDonors() {
           aValue = a.fullName?.toLowerCase();
           bValue = b.fullName?.toLowerCase();
       }
-      
+
       if (filters.sortOrder === 'desc') {
         return aValue < bValue ? 1 : -1;
       }
@@ -135,11 +135,10 @@ function GetAllDonors() {
       );
     }
     return (
-      <span className={`inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-medium border ${
-        isEligible
+      <span className={`inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-medium border ${isEligible
           ? "bg-green-100 text-green-800 border-green-200"
           : "bg-red-100 text-red-800 border-red-200"
-      }`}>
+        }`}>
         {isEligible ? <CheckCircle size={12} /> : <XCircle size={12} />}
         {isEligible ? "Eligible" : "Ineligible"}
       </span>
@@ -174,7 +173,7 @@ function GetAllDonors() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-red-50 to-white p-6">
       <div className="max-w-7xl mx-auto">
-        
+
         {/* Header */}
         <div className="mb-8">
           <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4 mb-6">
@@ -189,7 +188,7 @@ function GetAllDonors() {
                 </p>
               </div>
             </div>
-            
+
             <button
               onClick={() => fetchAllDonors(true)}
               disabled={refreshing}
@@ -244,7 +243,7 @@ function GetAllDonors() {
                 />
               </div>
             </div>
-            
+
             <select
               value={filters.bloodGroup}
               onChange={(e) => setFilters(prev => ({ ...prev, bloodGroup: e.target.value }))}
@@ -255,7 +254,7 @@ function GetAllDonors() {
                 <option key={group} value={group}>{group}</option>
               ))}
             </select>
-            
+
             <select
               value={filters.eligibility}
               onChange={(e) => setFilters(prev => ({ ...prev, eligibility: e.target.value }))}
@@ -265,7 +264,7 @@ function GetAllDonors() {
               <option value="eligible">Eligible Only</option>
               <option value="ineligible">Ineligible Only</option>
             </select>
-            
+
             <select
               value={filters.sortBy}
               onChange={(e) => setFilters(prev => ({ ...prev, sortBy: e.target.value }))}
@@ -275,11 +274,11 @@ function GetAllDonors() {
               <option value="donations">Sort by Donations</option>
               <option value="age">Sort by Age</option>
             </select>
-            
+
             <button
-              onClick={() => setFilters(prev => ({ 
-                ...prev, 
-                sortOrder: prev.sortOrder === 'asc' ? 'desc' : 'asc' 
+              onClick={() => setFilters(prev => ({
+                ...prev,
+                sortOrder: prev.sortOrder === 'asc' ? 'desc' : 'asc'
               }))}
               className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
             >
@@ -308,8 +307,8 @@ function GetAllDonors() {
               {donors.length === 0 ? 'No Donors Found' : 'No Matching Donors'}
             </h3>
             <p className="text-gray-600">
-              {donors.length === 0 
-                ? 'The blood donor database is currently empty.' 
+              {donors.length === 0
+                ? 'The blood donor database is currently empty.'
                 : 'No donors match your current filters.'}
             </p>
             {filters.search && (
@@ -348,7 +347,7 @@ function GetAllDonors() {
                     <Phone className="w-4 h-4 text-red-500 flex-shrink-0" />
                     <span className="text-gray-700">{donor.phone || 'Not provided'}</span>
                   </div>
-                  
+
                   <div className="flex items-center gap-3 text-sm">
                     <Calendar className="w-4 h-4 text-red-500 flex-shrink-0" />
                     <span className="text-gray-700">{donor.age} years old</span>

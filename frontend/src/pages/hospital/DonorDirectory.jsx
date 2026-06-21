@@ -53,7 +53,7 @@ const DonorDirectory = () => {
       });
 
       const res = await axios.get(
-        `http://localhost:5001/api/hospital/donors?${queryParams}`,
+        `http://localhost:500/api/hospital/donors?${queryParams}`,
         { headers: { Authorization: `Bearer ${token}` } }
       );
 
@@ -75,7 +75,7 @@ const DonorDirectory = () => {
   const contactDonor = (donor) => {
     setSelectedDonor(donor);
     setShowContactModal(true);
-    
+
     // Log contact attempt in history
     logContactAttempt(donor._id);
   };
@@ -84,7 +84,7 @@ const DonorDirectory = () => {
     try {
       const token = localStorage.getItem("token");
       await axios.post(
-        `http://localhost:5001/api/hopital/donors/${donorId}/contact`,
+        `http://localhost:500/api/hopital/donors/${donorId}/contact`,
         {},
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -104,38 +104,38 @@ const DonorDirectory = () => {
 
   const getAvailabilityStatus = (lastDonationDate) => {
     if (!lastDonationDate) return { status: "available", text: "Available", color: "bg-green-100 text-green-800" };
-    
+
     const lastDonation = new Date(lastDonationDate);
     const threeMonthsAgo = new Date();
     threeMonthsAgo.setMonth(threeMonthsAgo.getMonth() - 3);
-    
+
     if (lastDonation < threeMonthsAgo) {
       return { status: "available", text: "Available", color: "bg-green-100 text-green-800" };
     }
-    
+
     const nextDonationDate = new Date(lastDonation);
     nextDonationDate.setMonth(nextDonationDate.getMonth() + 3);
     const daysUntilAvailable = Math.ceil((nextDonationDate - new Date()) / (1000 * 60 * 60 * 24));
-    
+
     if (daysUntilAvailable <= 7) {
       return { status: "soon", text: `Available in ${daysUntilAvailable} days`, color: "bg-yellow-100 text-yellow-800" };
     }
-    
+
     return { status: "unavailable", text: "Recently donated", color: "bg-red-100 text-red-800" };
   };
 
   const getTimeSinceLastDonation = (lastDonationDate) => {
     if (!lastDonationDate) return "Never donated";
-    
+
     const lastDonation = new Date(lastDonationDate);
     const now = new Date();
     const diffTime = Math.abs(now - lastDonation);
     const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-    
+
     if (diffDays === 0) return "Today";
     if (diffDays === 1) return "Yesterday";
     if (diffDays < 30) return `${diffDays} days ago`;
-    
+
     const diffMonths = Math.floor(diffDays / 30);
     return `${diffMonths} month${diffMonths > 1 ? 's' : ''} ago`;
   };
@@ -219,7 +219,7 @@ const DonorDirectory = () => {
                 </label>
                 <select
                   value={filters.bloodGroup}
-                  onChange={(e) => setFilters({...filters, bloodGroup: e.target.value})}
+                  onChange={(e) => setFilters({ ...filters, bloodGroup: e.target.value })}
                   className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-red-500 focus:border-red-500"
                 >
                   <option value="all">All Blood Groups</option>
@@ -236,7 +236,7 @@ const DonorDirectory = () => {
                 </label>
                 <select
                   value={filters.city}
-                  onChange={(e) => setFilters({...filters, city: e.target.value})}
+                  onChange={(e) => setFilters({ ...filters, city: e.target.value })}
                   className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-red-500 focus:border-red-500"
                 >
                   <option value="all">All Cities</option>
@@ -257,7 +257,7 @@ const DonorDirectory = () => {
                 </label>
                 <select
                   value={filters.availability}
-                  onChange={(e) => setFilters({...filters, availability: e.target.value})}
+                  onChange={(e) => setFilters({ ...filters, availability: e.target.value })}
                   className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-red-500 focus:border-red-500"
                 >
                   <option value="all">All Donors</option>
@@ -273,7 +273,7 @@ const DonorDirectory = () => {
                 </label>
                 <select
                   value={filters.sortBy}
-                  onChange={(e) => setFilters({...filters, sortBy: e.target.value})}
+                  onChange={(e) => setFilters({ ...filters, sortBy: e.target.value })}
                   className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-red-500 focus:border-red-500"
                 >
                   <option value="lastDonation">Last Donation</option>
@@ -299,8 +299,8 @@ const DonorDirectory = () => {
             </div>
             <h3 className="text-lg font-medium text-gray-800 mb-2">No donors found</h3>
             <p className="text-gray-600">
-              {searchTerm || filters.bloodGroup !== 'all' || filters.city !== 'all' 
-                ? 'Try adjusting your search filters' 
+              {searchTerm || filters.bloodGroup !== 'all' || filters.city !== 'all'
+                ? 'Try adjusting your search filters'
                 : 'No donors registered in the system'}
             </p>
           </div>
@@ -309,7 +309,7 @@ const DonorDirectory = () => {
             {donors.map((donor) => {
               const availability = getAvailabilityStatus(donor.lastDonationDate);
               const isRare = isRareBloodGroup(donor.bloodGroup);
-              
+
               return (
                 <div
                   key={donor._id}
@@ -324,16 +324,15 @@ const DonorDirectory = () => {
                       <div>
                         <h3 className="font-semibold text-gray-800 text-lg">{donor.fullName}</h3>
                         <div className="flex items-center gap-2 mt-1">
-                          <span className={`px-2 py-1 rounded-full text-xs font-medium ${
-                            donor.bloodGroup === 'O-' ? 'bg-red-100 text-red-800 border border-red-200' :
-                            donor.bloodGroup === 'O+' ? 'bg-orange-100 text-orange-800 border border-orange-200' :
-                            donor.bloodGroup === 'A-' ? 'bg-blue-100 text-blue-800 border border-blue-200' :
-                            donor.bloodGroup === 'A+' ? 'bg-green-100 text-green-800 border border-green-200' :
-                            donor.bloodGroup === 'B-' ? 'bg-purple-100 text-purple-800 border border-purple-200' :
-                            donor.bloodGroup === 'B+' ? 'bg-indigo-100 text-indigo-800 border border-indigo-200' :
-                            donor.bloodGroup === 'AB-' ? 'bg-pink-100 text-pink-800 border border-pink-200' :
-                            'bg-gray-100 text-gray-800 border border-gray-200'
-                          }`}>
+                          <span className={`px-2 py-1 rounded-full text-xs font-medium ${donor.bloodGroup === 'O-' ? 'bg-red-100 text-red-800 border border-red-200' :
+                              donor.bloodGroup === 'O+' ? 'bg-orange-100 text-orange-800 border border-orange-200' :
+                                donor.bloodGroup === 'A-' ? 'bg-blue-100 text-blue-800 border border-blue-200' :
+                                  donor.bloodGroup === 'A+' ? 'bg-green-100 text-green-800 border border-green-200' :
+                                    donor.bloodGroup === 'B-' ? 'bg-purple-100 text-purple-800 border border-purple-200' :
+                                      donor.bloodGroup === 'B+' ? 'bg-indigo-100 text-indigo-800 border border-indigo-200' :
+                                        donor.bloodGroup === 'AB-' ? 'bg-pink-100 text-pink-800 border border-pink-200' :
+                                          'bg-gray-100 text-gray-800 border border-gray-200'
+                            }`}>
                             {donor.bloodGroup}
                           </span>
                           {isRare && (
@@ -396,7 +395,7 @@ const DonorDirectory = () => {
                 Contact Donor
               </h3>
               <p className="text-gray-600 mb-6">Choose how you'd like to contact {selectedDonor.fullName}</p>
-              
+
               <div className="space-y-3">
                 {/* Phone Call */}
                 <a

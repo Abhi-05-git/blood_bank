@@ -20,14 +20,14 @@ const HospitalBloodStock = () => {
       setLoading(true);
       const token = localStorage.getItem("token");
       // In HospitalBloodStock component, change the API call:
-const res = await axios.get("http://localhost:5001/api/hospital/blood/stock", {
-  headers: { Authorization: `Bearer ${token}` },
-});
-      
+      const res = await axios.get("http://localhost:500/api/hospital/blood/stock", {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+
       const stockData = res.data.data || [];
       setStock(stockData);
       calculateStats(stockData);
-      
+
     } catch (err) {
       console.error("Load stock error:", err);
       toast.error("Failed to load blood stock");
@@ -39,7 +39,7 @@ const res = await axios.get("http://localhost:5001/api/hospital/blood/stock", {
   const calculateStats = (stockData) => {
     const totalUnits = stockData.reduce((sum, item) => sum + item.quantity, 0);
     const lowStock = stockData.filter(item => item.quantity < 10).length;
-    
+
     const today = new Date();
     const nextWeek = new Date(today);
     nextWeek.setDate(today.getDate() + 7);
@@ -79,13 +79,13 @@ const res = await axios.get("http://localhost:5001/api/hospital/blood/stock", {
   const getStockStatus = (quantity, expiryDate) => {
     const today = new Date();
     const expiry = new Date(expiryDate);
-    
+
     if (expiry <= today) {
       return { status: "expired", color: "bg-red-100 text-red-800", icon: AlertTriangle };
     }
-    
+
     const daysUntilExpiry = Math.ceil((expiry - today) / (1000 * 60 * 60 * 24));
-    
+
     if (daysUntilExpiry <= 3) {
       return { status: "critical", color: "bg-red-100 text-red-800", icon: AlertTriangle };
     } else if (daysUntilExpiry <= 7) {
@@ -181,9 +181,8 @@ const res = await axios.get("http://localhost:5001/api/hospital/blood/stock", {
               return (
                 <div
                   key={bloodType}
-                  className={`bg-white rounded-xl shadow-lg border-2 p-4 text-center transition-all hover:shadow-xl ${
-                    getBloodTypeColor(bloodType)
-                  } ${isExpiredItem ? 'opacity-60' : ''}`}
+                  className={`bg-white rounded-xl shadow-lg border-2 p-4 text-center transition-all hover:shadow-xl ${getBloodTypeColor(bloodType)
+                    } ${isExpiredItem ? 'opacity-60' : ''}`}
                 >
                   <div className="text-lg font-bold mb-1">{bloodType}</div>
                   <div className="text-2xl font-bold mb-2">{stockItem.quantity}</div>
@@ -246,11 +245,10 @@ const res = await axios.get("http://localhost:5001/api/hospital/blood/stock", {
                     const isExpiredItem = isExpired(item.expiryDate);
 
                     return (
-                      <tr 
-                        key={item._id} 
-                        className={`border-b hover:bg-gray-50 transition-colors ${
-                          isExpiredItem ? 'bg-red-50' : ''
-                        }`}
+                      <tr
+                        key={item._id}
+                        className={`border-b hover:bg-gray-50 transition-colors ${isExpiredItem ? 'bg-red-50' : ''
+                          }`}
                       >
                         <td className="p-4">
                           <span className={`px-3 py-1 rounded-full text-sm font-medium ${getBloodTypeColor(item.bloodGroup)}`}>
@@ -283,9 +281,9 @@ const res = await axios.get("http://localhost:5001/api/hospital/blood/stock", {
                         <td className="p-4">
                           <span className={
                             daysLeft <= 0 ? 'text-red-600 font-bold' :
-                            daysLeft <= 3 ? 'text-red-600 font-medium' :
-                            daysLeft <= 7 ? 'text-yellow-600 font-medium' :
-                            'text-green-600'
+                              daysLeft <= 3 ? 'text-red-600 font-medium' :
+                                daysLeft <= 7 ? 'text-yellow-600 font-medium' :
+                                  'text-green-600'
                           }>
                             {daysLeft <= 0 ? 'EXPIRED' : `${daysLeft} days`}
                           </span>
@@ -307,39 +305,39 @@ const res = await axios.get("http://localhost:5001/api/hospital/blood/stock", {
           const status = getStockStatus(item.quantity, item.expiryDate);
           return status.status === 'critical' || status.status === 'expired' || item.quantity < 3;
         }) && (
-          <div className="mt-8 bg-red-50 border border-red-200 rounded-2xl p-6">
-            <h3 className="text-lg font-semibold text-red-800 mb-4 flex items-center gap-2">
-              <AlertTriangle size={20} />
-              Important Alerts
-            </h3>
-            <div className="space-y-2">
-              {stock.map((item) => {
-                const status = getStockStatus(item.quantity, item.expiryDate);
-                const isExpiredItem = isExpired(item.expiryDate);
-                
-                if (status.status === 'critical' || status.status === 'expired' || item.quantity < 3) {
-                  return (
-                    <div key={item._id} className="flex items-center justify-between p-3 bg-white rounded-lg border border-red-200">
-                      <div className="flex items-center gap-3">
-                        <AlertTriangle size={16} className="text-red-600" />
-                        <span className="font-medium text-red-800">{item.bloodGroup}</span>
-                        <span className="text-sm text-red-600">
-                          {isExpiredItem ? 'Blood units have expired' :
-                           status.status === 'critical' ? 'Blood expiring within 3 days' :
-                           'Very low stock level'}
-                        </span>
+            <div className="mt-8 bg-red-50 border border-red-200 rounded-2xl p-6">
+              <h3 className="text-lg font-semibold text-red-800 mb-4 flex items-center gap-2">
+                <AlertTriangle size={20} />
+                Important Alerts
+              </h3>
+              <div className="space-y-2">
+                {stock.map((item) => {
+                  const status = getStockStatus(item.quantity, item.expiryDate);
+                  const isExpiredItem = isExpired(item.expiryDate);
+
+                  if (status.status === 'critical' || status.status === 'expired' || item.quantity < 3) {
+                    return (
+                      <div key={item._id} className="flex items-center justify-between p-3 bg-white rounded-lg border border-red-200">
+                        <div className="flex items-center gap-3">
+                          <AlertTriangle size={16} className="text-red-600" />
+                          <span className="font-medium text-red-800">{item.bloodGroup}</span>
+                          <span className="text-sm text-red-600">
+                            {isExpiredItem ? 'Blood units have expired' :
+                              status.status === 'critical' ? 'Blood expiring within 3 days' :
+                                'Very low stock level'}
+                          </span>
+                        </div>
+                        <div className="text-sm text-red-600">
+                          {item.quantity} units • Expires {new Date(item.expiryDate).toLocaleDateString()}
+                        </div>
                       </div>
-                      <div className="text-sm text-red-600">
-                        {item.quantity} units • Expires {new Date(item.expiryDate).toLocaleDateString()}
-                      </div>
-                    </div>
-                  );
-                }
-                return null;
-              })}
+                    );
+                  }
+                  return null;
+                })}
+              </div>
             </div>
-          </div>
-        )}
+          )}
 
         {/* Quick Actions */}
         <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -362,7 +360,7 @@ const res = await axios.get("http://localhost:5001/api/hospital/blood/stock", {
               </button>
             </div>
           </div>
-          
+
           <div className="bg-white rounded-2xl shadow-lg border border-red-100 p-6">
             <h3 className="text-lg font-semibold text-gray-800 mb-4">Stock Status Guide</h3>
             <div className="space-y-2 text-sm">

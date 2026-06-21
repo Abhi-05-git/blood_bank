@@ -22,7 +22,7 @@ import {
 } from "lucide-react";
 import { toast } from "react-hot-toast";
 
-const API_URL = "http://localhost:5001/api/blood-lab";
+const API_URL = "http://localhost:500/api/blood-lab";
 
 const BloodLabDashboard = () => {
   const [dashboard, setDashboard] = useState(null);
@@ -213,7 +213,7 @@ const BloodLabDashboard = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-red-50 to-white p-6">
-      
+
 
       {/* Header */}
       <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center mb-8">
@@ -264,11 +264,10 @@ const BloodLabDashboard = () => {
               Laboratory Overview
             </h2>
             <span
-              className={`px-3 py-1 rounded-full text-sm font-medium ${
-                lab.status === "approved"
+              className={`px-3 py-1 rounded-full text-sm font-medium ${lab.status === "approved"
                   ? "bg-green-100 text-green-700"
                   : "bg-yellow-100 text-yellow-700"
-              }`}
+                }`}
             >
               {lab.status?.charAt(0).toUpperCase() + lab.status?.slice(1)}
             </span>
@@ -288,9 +287,8 @@ const BloodLabDashboard = () => {
             <LabInfo
               icon={<Clock className="w-4 h-4" />}
               label="Operating Hours"
-              value={`${lab.operatingHours?.open || "--"} - ${
-                lab.operatingHours?.close || "--"
-              }`}
+              value={`${lab.operatingHours?.open || "--"} - ${lab.operatingHours?.close || "--"
+                }`}
             />
             <LabInfo
               icon={<MapPin className="w-4 h-4" />}
@@ -467,9 +465,8 @@ const MetricCard = ({
 
   return (
     <div
-      className={`bg-white rounded-xl shadow-lg border-l-4 ${
-        alert ? "border-l-red-400" : colors.border
-      } p-5 relative overflow-hidden`}
+      className={`bg-white rounded-xl shadow-lg border-l-4 ${alert ? "border-l-red-400" : colors.border
+        } p-5 relative overflow-hidden`}
     >
       <div className="flex items-center justify-between">
         <div>
@@ -479,18 +476,16 @@ const MetricCard = ({
           </p>
           {subtitle && (
             <p
-              className={`text-xs ${
-                alert ? "text-red-600" : "text-gray-500"
-              } mt-1`}
+              className={`text-xs ${alert ? "text-red-600" : "text-gray-500"
+                } mt-1`}
             >
               {subtitle}
             </p>
           )}
         </div>
         <div
-          className={`p-3 rounded-lg ${
-            alert ? "bg-red-100 text-red-600" : `${colors.bg} ${colors.text}`
-          }`}
+          className={`p-3 rounded-lg ${alert ? "bg-red-100 text-red-600" : `${colors.bg} ${colors.text}`
+            }`}
         >
           {icon}
         </div>
@@ -538,9 +533,8 @@ const BloodStockItem = ({ bloodType, quantity, critical = false }) => (
   <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
     <div className="flex items-center gap-3">
       <div
-        className={`p-2 rounded-lg ${
-          critical ? "bg-red-100 text-red-600" : "bg-green-100 text-green-600"
-        }`}
+        className={`p-2 rounded-lg ${critical ? "bg-red-100 text-red-600" : "bg-green-100 text-green-600"
+          }`}
       >
         <Droplet className="w-4 h-4" />
       </div>
@@ -567,13 +561,12 @@ const CampCard = ({ camp }) => (
     </div>
     <div className="text-right">
       <span
-        className={`px-3 py-1 rounded-full text-xs font-medium ${
-          camp.status === "Upcoming"
+        className={`px-3 py-1 rounded-full text-xs font-medium ${camp.status === "Upcoming"
             ? "bg-yellow-100 text-yellow-700"
             : camp.status === "Completed"
-            ? "bg-green-100 text-green-700"
-            : "bg-gray-100 text-gray-600"
-        }`}
+              ? "bg-green-100 text-green-700"
+              : "bg-gray-100 text-gray-600"
+          }`}
       >
         {camp.status}
       </span>

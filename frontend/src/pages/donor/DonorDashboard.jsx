@@ -24,7 +24,7 @@ import {
 } from "lucide-react";
 import { toast } from "react-hot-toast";
 
-const API_URL = "http://localhost:5001/api/donor";
+const API_URL = "http://localhost:500/api/donor";
 
 const DonorDashboard = () => {
   const [dashboard, setDashboard] = useState(null);
@@ -211,9 +211,8 @@ const DonorDashboard = () => {
               <User className="w-5 h-5 text-red-600" />
               Donor Profile
             </h2>
-            <span className={`px-3 py-1 rounded-full text-sm font-medium ${
-              isEligible ? "bg-green-100 text-green-700" : "bg-yellow-100 text-yellow-700"
-            }`}>
+            <span className={`px-3 py-1 rounded-full text-sm font-medium ${isEligible ? "bg-green-100 text-green-700" : "bg-yellow-100 text-yellow-700"
+              }`}>
               {isEligible ? "Eligible" : "Not Eligible"}
             </span>
           </div>

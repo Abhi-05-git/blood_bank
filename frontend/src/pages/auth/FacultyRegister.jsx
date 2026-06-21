@@ -132,7 +132,7 @@ export default function FacilityRegisterForm() {
           operatingHours: { ...prev.operatingHours, [field]: value },
         };
       }
-      
+
       // Handle regular fields
       return {
         ...prev,
@@ -157,7 +157,7 @@ export default function FacilityRegisterForm() {
   const handleBlur = (e) => {
     const { name } = e.target;
     setTouched(prev => ({ ...prev, [name]: true }));
-    
+
     // Validate single field
     validateField(name);
   };
@@ -165,7 +165,7 @@ export default function FacilityRegisterForm() {
   // Validate single field
   const validateField = (fieldName) => {
     let value;
-    
+
     if (fieldName.includes(".")) {
       const [parent, child] = fieldName.split(".");
       if (parent === "address") {
@@ -176,9 +176,9 @@ export default function FacilityRegisterForm() {
     } else {
       value = formData[fieldName];
     }
-    
+
     const error = validators[fieldName]?.(value);
-    
+
     setErrors(prev => {
       if (error) {
         return { ...prev, [fieldName]: error };
@@ -193,25 +193,25 @@ export default function FacilityRegisterForm() {
   // Validate current step
   const validateStep = () => {
     const newErrors = {};
-    
+
     const stepValidations = {
       1: ["name", "email"],
       2: ["password", "facilityType"],
       3: [
-        "phone", 
-        "emergencyContact", 
-        "registrationNumber", 
-        "address.street", 
-        "address.city", 
-        "address.state", 
-        "address.pincode", 
+        "phone",
+        "emergencyContact",
+        "registrationNumber",
+        "address.street",
+        "address.city",
+        "address.state",
+        "address.pincode",
         "documents.registrationProof.url"
       ],
     };
 
     stepValidations[step].forEach(field => {
       let value;
-      
+
       if (field.includes(".")) {
         const [parent, child] = field.split(".");
         if (parent === "address") {
@@ -222,13 +222,13 @@ export default function FacilityRegisterForm() {
       } else {
         value = formData[field];
       }
-      
+
       const error = validators[field]?.(value);
       if (error) newErrors[field] = error;
     });
 
     setErrors(newErrors);
-    
+
     // Mark all step fields as touched to show errors
     const newTouched = { ...touched };
     stepValidations[step].forEach(field => {
@@ -266,48 +266,48 @@ export default function FacilityRegisterForm() {
     if (e && typeof e.preventDefault === 'function') {
       e.preventDefault();
     }
-    
+
     // Ensure validation runs before proceeding to API call
     if (!validateStep()) {
-        console.log("Validation failed on step 3. Data not submitted.");
-        // Stop execution if validation fails
-        return; 
+      console.log("Validation failed on step 3. Data not submitted.");
+      // Stop execution if validation fails
+      return;
     }
-    
+
     setIsSubmitting(true);
 
-   // 1. Get the raw facilityType string (e.g., "Blood Lab")
-  const rawFacilityType = formData.facilityType;
+    // 1. Get the raw facilityType string (e.g., "Blood Lab")
+    const rawFacilityType = formData.facilityType;
 
-  // 2. Create the required role slug (e.g., "blood lab" -> "blood-lab")
-  const roleSlug = rawFacilityType.toLowerCase().replace(' ', '-');
+    // 2. Create the required role slug (e.g., "blood lab" -> "blood-lab")
+    const roleSlug = rawFacilityType.toLowerCase().replace(' ', '-');
 
-  // 3. Construct the submission payload
-  const submissionPayload = {
-    ...formData,
-    
-    // IMPORTANT: Keep the facilityType field as the original capitalized value.
-    facilityType: roleSlug, 
-    
-    // Set the role field to the required slug format.
-    role: roleSlug, 
-  };
-    
+    // 3. Construct the submission payload
+    const submissionPayload = {
+      ...formData,
+
+      // IMPORTANT: Keep the facilityType field as the original capitalized value.
+      facilityType: roleSlug,
+
+      // Set the role field to the required slug format.
+      role: roleSlug,
+    };
+
     // **YOUR TARGET URL**
-    const API_URL = "http://localhost:5001/api/auth/register"; 
-    
-   console.log("Submitting Data to Backend:", submissionPayload); // Use the new payload
+    const API_URL = "http://localhost:500/api/auth/register";
 
-  try {
-    const response = await fetch(API_URL, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      // ⭐️ Use the constructed payload here
-      body: JSON.stringify(submissionPayload), 
-    });
-      
+    console.log("Submitting Data to Backend:", submissionPayload); // Use the new payload
+
+    try {
+      const response = await fetch(API_URL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        // ⭐️ Use the constructed payload here
+        body: JSON.stringify(submissionPayload),
+      });
+
       // Check if the response status is 2xx (Success)
       if (response.ok) {
         const result = await response.json();
@@ -349,7 +349,7 @@ export default function FacilityRegisterForm() {
           <p className="text-center mb-4 opacity-90">
             Register your facility in 3 simple steps
           </p>
-          
+
           {/* Progress Bar */}
           <div className="mb-2 flex justify-between items-center text-sm">
             <span>Step {step} of 3</span>
@@ -384,9 +384,8 @@ export default function FacilityRegisterForm() {
                   value={formData.name}
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent transition ${
-                    shouldShowError("name") ? "border-red-500" : "border-gray-300"
-                  }`}
+                  className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent transition ${shouldShowError("name") ? "border-red-500" : "border-gray-300"
+                    }`}
                   placeholder="Enter facility name"
                 />
                 {shouldShowError("name") && (
@@ -395,7 +394,7 @@ export default function FacilityRegisterForm() {
                   </p>
                 )}
               </div>
-              
+
               <div>
                 <label htmlFor="email" className="block font-medium mb-2">
                   Email <span className="text-red-500">*</span>
@@ -407,9 +406,8 @@ export default function FacilityRegisterForm() {
                   value={formData.email}
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent transition ${
-                    shouldShowError("email") ? "border-red-500" : "border-gray-300"
-                  }`}
+                  className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent transition ${shouldShowError("email") ? "border-red-500" : "border-gray-300"
+                    }`}
                   placeholder="Enter email address"
                 />
                 {shouldShowError("email") && (
@@ -436,9 +434,8 @@ export default function FacilityRegisterForm() {
                     value={formData.password}
                     onChange={handleChange}
                     onBlur={handleBlur}
-                    className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent transition ${
-                      shouldShowError("password") ? "border-red-500" : "border-gray-300"
-                    }`}
+                    className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent transition ${shouldShowError("password") ? "border-red-500" : "border-gray-300"
+                      }`}
                     placeholder="Enter password (min 6 characters)"
                   />
                   <button
@@ -456,7 +453,7 @@ export default function FacilityRegisterForm() {
                   </p>
                 )}
               </div>
-              
+
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
                   <label htmlFor="facilityType" className="block font-medium mb-2">
@@ -475,7 +472,7 @@ export default function FacilityRegisterForm() {
                     ))}
                   </select>
                 </div>
-                
+
                 <div>
                   <label htmlFor="facilityCategory" className="block font-medium mb-2">
                     Facility Category
@@ -511,9 +508,8 @@ export default function FacilityRegisterForm() {
                     value={formData.phone}
                     onChange={handleChange}
                     onBlur={handleBlur}
-                    className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent transition ${
-                      shouldShowError("phone") ? "border-red-500" : "border-gray-300"
-                    }`}
+                    className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent transition ${shouldShowError("phone") ? "border-red-500" : "border-gray-300"
+                      }`}
                     placeholder="10-digit phone number"
                     maxLength="10"
                   />
@@ -523,7 +519,7 @@ export default function FacilityRegisterForm() {
                     </p>
                   )}
                 </div>
-                
+
                 <div>
                   <label htmlFor="emergencyContact" className="block font-medium mb-2">
                     Emergency Contact <span className="text-red-500">*</span>
@@ -535,9 +531,8 @@ export default function FacilityRegisterForm() {
                     value={formData.emergencyContact}
                     onChange={handleChange}
                     onBlur={handleBlur}
-                    className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent transition ${
-                      shouldShowError("emergencyContact") ? "border-red-500" : "border-gray-300"
-                    }`}
+                    className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent transition ${shouldShowError("emergencyContact") ? "border-red-500" : "border-gray-300"
+                      }`}
                     placeholder="10-digit emergency contact"
                     maxLength="10"
                   />
@@ -552,7 +547,7 @@ export default function FacilityRegisterForm() {
               {/* Address Section */}
               <div className="space-y-4">
                 <label className="block font-medium mb-2">Address <span className="text-red-500">*</span></label>
-                
+
                 <input
                   type="text"
                   name="address.street"
@@ -560,9 +555,8 @@ export default function FacilityRegisterForm() {
                   value={formData.address.street}
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent transition ${
-                    shouldShowError("address.street") ? "border-red-500" : "border-gray-300"
-                  }`}
+                  className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent transition ${shouldShowError("address.street") ? "border-red-500" : "border-gray-300"
+                    }`}
                 />
                 {shouldShowError("address.street") && (
                   <p className="text-red-500 text-sm mt-1 flex items-center">
@@ -583,9 +577,8 @@ export default function FacilityRegisterForm() {
                         }));
                       }}
                       onBlur={handleBlur}
-                      className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent transition ${
-                        shouldShowError("address.state") ? "border-red-500" : "border-gray-300"
-                      }`}
+                      className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent transition ${shouldShowError("address.state") ? "border-red-500" : "border-gray-300"
+                        }`}
                     >
                       <option value="">Select State</option>
                       {Object.keys(STATES).map(state => (
@@ -605,9 +598,8 @@ export default function FacilityRegisterForm() {
                       value={formData.address.city}
                       onChange={handleChange}
                       onBlur={handleBlur}
-                      className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent transition ${
-                        shouldShowError("address.city") ? "border-red-500" : "border-gray-300"
-                      }`}
+                      className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent transition ${shouldShowError("address.city") ? "border-red-500" : "border-gray-300"
+                        }`}
                       disabled={!formData.address.state}
                     >
                       <option value="">Select City</option>
@@ -631,9 +623,8 @@ export default function FacilityRegisterForm() {
                       value={formData.address.pincode}
                       onChange={handleChange}
                       onBlur={handleBlur}
-                      className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent transition ${
-                        shouldShowError("address.pincode") ? "border-red-500" : "border-gray-300"
-                      }`}
+                      className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent transition ${shouldShowError("address.pincode") ? "border-red-500" : "border-gray-300"
+                        }`}
                       maxLength="6"
                     />
                     {shouldShowError("address.pincode") && (
@@ -656,9 +647,8 @@ export default function FacilityRegisterForm() {
                   value={formData.registrationNumber}
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent transition ${
-                    shouldShowError("registrationNumber") ? "border-red-500" : "border-gray-300"
-                  }`}
+                  className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent transition ${shouldShowError("registrationNumber") ? "border-red-500" : "border-gray-300"
+                    }`}
                   placeholder="Enter registration number"
                 />
                 {shouldShowError("registrationNumber") && (
@@ -679,9 +669,8 @@ export default function FacilityRegisterForm() {
                   value={formData.documents.registrationProof.url}
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent transition ${
-                    shouldShowError("documents.registrationProof.url") ? "border-red-500" : "border-gray-300"
-                  }`}
+                  className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent transition ${shouldShowError("documents.registrationProof.url") ? "border-red-500" : "border-gray-300"
+                    }`}
                   placeholder="https://example.com/document.pdf"
                 />
                 {shouldShowError("documents.registrationProof.url") && (
@@ -783,7 +772,7 @@ export default function FacilityRegisterForm() {
                 Back
               </button>
             )}
-            
+
             {step < 3 ? (
               <button
                 type="button"
@@ -793,7 +782,7 @@ export default function FacilityRegisterForm() {
                 Next Step
               </button>
             ) : (
-               <button
+              <button
                 type="button" // Must be type="button"
                 onClick={handleSubmit} // Must call handleSubmit manually
                 disabled={isSubmitting}

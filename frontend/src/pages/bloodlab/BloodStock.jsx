@@ -199,8 +199,8 @@ const BloodStock = () => {
               type="submit"
               disabled={submitting}
               className={`w-full flex items-center justify-center gap-2 py-2 px-4 rounded-lg text-white font-medium transition-colors ${action === "add"
-                  ? "bg-green-600 hover:bg-green-700 disabled:bg-green-400"
-                  : "bg-red-600 hover:bg-red-700 disabled:bg-red-400"
+                ? "bg-green-600 hover:bg-green-700 disabled:bg-green-400"
+                : "bg-red-600 hover:bg-red-700 disabled:bg-red-400"
                 }`}
             >
               {submitting ? (

@@ -212,7 +212,7 @@ All files are created and integrated:
 cd backend
 npm start
 ```
-Runs on: `http://localhost:5001`
+Runs on: `http://localhost:500`
 
 **Frontend:**
 ```bash
