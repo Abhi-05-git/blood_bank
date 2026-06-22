@@ -95,7 +95,7 @@
  *                 message:
  *                   type: string
  *                   example: "User not found"
- *       500:
+ *       5001:
  *         description: Login failed
  *         content:
  *           application/json:
@@ -173,7 +173,7 @@
  *                 message:
  *                   type: string
  *                   example: "Role is required"
- *       500:
+ *       5001:
  *         description: Registration failed
  *         content:
  *           application/json:
@@ -230,7 +230,7 @@
  *                 message:
  *                   type: string
  *                   example: "User not found"
- *       500:
+ *       5001:
  *         description: Error fetching user profile
  *         content:
  *           application/json:

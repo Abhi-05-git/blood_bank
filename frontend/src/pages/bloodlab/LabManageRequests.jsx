@@ -11,7 +11,7 @@ const LabManageRequests = () => {
     try {
       setLoading(true);
       const token = localStorage.getItem("token");
-      const res = await axios.get("http://localhost:500/api/blood-lab/blood/requests", {
+      const res = await axios.get("http://localhost:5001/api/blood-lab/blood/requests", {
         headers: { Authorization: `Bearer ${token}` },
       });
       setRequests(res.data.requests || []);
@@ -32,7 +32,7 @@ const LabManageRequests = () => {
       const token = localStorage.getItem("token");
 
       await axios.put(
-        `http://localhost:500/api/blood-lab/blood/requests/${id}`,
+        `http://localhost:5001/api/blood-lab/blood/requests/${id}`,
         { action },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -149,7 +149,7 @@ const LabManageRequests = () => {
                           </div>
                           <div>
                             <div className="font-medium text-gray-800">{req.hospitalId?.name || "Unknown Hospital"}</div>
-                            <div className="flex items-center gap-1 text-sm text-gray-500">
+                            <div className="flex items-center gap-1 text-sm text-gray-5001">
                               <MapPin size={12} />
                               {req.hospitalId?.address?.city || "Unknown City"}
                             </div>
@@ -163,7 +163,7 @@ const LabManageRequests = () => {
                       </td>
                       <td className="p-4">
                         <span className="text-lg font-semibold text-gray-800">{req.units}</span>
-                        <span className="text-sm text-gray-500 ml-1">units</span>
+                        <span className="text-sm text-gray-5001 ml-1">units</span>
                       </td>
                       <td className="p-4">
                         {getStatusBadge(req.status)}
@@ -195,7 +195,7 @@ const LabManageRequests = () => {
                           </div>
                         )}
                         {req.status !== "pending" && (
-                          <span className="text-gray-500 text-sm">
+                          <span className="text-gray-5001 text-sm">
                             Processed on {new Date(req.processedAt).toLocaleDateString()}
                           </span>
                         )}

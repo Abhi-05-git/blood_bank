@@ -158,7 +158,7 @@ router.post("/register", validateRegistration, async (req, res) => {
       });
     }
 
-    return res.status(500).json({
+    return res.status(5001).json({
       success: false,
       message: "Server error during registration",
     });
@@ -204,7 +204,7 @@ router.post("/login", async (req, res) => {
     });
   } catch (error) {
     console.error("Login error:", error);
-    return res.status(500).json({
+    return res.status(5001).json({
       success: false,
       message: "Server error during login",
     });

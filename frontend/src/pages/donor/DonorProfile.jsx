@@ -25,7 +25,7 @@ import {
   CheckCircle2,
 } from "lucide-react";
 
-const API_BASE_URL = "http://localhost:500/api";
+const API_BASE_URL = "http://localhost:5001/api";
 
 const BLOOD_GROUPS = ["A+", "A-", "B+", "B-", "O+", "O-", "AB+", "AB-"];
 const GENDER_OPTIONS = [
@@ -307,12 +307,12 @@ const DonorProfile = () => {
       <div className="min-h-screen bg-gradient-to-br from-red-50 to-white flex items-center justify-center">
         <div className="text-center">
           <div className="animate-pulse mb-4">
-            <Heart className="w-12 h-12 text-red-500 mx-auto" />
+            <Heart className="w-12 h-12 text-red-5001 mx-auto" />
           </div>
           <h2 className="text-xl font-semibold text-gray-700 mb-2">
             Loading Donor Profile
           </h2>
-          <p className="text-gray-500">Preparing your donor information...</p>
+          <p className="text-gray-5001">Preparing your donor information...</p>
         </div>
       </div>
     );
@@ -322,7 +322,7 @@ const DonorProfile = () => {
     return (
       <div className="min-h-screen bg-gradient-to-br from-red-50 to-white flex items-center justify-center">
         <div className="text-center bg-white rounded-2xl shadow-lg border border-red-100 p-8">
-          <Heart className="w-16 h-16 text-red-500 mx-auto mb-4" />
+          <Heart className="w-16 h-16 text-red-5001 mx-auto mb-4" />
           <h3 className="text-lg font-semibold text-gray-800 mb-2">
             Donor Profile Error
           </h3>
@@ -359,7 +359,7 @@ const DonorProfile = () => {
                   {donor.fullName || "Donor Profile"}
                 </h1>
                 <p className="text-gray-600 mt-1 flex items-center gap-2">
-                  <Droplets size={16} className="text-red-500" />
+                  <Droplets size={16} className="text-red-5001" />
                   {donor.bloodGroup || "Blood Donor"} •
                   <span className="font-mono text-sm">ID: {donor.donorId}</span>
                 </p>
@@ -415,10 +415,10 @@ const DonorProfile = () => {
                 <div className="flex justify-between items-center">
                   <span className="text-sm text-gray-600">Status</span>
                   <span className={`px-3 py-1 rounded-full text-xs font-bold ${donor.status === "active"
-                      ? "bg-green-100 text-green-700"
-                      : donor.status === "pending"
-                        ? "bg-yellow-100 text-yellow-700"
-                        : "bg-red-100 text-red-700"
+                    ? "bg-green-100 text-green-700"
+                    : donor.status === "pending"
+                      ? "bg-yellow-100 text-yellow-700"
+                      : "bg-red-100 text-red-700"
                     }`}>
                     {donor.status?.charAt(0).toUpperCase() + donor.status?.slice(1)}
                   </span>
@@ -453,18 +453,18 @@ const DonorProfile = () => {
               </h3>
               <div className="space-y-3">
                 <div className="flex items-center gap-3 text-sm">
-                  <Mail className="w-4 h-4 text-red-500" />
+                  <Mail className="w-4 h-4 text-red-5001" />
                   <span className="text-gray-600">{donor.email}</span>
                 </div>
                 {donor.phone && (
                   <div className="flex items-center gap-3 text-sm">
-                    <Phone className="w-4 h-4 text-red-500" />
+                    <Phone className="w-4 h-4 text-red-5001" />
                     <span className="text-gray-600">{donor.phone}</span>
                   </div>
                 )}
                 {donor.age && (
                   <div className="flex items-center gap-3 text-sm">
-                    <Calendar className="w-4 h-4 text-red-500" />
+                    <Calendar className="w-4 h-4 text-red-5001" />
                     <span className="text-gray-600">{donor.age} years old</span>
                   </div>
                 )}
@@ -496,13 +496,13 @@ const DonorProfile = () => {
                       onChange={handleChange}
                       disabled={!isEditing}
                       className={`w-full px-4 py-3 rounded-xl border ${isEditing
-                          ? "border-gray-300 bg-white focus:ring-2 focus:ring-red-500 focus:border-red-500"
-                          : "bg-gray-50 border-gray-200"
-                        } ${errors.fullName ? "border-red-500" : ""}`}
+                        ? "border-gray-300 bg-white focus:ring-2 focus:ring-red-5001 focus:border-red-5001"
+                        : "bg-gray-50 border-gray-200"
+                        } ${errors.fullName ? "border-red-5001" : ""}`}
                       placeholder="Enter your full name"
                     />
                     {errors.fullName && (
-                      <p className="text-red-500 text-xs mt-2 flex items-center gap-1">
+                      <p className="text-red-5001 text-xs mt-2 flex items-center gap-1">
                         <AlertCircle size={12} />
                         {errors.fullName}
                       </p>
@@ -521,13 +521,13 @@ const DonorProfile = () => {
                       onChange={handleChange}
                       disabled={!isEditing}
                       className={`w-full px-4 py-3 rounded-xl border ${isEditing
-                          ? "border-gray-300 bg-white focus:ring-2 focus:ring-red-500 focus:border-red-500"
-                          : "bg-gray-50 border-gray-200"
-                        } ${errors.phone ? "border-red-500" : ""}`}
+                        ? "border-gray-300 bg-white focus:ring-2 focus:ring-red-5001 focus:border-red-5001"
+                        : "bg-gray-50 border-gray-200"
+                        } ${errors.phone ? "border-red-5001" : ""}`}
                       placeholder="10-digit phone number"
                     />
                     {errors.phone && (
-                      <p className="text-red-500 text-xs mt-2 flex items-center gap-1">
+                      <p className="text-red-5001 text-xs mt-2 flex items-center gap-1">
                         <AlertCircle size={12} />
                         {errors.phone}
                       </p>
@@ -548,13 +548,13 @@ const DonorProfile = () => {
                       min="18"
                       max="65"
                       className={`w-full px-4 py-3 rounded-xl border ${isEditing
-                          ? "border-gray-300 bg-white focus:ring-2 focus:ring-red-500 focus:border-red-500"
-                          : "bg-gray-50 border-gray-200"
-                        } ${errors.age ? "border-red-500" : ""}`}
+                        ? "border-gray-300 bg-white focus:ring-2 focus:ring-red-5001 focus:border-red-5001"
+                        : "bg-gray-50 border-gray-200"
+                        } ${errors.age ? "border-red-5001" : ""}`}
                       placeholder="Your age"
                     />
                     {errors.age && (
-                      <p className="text-red-500 text-xs mt-2 flex items-center gap-1">
+                      <p className="text-red-5001 text-xs mt-2 flex items-center gap-1">
                         <AlertCircle size={12} />
                         {errors.age}
                       </p>
@@ -572,9 +572,9 @@ const DonorProfile = () => {
                       onChange={handleChange}
                       disabled={!isEditing}
                       className={`w-full px-4 py-3 rounded-xl border ${isEditing
-                          ? "border-gray-300 bg-white focus:ring-2 focus:ring-red-500 focus:border-red-500"
-                          : "bg-gray-50 border-gray-200"
-                        } ${errors.gender ? "border-red-500" : ""}`}
+                        ? "border-gray-300 bg-white focus:ring-2 focus:ring-red-5001 focus:border-red-5001"
+                        : "bg-gray-50 border-gray-200"
+                        } ${errors.gender ? "border-red-5001" : ""}`}
                     >
                       <option value="">Select Gender</option>
                       {GENDER_OPTIONS.map(option => (
@@ -584,7 +584,7 @@ const DonorProfile = () => {
                       ))}
                     </select>
                     {errors.gender && (
-                      <p className="text-red-500 text-xs mt-2 flex items-center gap-1">
+                      <p className="text-red-5001 text-xs mt-2 flex items-center gap-1">
                         <AlertCircle size={12} />
                         {errors.gender}
                       </p>
@@ -606,13 +606,13 @@ const DonorProfile = () => {
                       max="200"
                       step="0.1"
                       className={`w-full px-4 py-3 rounded-xl border ${isEditing
-                          ? "border-gray-300 bg-white focus:ring-2 focus:ring-red-500 focus:border-red-500"
-                          : "bg-gray-50 border-gray-200"
-                        } ${errors.weight ? "border-red-500" : ""}`}
+                        ? "border-gray-300 bg-white focus:ring-2 focus:ring-red-5001 focus:border-red-5001"
+                        : "bg-gray-50 border-gray-200"
+                        } ${errors.weight ? "border-red-5001" : ""}`}
                       placeholder="Weight in kg"
                     />
                     {errors.weight && (
-                      <p className="text-red-500 text-xs mt-2 flex items-center gap-1">
+                      <p className="text-red-5001 text-xs mt-2 flex items-center gap-1">
                         <AlertCircle size={12} />
                         {errors.weight}
                       </p>
@@ -630,9 +630,9 @@ const DonorProfile = () => {
                       onChange={handleChange}
                       disabled={!isEditing}
                       className={`w-full px-4 py-3 rounded-xl border ${isEditing
-                          ? "border-gray-300 bg-white focus:ring-2 focus:ring-red-500 focus:border-red-500"
-                          : "bg-gray-50 border-gray-200"
-                        } ${errors.bloodGroup ? "border-red-500" : ""}`}
+                        ? "border-gray-300 bg-white focus:ring-2 focus:ring-red-5001 focus:border-red-5001"
+                        : "bg-gray-50 border-gray-200"
+                        } ${errors.bloodGroup ? "border-red-5001" : ""}`}
                     >
                       <option value="">Select Blood Group</option>
                       {BLOOD_GROUPS.map(group => (
@@ -642,7 +642,7 @@ const DonorProfile = () => {
                       ))}
                     </select>
                     {errors.bloodGroup && (
-                      <p className="text-red-500 text-xs mt-2 flex items-center gap-1">
+                      <p className="text-red-5001 text-xs mt-2 flex items-center gap-1">
                         <AlertCircle size={12} />
                         {errors.bloodGroup}
                       </p>
@@ -670,14 +670,14 @@ const DonorProfile = () => {
                         onChange={handleChange}
                         disabled={!isEditing}
                         className={`w-full px-4 py-3 rounded-xl border ${isEditing
-                            ? "border-gray-300 bg-white focus:ring-2 focus:ring-red-500 focus:border-red-500"
-                            : "bg-gray-50 border-gray-200"
-                          } ${errors[`address.${field}`] ? "border-red-500" : ""
+                          ? "border-gray-300 bg-white focus:ring-2 focus:ring-red-5001 focus:border-red-5001"
+                          : "bg-gray-50 border-gray-200"
+                          } ${errors[`address.${field}`] ? "border-red-5001" : ""
                           }`}
                         placeholder={`Enter ${field === "pincode" ? "PIN code" : field}`}
                       />
                       {errors[`address.${field}`] && (
-                        <p className="text-red-500 text-xs mt-2 flex items-center gap-1">
+                        <p className="text-red-5001 text-xs mt-2 flex items-center gap-1">
                           <AlertCircle size={12} />
                           {errors[`address.${field}`]}
                         </p>
@@ -699,7 +699,7 @@ const DonorProfile = () => {
                   disabled
                   className="w-full px-4 py-3 rounded-xl border border-gray-200 bg-gray-50 text-gray-600"
                 />
-                <p className="text-xs text-gray-500 mt-2">Email cannot be changed</p>
+                <p className="text-xs text-gray-5001 mt-2">Email cannot be changed</p>
               </div>
 
               {/* Password Update */}
@@ -718,18 +718,18 @@ const DonorProfile = () => {
                       value={formData.password}
                       onChange={handleChange}
                       className={`w-full px-4 py-3 rounded-xl border ${isEditing
-                          ? "border-gray-300 bg-white focus:ring-2 focus:ring-red-500 focus:border-red-500"
-                          : "bg-gray-50 border-gray-200"
-                        } ${errors.password ? "border-red-500" : ""}`}
+                        ? "border-gray-300 bg-white focus:ring-2 focus:ring-red-5001 focus:border-red-5001"
+                        : "bg-gray-50 border-gray-200"
+                        } ${errors.password ? "border-red-5001" : ""}`}
                       placeholder="Enter new password (min. 6 characters)"
                     />
                     {errors.password && (
-                      <p className="text-red-500 text-xs mt-2 flex items-center gap-1">
+                      <p className="text-red-5001 text-xs mt-2 flex items-center gap-1">
                         <AlertCircle size={12} />
                         {errors.password}
                       </p>
                     )}
-                    <p className="text-xs text-gray-500 mt-2">
+                    <p className="text-xs text-gray-5001 mt-2">
                       Leave blank to keep current password
                     </p>
                   </div>

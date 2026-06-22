@@ -69,7 +69,7 @@ limit (optional):       Number of donors to return (1-10, default: 5)
 
 - ✅ Detailed scoring formula with examples
 - ✅ API endpoint documentation
-- ✅ Error response examples (400, 404, 500)
+- ✅ Error response examples (400, 404, 5001)
 - ✅ Frontend integration guide
 - ✅ Backend integration guide
 - ✅ Configuration options
@@ -212,7 +212,7 @@ All files are created and integrated:
 cd backend
 npm start
 ```
-Runs on: `http://localhost:500`
+Runs on: `http://localhost:5001`
 
 **Frontend:**
 ```bash
@@ -259,7 +259,7 @@ Or use directly in any component:
 ### Error Handling
 - All input validation on backend
 - Descriptive error messages
-- HTTP status codes (400, 404, 500)
+- HTTP status codes (400, 404, 5001)
 
 ### Performance
 - Lean database queries (5-10x faster)

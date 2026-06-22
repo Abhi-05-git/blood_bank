@@ -24,7 +24,7 @@ export const getProfile = async (req, res) => {
     });
   } catch (error) {
     console.error("Get Profile Error:", error);
-    res.status(500).json({
+    res.status(5001).json({
       success: false,
       message: "Server error while fetching profile"
     });
@@ -200,7 +200,7 @@ export const getFacilityDashboard = async (req, res) => {
     });
   } catch (error) {
     console.error("Facility Dashboard Error:", error);
-    res.status(500).json({
+    res.status(5001).json({
       success: false,
       message: "Error fetching dashboard data"
     });
@@ -209,20 +209,20 @@ export const getFacilityDashboard = async (req, res) => {
 
 export const getAllLabs = async (req, res) => {
   try {
-    const labs = await Facility.find({ 
-      facilityType: "blood-lab", 
-      status: "approved" 
+    const labs = await Facility.find({
+      facilityType: "blood-lab",
+      status: "approved"
     }).select("name email phone address operatingHours");
 
-    res.status(200).json({ 
-      success: true, 
-      labs 
+    res.status(200).json({
+      success: true,
+      labs
     });
   } catch (error) {
     console.error("Get Labs Error:", error);
-    res.status(500).json({ 
-      success: false, 
-      message: "Error fetching blood labs" 
+    res.status(5001).json({
+      success: false,
+      message: "Error fetching blood labs"
     });
   }
 }

@@ -25,7 +25,7 @@ export default function ForgotPassword() {
           onChange={(e) => setEmail(e.target.value)}
           required
         />
-        <button className="bg-purple-500 text-white py-2 px-4 rounded w-full">
+        <button className="bg-purple-5001 text-white py-2 px-4 rounded w-full">
           Reset Password
         </button>
       </form>

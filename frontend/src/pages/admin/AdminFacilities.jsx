@@ -26,7 +26,7 @@ const FacilityApproval = () => {
   const [refreshing, setRefreshing] = useState(false);
 
   const token = localStorage.getItem("token");
-  const API_URL = "http://localhost:500/api/admin";
+  const API_URL = "http://localhost:5001/api/admin";
 
   // Fetch pending facilities
   const fetchPendingFacilities = async (showToast = false) => {
@@ -216,8 +216,8 @@ const FacilityApproval = () => {
     const isHospital = type === "Hospital";
     return (
       <span className={`inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-medium border ${isHospital
-          ? "bg-blue-100 text-blue-800 border-blue-200"
-          : "bg-purple-100 text-purple-800 border-purple-200"
+        ? "bg-blue-100 text-blue-800 border-blue-200"
+        : "bg-purple-100 text-purple-800 border-purple-200"
         }`}>
         <Building size={12} />
         {type || "Facility"}
@@ -230,12 +230,12 @@ const FacilityApproval = () => {
       <div className="min-h-screen bg-gradient-to-br from-red-50 to-white flex items-center justify-center">
         <div className="text-center">
           <div className="animate-pulse mb-4">
-            <Shield className="w-12 h-12 text-red-500 mx-auto" />
+            <Shield className="w-12 h-12 text-red-5001 mx-auto" />
           </div>
           <h2 className="text-xl font-semibold text-gray-700 mb-2">
             Loading Facility Approvals
           </h2>
-          <p className="text-gray-500">Fetching pending registration requests...</p>
+          <p className="text-gray-5001">Fetching pending registration requests...</p>
         </div>
       </div>
     );
@@ -300,15 +300,15 @@ const FacilityApproval = () => {
                 <CheckCircle className="w-16 h-16 text-green-400 mx-auto mb-4" />
                 <h3 className="text-lg font-semibold text-gray-800 mb-2">All Caught Up!</h3>
                 <p className="text-gray-600">No pending facility requests</p>
-                <p className="text-sm text-gray-500 mt-1">All facilities have been processed and approved</p>
+                <p className="text-sm text-gray-5001 mt-1">All facilities have been processed and approved</p>
               </div>
             ) : (
               facilities.map((facility) => (
                 <div
                   key={facility._id}
                   className={`bg-white rounded-2xl shadow-lg border-2 p-6 cursor-pointer transition-all duration-200 hover:shadow-xl ${selectedFacility?._id === facility._id
-                      ? "border-red-300 bg-red-50"
-                      : "border-red-100 hover:border-red-300"
+                    ? "border-red-300 bg-red-50"
+                    : "border-red-100 hover:border-red-300"
                     }`}
                   onClick={() => {
                     console.log("🎯 Selecting facility:", facility._id);
@@ -487,7 +487,7 @@ const FacilityApproval = () => {
                       value={rejectionReason}
                       onChange={(e) => setRejectionReason(e.target.value)}
                       placeholder="Provide specific reason for rejection. This will be communicated to the facility..."
-                      className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-red-500 focus:ring-2 focus:ring-red-200 resize-none transition-colors"
+                      className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-red-5001 focus:ring-2 focus:ring-red-200 resize-none transition-colors"
                       rows="3"
                     />
                     <button
@@ -509,7 +509,7 @@ const FacilityApproval = () => {
               <div className="bg-white rounded-2xl shadow-lg border border-red-100 p-12 text-center">
                 <Building className="w-16 h-16 text-gray-300 mx-auto mb-4" />
                 <h3 className="text-lg font-semibold text-gray-600 mb-2">Select a Facility</h3>
-                <p className="text-gray-500">
+                <p className="text-gray-5001">
                   Click on any facility from the list to review details and take action
                 </p>
               </div>

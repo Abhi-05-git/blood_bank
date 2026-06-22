@@ -52,7 +52,7 @@ const DonorRecommendationSystem = () => {
 
     try {
       // Build query parameters
-      let url = `http://localhost:500/api/recommend-donors?bloodGroup=${encodeURIComponent(bloodGroup)}`;
+      let url = `http://localhost:5001/api/recommend-donors?bloodGroup=${encodeURIComponent(bloodGroup)}`;
 
       if (latitude && longitude) {
         url += `&lat=${encodeURIComponent(latitude)}&lng=${encodeURIComponent(longitude)}`;
@@ -129,7 +129,7 @@ const DonorRecommendationSystem = () => {
             {/* Blood Group Selection */}
             <div>
               <label className="block text-sm font-semibold text-gray-700 mb-3">
-                Select Blood Group <span className="text-red-500">*</span>
+                Select Blood Group <span className="text-red-5001">*</span>
               </label>
               <div className="grid grid-cols-4 sm:grid-cols-8 gap-2">
                 {bloodGroups.map((bg) => (
@@ -159,7 +159,7 @@ const DonorRecommendationSystem = () => {
                   type="button"
                   onClick={handleGetCurrentLocation}
                   disabled={loading}
-                  className="w-full bg-blue-500 hover:bg-blue-600 disabled:bg-gray-400 text-white font-semibold py-3 px-4 rounded-lg transition-all flex items-center justify-center gap-2"
+                  className="w-full bg-blue-5001 hover:bg-blue-600 disabled:bg-gray-400 text-white font-semibold py-3 px-4 rounded-lg transition-all flex items-center justify-center gap-2"
                 >
                   <MapPin size={18} />
                   {useCurrentLocation ? "✓ Using Current Location" : "Use My Current Location"}
@@ -174,7 +174,7 @@ const DonorRecommendationSystem = () => {
                     onChange={(e) => setLatitude(e.target.value)}
                     step="0.000001"
                     disabled={useCurrentLocation && latitude}
-                    className="px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+                    className="px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-5001"
                   />
                   <input
                     type="number"
@@ -183,7 +183,7 @@ const DonorRecommendationSystem = () => {
                     onChange={(e) => setLongitude(e.target.value)}
                     step="0.000001"
                     disabled={useCurrentLocation && longitude}
-                    className="px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+                    className="px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-5001"
                   />
                 </div>
               </div>
@@ -212,8 +212,8 @@ const DonorRecommendationSystem = () => {
 
         {/* Error Message */}
         {error && (
-          <div className="bg-red-50 border-l-4 border-red-500 p-4 rounded-lg mb-8 flex items-start gap-3">
-            <AlertCircle className="text-red-500 flex-shrink-0 mt-1" size={20} />
+          <div className="bg-red-50 border-l-4 border-red-5001 p-4 rounded-lg mb-8 flex items-start gap-3">
+            <AlertCircle className="text-red-5001 flex-shrink-0 mt-1" size={20} />
             <div>
               <p className="font-semibold text-red-800">Error</p>
               <p className="text-red-700">{error}</p>
@@ -223,8 +223,8 @@ const DonorRecommendationSystem = () => {
 
         {/* Success Message */}
         {success && (
-          <div className="bg-green-50 border-l-4 border-green-500 p-4 rounded-lg mb-8 flex items-start gap-3">
-            <CheckCircle className="text-green-500 flex-shrink-0 mt-1" size={20} />
+          <div className="bg-green-50 border-l-4 border-green-5001 p-4 rounded-lg mb-8 flex items-start gap-3">
+            <CheckCircle className="text-green-5001 flex-shrink-0 mt-1" size={20} />
             <div>
               <p className="font-semibold text-green-800">Success</p>
               <p className="text-green-700">{success}</p>
@@ -234,7 +234,7 @@ const DonorRecommendationSystem = () => {
 
         {/* Metadata */}
         {metadata && (
-          <div className="bg-blue-50 border-l-4 border-blue-500 p-4 rounded-lg mb-8">
+          <div className="bg-blue-50 border-l-4 border-blue-5001 p-4 rounded-lg mb-8">
             <p className="text-blue-900">
               <span className="font-semibold">Blood Group:</span> {bloodGroup} |{" "}
               <span className="font-semibold">Total Donors:</span> {metadata.totalMatched}
@@ -259,7 +259,7 @@ const DonorRecommendationSystem = () => {
               {donors.map((donor, index) => (
                 <div
                   key={donor.id}
-                  className="bg-white rounded-lg shadow-md hover:shadow-lg transition-all border-l-4 border-red-500 overflow-hidden"
+                  className="bg-white rounded-lg shadow-md hover:shadow-lg transition-all border-l-4 border-red-5001 overflow-hidden"
                 >
                   {/* Card Header */}
                   <div className="bg-gradient-to-r from-red-50 to-red-100 p-4 border-b border-red-200">
@@ -274,7 +274,7 @@ const DonorRecommendationSystem = () => {
                         {donor.score}
                       </span>
                     </div>
-                    <div className="text-yellow-500 text-lg">{getScoreBadge(donor.score)}</div>
+                    <div className="text-yellow-5001 text-lg">{getScoreBadge(donor.score)}</div>
                   </div>
 
                   {/* Card Body */}
@@ -297,7 +297,7 @@ const DonorRecommendationSystem = () => {
 
                     {/* Last Donation */}
                     <div className="flex items-center gap-2 text-gray-700">
-                      <Calendar size={16} className="text-red-500" />
+                      <Calendar size={16} className="text-red-5001" />
                       <span className="text-sm">
                         <span className="font-semibold">Last Donation:</span> {formatDate(donor.lastDonationDate)}
                       </span>
@@ -305,13 +305,13 @@ const DonorRecommendationSystem = () => {
 
                     {/* Phone */}
                     <div className="flex items-center gap-2 text-gray-700">
-                      <Phone size={16} className="text-red-500" />
+                      <Phone size={16} className="text-red-5001" />
                       <span className="text-sm">{donor.phone}</span>
                     </div>
 
                     {/* Address */}
                     <div className="flex items-start gap-2 text-gray-700">
-                      <MapPin size={16} className="text-red-500 flex-shrink-0 mt-0.5" />
+                      <MapPin size={16} className="text-red-5001 flex-shrink-0 mt-0.5" />
                       <span className="text-sm">
                         {donor.address?.city}, {donor.address?.state} {donor.address?.pincode}
                       </span>

@@ -95,8 +95,8 @@ const Contact = () => {
             <div>
               <label className="font-medium text-gray-700">Full Name</label>
               <div className="flex items-center border rounded-lg px-3 mt-2">
-                <User className="text-gray-500 mr-2" />
-                <input  
+                <User className="text-gray-5001 mr-2" />
+                <input
                   type="text"
                   placeholder="Enter your name"
                   className="w-full p-3 outline-none"
@@ -108,8 +108,8 @@ const Contact = () => {
             <div>
               <label className="font-medium text-gray-700">Email Address</label>
               <div className="flex items-center border rounded-lg px-3 mt-2">
-                <Mail className="text-gray-500 mr-2" />
-                <input  
+                <Mail className="text-gray-5001 mr-2" />
+                <input
                   type="email"
                   placeholder="Enter your email"
                   className="w-full p-3 outline-none"
@@ -121,8 +121,8 @@ const Contact = () => {
             <div>
               <label className="font-medium text-gray-700">Phone Number</label>
               <div className="flex items-center border rounded-lg px-3 mt-2">
-                <Phone className="text-gray-500 mr-2" />
-                <input  
+                <Phone className="text-gray-5001 mr-2" />
+                <input
                   type="text"
                   placeholder="Enter phone number"
                   className="w-full p-3 outline-none"
@@ -134,7 +134,7 @@ const Contact = () => {
             <div>
               <label className="font-medium text-gray-700">Message</label>
               <div className="flex items-start border rounded-lg px-3 mt-2">
-                <MessageSquare className="text-gray-500 mr-2 mt-3" />
+                <MessageSquare className="text-gray-5001 mr-2 mt-3" />
                 <textarea
                   rows={4}
                   placeholder="Write your message here..."

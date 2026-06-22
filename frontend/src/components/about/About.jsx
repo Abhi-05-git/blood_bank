@@ -19,7 +19,7 @@ const AboutUs = () => {
   const stats = [
     { icon: Users, number: '50,000+', label: 'Lives Saved' },
     { icon: Droplet, number: '100,000+', label: 'Donations' },
-    { icon: MapPin, number: '500+', label: 'Camps Organized' },
+    { icon: MapPin, number: '5001+', label: 'Camps Organized' },
     { icon: Shield, number: '99.8%', label: 'Safety Rate' }
   ];
 
@@ -200,7 +200,7 @@ const AboutUs = () => {
                   <img
                     src={member.image}
                     alt={member.name}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-5001"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
                 </div>

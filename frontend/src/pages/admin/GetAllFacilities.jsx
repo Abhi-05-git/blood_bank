@@ -20,7 +20,7 @@ import {
   Building2
 } from 'lucide-react';
 
-const API_URL = "http://localhost:500/api/admin";
+const API_URL = "http://localhost:5001/api/admin";
 
 function GetAllFacilities() {
   const [facilities, setFacilities] = useState([]);
@@ -161,8 +161,8 @@ function GetAllFacilities() {
 
     return (
       <span className={`inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs font-bold border ${isHospital
-          ? 'bg-blue-50 text-blue-700 border-blue-200'
-          : 'bg-purple-50 text-purple-700 border-purple-200'
+        ? 'bg-blue-50 text-blue-700 border-blue-200'
+        : 'bg-purple-50 text-purple-700 border-purple-200'
         }`}>
         <Building2 size={10} />
         {typeDisplay}
@@ -175,12 +175,12 @@ function GetAllFacilities() {
       <div className="min-h-screen bg-gradient-to-br from-red-50 to-white flex items-center justify-center">
         <div className="text-center">
           <div className="animate-pulse mb-4">
-            <Hospital className="w-12 h-12 text-red-500 mx-auto" />
+            <Hospital className="w-12 h-12 text-red-5001 mx-auto" />
           </div>
           <h2 className="text-xl font-semibold text-gray-700 mb-2">
             Loading Facility Database
           </h2>
-          <p className="text-gray-500">Fetching all registered medical facilities...</p>
+          <p className="text-gray-5001">Fetching all registered medical facilities...</p>
         </div>
       </div>
     );
@@ -260,7 +260,7 @@ function GetAllFacilities() {
                   placeholder="Search facilities by name, email, or registration number..."
                   value={filters.search}
                   onChange={(e) => setFilters(prev => ({ ...prev, search: e.target.value }))}
-                  className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500"
+                  className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-5001 focus:border-red-5001"
                 />
               </div>
             </div>
@@ -268,7 +268,7 @@ function GetAllFacilities() {
             <select
               value={filters.facilityType}
               onChange={(e) => setFilters(prev => ({ ...prev, facilityType: e.target.value }))}
-              className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500"
+              className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-5001 focus:border-red-5001"
             >
               <option value="all">All Types</option>
               {facilityTypes.map(type => (
@@ -281,7 +281,7 @@ function GetAllFacilities() {
             <select
               value={filters.status}
               onChange={(e) => setFilters(prev => ({ ...prev, status: e.target.value }))}
-              className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500"
+              className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-5001 focus:border-red-5001"
             >
               <option value="all">All Status</option>
               {statuses.map(status => (
@@ -294,7 +294,7 @@ function GetAllFacilities() {
             <select
               value={filters.sortBy}
               onChange={(e) => setFilters(prev => ({ ...prev, sortBy: e.target.value }))}
-              className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500"
+              className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-5001 focus:border-red-5001"
             >
               <option value="name">Sort by Name</option>
               <option value="status">Sort by Status</option>
@@ -374,7 +374,7 @@ function GetAllFacilities() {
                     <h3 className="text-lg font-bold text-gray-800 line-clamp-1 group-hover:text-red-600 transition-colors">
                       {facility.name}
                     </h3>
-                    <p className="text-sm text-gray-500 mt-1 line-clamp-1">{facility.email}</p>
+                    <p className="text-sm text-gray-5001 mt-1 line-clamp-1">{facility.email}</p>
                   </div>
                   <div className="flex flex-col gap-2 items-end">
                     {getStatusBadge(facility.status)}
@@ -385,23 +385,23 @@ function GetAllFacilities() {
                 {/* Facility Details */}
                 <div className="space-y-3">
                   <div className="flex items-center gap-3 text-sm">
-                    <Tag className="w-4 h-4 text-red-500 flex-shrink-0" />
+                    <Tag className="w-4 h-4 text-red-5001 flex-shrink-0" />
                     <span className="text-gray-700 font-medium">Reg: {facility.registrationNumber}</span>
                   </div>
 
                   <div className="flex items-center gap-3 text-sm">
-                    <Phone className="w-4 h-4 text-red-500 flex-shrink-0" />
+                    <Phone className="w-4 h-4 text-red-5001 flex-shrink-0" />
                     <span className="text-gray-700">{facility.phone || 'Not provided'}</span>
                   </div>
 
                   <div className="flex items-center gap-3 text-sm">
-                    <Briefcase className="w-4 h-4 text-red-500 flex-shrink-0" />
+                    <Briefcase className="w-4 h-4 text-red-5001 flex-shrink-0" />
                     <span className="text-gray-700 capitalize">{facility.facilityCategory || 'General'}</span>
                   </div>
 
                   {/* Operational Status */}
                   <div className="flex items-center gap-3 text-sm">
-                    <Clock className={`w-4 h-4 flex-shrink-0 ${facility.is24x7 ? 'text-green-500' : 'text-gray-500'
+                    <Clock className={`w-4 h-4 flex-shrink-0 ${facility.is24x7 ? 'text-green-5001' : 'text-gray-5001'
                       }`} />
                     <span className="text-gray-700 font-medium">
                       {facility.is24x7 ? '24/7 Service Available' : `Hours: ${facility.operatingHours?.open || 'N/A'} - ${facility.operatingHours?.close || 'N/A'}`}
@@ -410,14 +410,14 @@ function GetAllFacilities() {
 
                   {facility.emergencyServices && (
                     <div className="flex items-center gap-3 text-sm">
-                      <Shield className="w-4 h-4 text-red-500 flex-shrink-0" />
+                      <Shield className="w-4 h-4 text-red-5001 flex-shrink-0" />
                       <span className="text-red-600 font-medium">Emergency Services</span>
                     </div>
                   )}
 
                   {/* Address */}
                   <div className="flex items-start gap-3 text-sm pt-2 border-t border-gray-100">
-                    <MapPin className="w-4 h-4 text-red-500 flex-shrink-0 mt-0.5" />
+                    <MapPin className="w-4 h-4 text-red-5001 flex-shrink-0 mt-0.5" />
                     <div className="text-gray-700 line-clamp-2">
                       {facility.address?.street && `${facility.address.street}, `}
                       {facility.address?.city}, {facility.address?.state}

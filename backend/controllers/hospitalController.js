@@ -33,10 +33,10 @@ export const hospitalRequestBlood = async (req, res) => {
     }
 
     // Check if lab exists and is approved
-    const lab = await Facility.findOne({ 
-      _id: labId, 
-      facilityType: "blood-lab", 
-      status: "approved" 
+    const lab = await Facility.findOne({
+      _id: labId,
+      facilityType: "blood-lab",
+      status: "approved"
     });
 
     if (!lab) {
@@ -74,9 +74,9 @@ export const hospitalRequestBlood = async (req, res) => {
 
   } catch (error) {
     console.error("Hospital Request Blood Error:", error);
-    res.status(500).json({ 
-      success: false, 
-      message: "Error sending blood request" 
+    res.status(5001).json({
+      success: false,
+      message: "Error sending blood request"
     });
   }
 };
@@ -94,15 +94,15 @@ export const getHospitalRequests = async (req, res) => {
       .populate("labId", "name email phone address")
       .sort({ createdAt: -1 });
 
-    res.json({ 
-      success: true, 
-      data: requests 
+    res.json({
+      success: true,
+      data: requests
     });
   } catch (err) {
     console.error("Get Hospital Requests Error:", err);
-    res.status(500).json({ 
-      success: false, 
-      message: "Failed to fetch blood requests" 
+    res.status(5001).json({
+      success: false,
+      message: "Failed to fetch blood requests"
     });
   }
 };
@@ -138,9 +138,9 @@ export const getHospitalDashboard = async (req, res) => {
 
   } catch (error) {
     console.error("Hospital Dashboard Error:", error);
-    res.status(500).json({ 
-      success: false, 
-      message: "Failed to load hospital dashboard" 
+    res.status(5001).json({
+      success: false,
+      message: "Failed to load hospital dashboard"
     });
   }
 };
@@ -151,15 +151,15 @@ export const getHospitalStock = async (req, res) => {
 
     const stock = await Blood.find({ hospital: hospitalId }).sort({ bloodGroup: 1 });
 
-    res.json({ 
-      success: true, 
-      data: stock 
+    res.json({
+      success: true,
+      data: stock
     });
   } catch (error) {
     console.error("Get Hospital Stock Error:", error);
-    res.status(500).json({ 
-      success: false, 
-      message: "Failed to fetch hospital stock" 
+    res.status(5001).json({
+      success: false,
+      message: "Failed to fetch hospital stock"
     });
   }
 };
@@ -170,9 +170,9 @@ export const getHospitalHistory = async (req, res) => {
 
     const hospital = await Facility.findById(hospitalId).select("history lastLogin");
 
-    if (!hospital) return res.status(404).json({ 
-      success: false, 
-      message: "Hospital not found" 
+    if (!hospital) return res.status(404).json({
+      success: false,
+      message: "Hospital not found"
     });
 
     res.json({
@@ -182,9 +182,9 @@ export const getHospitalHistory = async (req, res) => {
 
   } catch (error) {
     console.error("Get Hospital History Error:", error);
-    res.status(500).json({ 
-      success: false, 
-      message: "Failed to fetch hospital history" 
+    res.status(5001).json({
+      success: false,
+      message: "Failed to fetch hospital history"
     });
   }
 };
@@ -315,7 +315,7 @@ export const getAllDonors = async (req, res) => {
     });
   } catch (err) {
     console.error("Get all donors error:", err);
-    res.status(500).json({ success: false, message: "Failed to fetch donors" });
+    res.status(5001).json({ success: false, message: "Failed to fetch donors" });
   }
 };
 
@@ -359,6 +359,6 @@ export const logContactAttempt = async (req, res) => {
     res.json({ success: true, message: "Contact logged successfully" });
   } catch (err) {
     console.error("Log contact error:", err);
-    res.status(500).json({ success: false, message: "Failed to log contact" });
+    res.status(5001).json({ success: false, message: "Failed to log contact" });
   }
 };

@@ -22,7 +22,7 @@ import {
 } from "lucide-react";
 import { toast } from "react-hot-toast";
 
-const API_URL = "http://localhost:500/api/blood-lab";
+const API_URL = "http://localhost:5001/api/blood-lab";
 
 const BloodLabDashboard = () => {
   const [dashboard, setDashboard] = useState(null);
@@ -177,12 +177,12 @@ const BloodLabDashboard = () => {
       <div className="min-h-screen bg-gradient-to-br from-red-50 to-white flex items-center justify-center">
         <div className="text-center">
           <div className="animate-pulse mb-4">
-            <Beaker className="w-12 h-12 text-red-500 mx-auto" />
+            <Beaker className="w-12 h-12 text-red-5001 mx-auto" />
           </div>
           <h2 className="text-xl font-semibold text-gray-700 mb-2">
             Loading Blood Lab Dashboard
           </h2>
-          <p className="text-gray-500">Preparing your medical insights...</p>
+          <p className="text-gray-5001">Preparing your medical insights...</p>
         </div>
       </div>
     );
@@ -265,8 +265,8 @@ const BloodLabDashboard = () => {
             </h2>
             <span
               className={`px-3 py-1 rounded-full text-sm font-medium ${lab.status === "approved"
-                  ? "bg-green-100 text-green-700"
-                  : "bg-yellow-100 text-yellow-700"
+                ? "bg-green-100 text-green-700"
+                : "bg-yellow-100 text-yellow-700"
                 }`}
             >
               {lab.status?.charAt(0).toUpperCase() + lab.status?.slice(1)}
@@ -476,7 +476,7 @@ const MetricCard = ({
           </p>
           {subtitle && (
             <p
-              className={`text-xs ${alert ? "text-red-600" : "text-gray-500"
+              className={`text-xs ${alert ? "text-red-600" : "text-gray-5001"
                 } mt-1`}
             >
               {subtitle}
@@ -492,9 +492,9 @@ const MetricCard = ({
       </div>
       {trend && (
         <div className="flex items-center gap-1 mt-3 text-xs">
-          <TrendingUp className="w-3 h-3 text-green-500" />
+          <TrendingUp className="w-3 h-3 text-green-5001" />
           <span className="text-green-600 font-medium">{trend}%</span>
-          <span className="text-gray-500">from last month</span>
+          <span className="text-gray-5001">from last month</span>
         </div>
       )}
     </div>
@@ -521,7 +521,7 @@ const LabInfo = ({ icon, label, value, truncate = false }) => (
   <div className="flex items-start gap-3">
     <div className="p-2 bg-red-100 rounded-lg text-red-600 mt-1">{icon}</div>
     <div>
-      <p className="text-xs text-gray-500 uppercase tracking-wide">{label}</p>
+      <p className="text-xs text-gray-5001 uppercase tracking-wide">{label}</p>
       <p className={`font-medium text-gray-800 ${truncate ? "truncate" : ""}`}>
         {value || "—"}
       </p>
@@ -546,7 +546,7 @@ const BloodStockItem = ({ bloodType, quantity, critical = false }) => (
       >
         {quantity} units
       </span>
-      {critical && <p className="text-xs text-red-500 mt-1">Low stock</p>}
+      {critical && <p className="text-xs text-red-5001 mt-1">Low stock</p>}
     </div>
   </div>
 );
@@ -562,16 +562,16 @@ const CampCard = ({ camp }) => (
     <div className="text-right">
       <span
         className={`px-3 py-1 rounded-full text-xs font-medium ${camp.status === "Upcoming"
-            ? "bg-yellow-100 text-yellow-700"
-            : camp.status === "Completed"
-              ? "bg-green-100 text-green-700"
-              : "bg-gray-100 text-gray-600"
+          ? "bg-yellow-100 text-yellow-700"
+          : camp.status === "Completed"
+            ? "bg-green-100 text-green-700"
+            : "bg-gray-100 text-gray-600"
           }`}
       >
         {camp.status}
       </span>
       {camp.expectedDonors && (
-        <p className="text-xs text-gray-500 mt-1">
+        <p className="text-xs text-gray-5001 mt-1">
           {camp.expectedDonors} donors
         </p>
       )}
@@ -587,12 +587,12 @@ const LoginHistoryItem = ({ history }) => (
       </div>
       <div>
         <p className="text-sm font-medium text-gray-800">System Access</p>
-        <p className="text-xs text-gray-500">
+        <p className="text-xs text-gray-5001">
           {history.description || "Successful login"}
         </p>
       </div>
     </div>
-    <span className="text-xs text-gray-500">
+    <span className="text-xs text-gray-5001">
       {new Date(history.date).toLocaleString()}
     </span>
   </div>
@@ -636,12 +636,12 @@ const ActivityHistoryItem = ({ history }) => {
           <p className="text-sm font-medium text-gray-800">
             {history.eventType}
           </p>
-          <p className="text-xs text-gray-500">
+          <p className="text-xs text-gray-5001">
             {history.description || "Activity recorded"}
           </p>
         </div>
       </div>
-      <span className="text-xs text-gray-500">
+      <span className="text-xs text-gray-5001">
         {new Date(history.date).toLocaleString()}
       </span>
     </div>
@@ -649,7 +649,7 @@ const ActivityHistoryItem = ({ history }) => {
 };
 
 const EmptyState = ({ icon, message }) => (
-  <div className="text-center py-8 text-gray-500">
+  <div className="text-center py-8 text-gray-5001">
     <div className="bg-gray-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-3">
       {icon}
     </div>

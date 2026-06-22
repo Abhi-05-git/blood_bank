@@ -44,7 +44,7 @@ const BloodLabDonor = () => {
     try {
       const token = localStorage.getItem("token");
       const res = await axios.get(
-        `http://localhost:500/api/blood-lab/donors/search?term=${term}`,
+        `http://localhost:5001/api/blood-lab/donors/search?term=${term}`,
         { headers: { Authorization: `Bearer ${token}` } }
       );
 
@@ -65,7 +65,7 @@ const BloodLabDonor = () => {
     try {
       const token = localStorage.getItem("token");
       const res = await axios.get(
-        "http://localhost:500/api/blood-lab/donations/recent",
+        "http://localhost:5001/api/blood-lab/donations/recent",
         { headers: { Authorization: `Bearer ${token}` } }
       );
       setRecentDonations(res.data.donations || []);
@@ -97,7 +97,7 @@ const BloodLabDonor = () => {
     try {
       const token = localStorage.getItem("token");
       await axios.post(
-        `http://localhost:500/api/blood-lab/donors/donate/${selectedDonor._id}`,
+        `http://localhost:5001/api/blood-lab/donors/donate/${selectedDonor._id}`,
         donationData,
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -118,7 +118,7 @@ const BloodLabDonor = () => {
     try {
       const token = localStorage.getItem("token");
       await axios.post(
-        `http://localhost:500/api/blood-lab/donors/donate/${donorId}`,
+        `http://localhost:5001/api/blood-lab/donors/donate/${donorId}`,
         { quantity: 1, remarks: "Quick donation" },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -201,7 +201,7 @@ const BloodLabDonor = () => {
                   <input
                     type="text"
                     placeholder="Search by name, email, phone number..."
-                    className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500"
+                    className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-5001 focus:border-red-5001"
                     value={term}
                     onChange={(e) => setTerm(e.target.value)}
                     onKeyPress={(e) => e.key === 'Enter' && searchDonors()}
@@ -230,13 +230,13 @@ const BloodLabDonor = () => {
                         <div className="flex items-center gap-3 mb-2">
                           <h3 className="font-semibold text-gray-800 text-lg">{donor.fullName}</h3>
                           <span className={`px-2 py-1 rounded-full text-xs font-medium ${donor.bloodGroup === 'O-' ? 'bg-red-100 text-red-800' :
-                              donor.bloodGroup === 'O+' ? 'bg-orange-100 text-orange-800' :
-                                donor.bloodGroup === 'A-' ? 'bg-blue-100 text-blue-800' :
-                                  donor.bloodGroup === 'A+' ? 'bg-green-100 text-green-800' :
-                                    donor.bloodGroup === 'B-' ? 'bg-purple-100 text-purple-800' :
-                                      donor.bloodGroup === 'B+' ? 'bg-indigo-100 text-indigo-800' :
-                                        donor.bloodGroup === 'AB-' ? 'bg-pink-100 text-pink-800' :
-                                          'bg-gray-100 text-gray-800'
+                            donor.bloodGroup === 'O+' ? 'bg-orange-100 text-orange-800' :
+                              donor.bloodGroup === 'A-' ? 'bg-blue-100 text-blue-800' :
+                                donor.bloodGroup === 'A+' ? 'bg-green-100 text-green-800' :
+                                  donor.bloodGroup === 'B-' ? 'bg-purple-100 text-purple-800' :
+                                    donor.bloodGroup === 'B+' ? 'bg-indigo-100 text-indigo-800' :
+                                      donor.bloodGroup === 'AB-' ? 'bg-pink-100 text-pink-800' :
+                                        'bg-gray-100 text-gray-800'
                             }`}>
                             {donor.bloodGroup}
                           </span>
@@ -249,19 +249,19 @@ const BloodLabDonor = () => {
 
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm text-gray-600">
                           <div className="flex items-center gap-2">
-                            <Mail size={14} className="text-red-500" />
+                            <Mail size={14} className="text-red-5001" />
                             <span>{donor.email}</span>
                           </div>
                           <div className="flex items-center gap-2">
-                            <Phone size={14} className="text-red-500" />
+                            <Phone size={14} className="text-red-5001" />
                             <span>{donor.phone}</span>
                           </div>
                           <div className="flex items-center gap-2">
-                            <Calendar size={14} className="text-red-500" />
+                            <Calendar size={14} className="text-red-5001" />
                             <span>Last donation: {getTimeSinceLastDonation(donor.lastDonationDate)}</span>
                           </div>
                           <div className="flex items-center gap-2">
-                            <History size={14} className="text-red-500" />
+                            <History size={14} className="text-red-5001" />
                             <span>Total donations: {donor.donationHistory?.length || 0}</span>
                           </div>
                         </div>
@@ -282,7 +282,7 @@ const BloodLabDonor = () => {
                 ))}
 
                 {results.length === 0 && !loading && term && (
-                  <div className="text-center py-8 text-gray-500">
+                  <div className="text-center py-8 text-gray-5001">
                     <User size={48} className="mx-auto mb-2 text-gray-400" />
                     <p>No donors found matching "{term}"</p>
                   </div>
@@ -305,7 +305,7 @@ const BloodLabDonor = () => {
                     <div className="flex justify-between items-start mb-2">
                       <span className="font-medium text-gray-800">{donation.donorName}</span>
                       <span className={`px-2 py-1 rounded-full text-xs font-medium ${donation.bloodGroup === 'O-' ? 'bg-red-100 text-red-800' :
-                          'bg-blue-100 text-blue-800'
+                        'bg-blue-100 text-blue-800'
                         }`}>
                         {donation.bloodGroup}
                       </span>
@@ -316,14 +316,14 @@ const BloodLabDonor = () => {
                         <span>{new Date(donation.date).toLocaleDateString()}</span>
                       </div>
                       {donation.remarks && (
-                        <p className="text-xs text-gray-500 mt-1">Note: {donation.remarks}</p>
+                        <p className="text-xs text-gray-5001 mt-1">Note: {donation.remarks}</p>
                       )}
                     </div>
                   </div>
                 ))}
 
                 {recentDonations.length === 0 && (
-                  <div className="text-center py-8 text-gray-500">
+                  <div className="text-center py-8 text-gray-5001">
                     <p>No recent donations</p>
                   </div>
                 )}
@@ -356,7 +356,7 @@ const BloodLabDonor = () => {
                   <select
                     value={donationData.bloodGroup}
                     onChange={(e) => setDonationData({ ...donationData, bloodGroup: e.target.value })}
-                    className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-red-500 focus:border-red-500"
+                    className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-red-5001 focus:border-red-5001"
                   >
                     <option value="A+">A+</option>
                     <option value="A-">A-</option>
@@ -379,7 +379,7 @@ const BloodLabDonor = () => {
                     max="2"
                     value={donationData.quantity}
                     onChange={(e) => setDonationData({ ...donationData, quantity: parseInt(e.target.value) })}
-                    className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-red-500 focus:border-red-500"
+                    className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-red-5001 focus:border-red-5001"
                   />
                 </div>
 
@@ -391,7 +391,7 @@ const BloodLabDonor = () => {
                     value={donationData.remarks}
                     onChange={(e) => setDonationData({ ...donationData, remarks: e.target.value })}
                     rows={3}
-                    className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-red-500 focus:border-red-500"
+                    className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-red-5001 focus:border-red-5001"
                     placeholder="Any additional notes..."
                   />
                 </div>
@@ -406,7 +406,7 @@ const BloodLabDonor = () => {
                 </button>
                 <button
                   onClick={() => setShowDonationForm(false)}
-                  className="flex-1 bg-gray-500 hover:bg-gray-600 text-white py-2 rounded-lg transition-colors"
+                  className="flex-1 bg-gray-5001 hover:bg-gray-600 text-white py-2 rounded-lg transition-colors"
                 >
                   Cancel
                 </button>

@@ -12,7 +12,7 @@ const HospitalRequestHistory = () => {
       try {
         setLoading(true);
         const token = localStorage.getItem("token");
-        const res = await axios.get("http://localhost:500/api/hospital/blood/requests", {
+        const res = await axios.get("http://localhost:5001/api/hospital/blood/requests", {
           headers: { Authorization: `Bearer ${token}` },
         });
 
@@ -126,7 +126,7 @@ const HospitalRequestHistory = () => {
                             </div>
                             <div>
                               <div className="font-medium text-gray-800">{request.labId?.name || "Unknown Lab"}</div>
-                              <div className="flex items-center gap-1 text-sm text-gray-500">
+                              <div className="flex items-center gap-1 text-sm text-gray-5001">
                                 <MapPin size={12} />
                                 {request.labId?.address?.city || "Unknown City"}
                               </div>
@@ -140,7 +140,7 @@ const HospitalRequestHistory = () => {
                         </td>
                         <td className="p-4">
                           <span className="text-lg font-semibold text-gray-800">{request.units}</span>
-                          <span className="text-sm text-gray-500 ml-1">units</span>
+                          <span className="text-sm text-gray-5001 ml-1">units</span>
                         </td>
                         <td className="p-4">
                           <span className={`px-3 py-1 rounded-full text-sm font-medium flex items-center gap-1 ${statusConfig.color}`}>

@@ -43,7 +43,7 @@ export const register = async (req, res) => {
   } catch (error) {
     console.error("❌ Registration Error:", error);
     res
-      .status(500)
+      .status(5001)
       .json({ message: "Registration failed", error: error.message });
   }
 };
@@ -129,7 +129,7 @@ export const login = async (req, res) => {
   } catch (error) {
     console.error("🚨 Login Error:", error);
     res
-      .status(500)
+      .status(5001)
       .json({ message: "Login failed", error: error.message });
   }
 };
@@ -153,7 +153,7 @@ export const getProfile = async (req, res) => {
     res.status(200).json({ user });
   } catch (error) {
     res
-      .status(500)
+      .status(5001)
       .json({ message: "Error fetching profile", error: error.message });
   }
 };

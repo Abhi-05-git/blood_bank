@@ -20,7 +20,7 @@ import {
   ChevronUp
 } from 'lucide-react';
 
-const API_URL = "http://localhost:500/api/admin";
+const API_URL = "http://localhost:5001/api/admin";
 
 function GetAllDonors() {
   const [donors, setDonors] = useState([]);
@@ -136,8 +136,8 @@ function GetAllDonors() {
     }
     return (
       <span className={`inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-medium border ${isEligible
-          ? "bg-green-100 text-green-800 border-green-200"
-          : "bg-red-100 text-red-800 border-red-200"
+        ? "bg-green-100 text-green-800 border-green-200"
+        : "bg-red-100 text-red-800 border-red-200"
         }`}>
         {isEligible ? <CheckCircle size={12} /> : <XCircle size={12} />}
         {isEligible ? "Eligible" : "Ineligible"}
@@ -159,12 +159,12 @@ function GetAllDonors() {
       <div className="min-h-screen bg-gradient-to-br from-red-50 to-white flex items-center justify-center">
         <div className="text-center">
           <div className="animate-pulse mb-4">
-            <Users className="w-12 h-12 text-red-500 mx-auto" />
+            <Users className="w-12 h-12 text-red-5001 mx-auto" />
           </div>
           <h2 className="text-xl font-semibold text-gray-700 mb-2">
             Loading Donor Database
           </h2>
-          <p className="text-gray-500">Fetching all registered blood donors...</p>
+          <p className="text-gray-5001">Fetching all registered blood donors...</p>
         </div>
       </div>
     );
@@ -239,7 +239,7 @@ function GetAllDonors() {
                   placeholder="Search donors by name, email, or phone..."
                   value={filters.search}
                   onChange={(e) => setFilters(prev => ({ ...prev, search: e.target.value }))}
-                  className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500"
+                  className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-5001 focus:border-red-5001"
                 />
               </div>
             </div>
@@ -247,7 +247,7 @@ function GetAllDonors() {
             <select
               value={filters.bloodGroup}
               onChange={(e) => setFilters(prev => ({ ...prev, bloodGroup: e.target.value }))}
-              className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500"
+              className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-5001 focus:border-red-5001"
             >
               <option value="all">All Blood Types</option>
               {bloodGroups.map(group => (
@@ -258,7 +258,7 @@ function GetAllDonors() {
             <select
               value={filters.eligibility}
               onChange={(e) => setFilters(prev => ({ ...prev, eligibility: e.target.value }))}
-              className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500"
+              className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-5001 focus:border-red-5001"
             >
               <option value="all">All Status</option>
               <option value="eligible">Eligible Only</option>
@@ -268,7 +268,7 @@ function GetAllDonors() {
             <select
               value={filters.sortBy}
               onChange={(e) => setFilters(prev => ({ ...prev, sortBy: e.target.value }))}
-              className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500"
+              className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-5001 focus:border-red-5001"
             >
               <option value="name">Sort by Name</option>
               <option value="donations">Sort by Donations</option>
@@ -333,7 +333,7 @@ function GetAllDonors() {
                     <h3 className="text-lg font-bold text-gray-800 line-clamp-1 group-hover:text-red-600 transition-colors">
                       {donor.fullName}
                     </h3>
-                    <p className="text-sm text-gray-500 mt-1">{donor.email}</p>
+                    <p className="text-sm text-gray-5001 mt-1">{donor.email}</p>
                   </div>
                   <div className="flex flex-col gap-2 items-end">
                     {getEligibilityBadge(donor.eligibleToDonate)}
@@ -344,22 +344,22 @@ function GetAllDonors() {
                 {/* Donor Details */}
                 <div className="space-y-3">
                   <div className="flex items-center gap-3 text-sm">
-                    <Phone className="w-4 h-4 text-red-500 flex-shrink-0" />
+                    <Phone className="w-4 h-4 text-red-5001 flex-shrink-0" />
                     <span className="text-gray-700">{donor.phone || 'Not provided'}</span>
                   </div>
 
                   <div className="flex items-center gap-3 text-sm">
-                    <Calendar className="w-4 h-4 text-red-500 flex-shrink-0" />
+                    <Calendar className="w-4 h-4 text-red-5001 flex-shrink-0" />
                     <span className="text-gray-700">{donor.age} years old</span>
                   </div>
 
                   <div className="flex items-center gap-3 text-sm">
-                    <Weight className="w-4 h-4 text-red-500 flex-shrink-0" />
+                    <Weight className="w-4 h-4 text-red-5001 flex-shrink-0" />
                     <span className="text-gray-700">{donor.weight || 'N/A'} kg</span>
                   </div>
 
                   <div className="flex items-center gap-3 text-sm">
-                    <Heart className="w-4 h-4 text-red-500 flex-shrink-0" />
+                    <Heart className="w-4 h-4 text-red-5001 flex-shrink-0" />
                     <span className="text-gray-700">
                       {donor.donationHistory?.length || 0} donation{(donor.donationHistory?.length || 0) !== 1 ? 's' : ''}
                     </span>
@@ -367,7 +367,7 @@ function GetAllDonors() {
 
                   {/* Address */}
                   <div className="flex items-start gap-3 text-sm pt-2 border-t border-gray-100">
-                    <MapPin className="w-4 h-4 text-red-500 flex-shrink-0 mt-0.5" />
+                    <MapPin className="w-4 h-4 text-red-5001 flex-shrink-0 mt-0.5" />
                     <div className="text-gray-700 line-clamp-2">
                       {donor.address?.street && `${donor.address.street}, `}
                       {donor.address?.city}, {donor.address?.state}

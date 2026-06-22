@@ -24,8 +24,8 @@ export const getDonorProfile = async (req, res) => {
     }
 
     // Use the virtual field 'isEligible' for 90-day cooldown status
-    const isEligible = donor.isEligible; 
-    
+    const isEligible = donor.isEligible;
+
     // Calculate total donations
     const totalDonations = donor.donationHistory.length;
 
@@ -59,7 +59,7 @@ export const getDonorProfile = async (req, res) => {
         id: don._id,
         donationDate: don.donationDate,
         // The facility field is now populated. Access properties safely.
-        facility: don.facility?.facilityName || "N/A", 
+        facility: don.facility?.facilityName || "N/A",
         city: don.facility?.address?.city,
         state: don.facility?.address?.state,
         bloodGroup: don.bloodGroup,
@@ -75,7 +75,7 @@ export const getDonorProfile = async (req, res) => {
   } catch (error) {
     console.error("❌ Error fetching donor profile:", error);
     res
-      .status(500)
+      .status(5001)
       .json({ message: "Error fetching donor profile", error: error.message });
   }
 };
@@ -88,28 +88,28 @@ export const updateDonorProfile = async (req, res) => {
     const { fullName, phone, address, age, gender, weight, password } = req.body;
 
     // Find by ID and exclude the password for initial retrieval
-    const donor = await Donor.findById(donorId).select('+password'); 
+    const donor = await Donor.findById(donorId).select('+password');
     if (!donor) return res.status(404).json({ message: "Donor not found" });
 
     // ✅ Update fields only if provided
     donor.fullName = fullName !== undefined ? fullName : donor.fullName;
     donor.phone = phone !== undefined ? phone : donor.phone;
-    
+
     // Only update address subfields if the main address object is provided
     if (address) {
-        donor.address.street = address.street || donor.address.street;
-        donor.address.city = address.city || donor.address.city;
-        donor.address.state = address.state || donor.address.state;
-        donor.address.pincode = address.pincode || address.pincode;
+      donor.address.street = address.street || donor.address.street;
+      donor.address.city = address.city || donor.address.city;
+      donor.address.state = address.state || donor.address.state;
+      donor.address.pincode = address.pincode || address.pincode;
     }
-    
+
     donor.age = age !== undefined ? age : donor.age;
     donor.gender = gender !== undefined ? gender : donor.gender;
     donor.weight = weight !== undefined ? weight : donor.weight;
 
     if (password) {
       // 🔑 Hash new password using the same salt rounds as the schema (12)
-      const salt = await bcrypt.genSalt(12); 
+      const salt = await bcrypt.genSalt(12);
       donor.password = await bcrypt.hash(password, salt);
     }
 
@@ -132,9 +132,9 @@ export const updateDonorProfile = async (req, res) => {
     console.error("❌ Error updating donor profile:", error);
     // Handle validation errors from the schema
     if (error.name === 'ValidationError') {
-        return res.status(400).json({ message: "Validation failed", errors: error.errors });
+      return res.status(400).json({ message: "Validation failed", errors: error.errors });
     }
-    res.status(500).json({ message: "Error updating profile", error: error.message });
+    res.status(5001).json({ message: "Error updating profile", error: error.message });
   }
 };
 
@@ -145,7 +145,7 @@ export const getDonorCamps = async (req, res) => {
     const { status, page = 1, limit = 10 } = req.query;
 
     const filter = {};
-    
+
     // Filter by status if provided (e.g., 'active', 'completed', 'cancelled')
     if (status && status !== "all") {
       filter.status = status;
@@ -157,10 +157,10 @@ export const getDonorCamps = async (req, res) => {
     const [camps, total] = await Promise.all([
       // Sort by date ascending (upcoming first)
       BloodCamp.find(filter)
-        .sort({ date: 1 }) 
+        .sort({ date: 1 })
         .skip(skip)
         .limit(parseInt(limit)),
-      
+
       BloodCamp.countDocuments(filter),
     ]);
 
@@ -179,9 +179,9 @@ export const getDonorCamps = async (req, res) => {
     console.error("Get Donor Camps Error:", error);
     // Better to return 401 if it's an Auth issue
     if (error.name === 'JsonWebTokenError' || error.name === 'TokenExpiredError') {
-        return res.status(401).json({ success: false, message: "Unauthorized. Please log in." });
+      return res.status(401).json({ success: false, message: "Unauthorized. Please log in." });
     }
-    res.status(500).json({ success: false, message: "Failed to fetch blood camps" });
+    res.status(5001).json({ success: false, message: "Failed to fetch blood camps" });
   }
 };
 
@@ -194,13 +194,13 @@ export const getDonorCamps = async (req, res) => {
 export const getDonorStats = async (req, res) => {
   try {
     // FIX: Safely retrieve donorId using req.donor.id, which worked in getDonorProfile
-    const donorId = req.donor?.id || req.donor?._id; 
+    const donorId = req.donor?.id || req.donor?._id;
 
     if (!donorId) {
-        // If the middleware failed to attach the ID, return unauthorized
-        return res.status(401).json({ success: false, message: "Unauthorized: Donor ID missing from request." });
+      // If the middleware failed to attach the ID, return unauthorized
+      return res.status(401).json({ success: false, message: "Unauthorized: Donor ID missing from request." });
     }
-    
+
     // Use a single query/aggregation to fetch the donor and calculate all necessary stats
     const donorStats = await Donor.aggregate([
       // 1. Match the specific donor document
@@ -210,7 +210,7 @@ export const getDonorStats = async (req, res) => {
           _id: 0, // Exclude the donor ID from the result array
           totalDonations: { $size: "$donationHistory" },
           lastDonationDate: { $max: "$donationHistory.donationDate" },
-          weight: "$weight", 
+          weight: "$weight",
           age: "$age"
         },
       },
@@ -221,10 +221,10 @@ export const getDonorStats = async (req, res) => {
     }
 
     const stats = donorStats[0];
-    
+
     const totalDonations = stats.totalDonations || 0;
     const lastDonationDate = stats.lastDonationDate || null;
-    
+
     let nextEligibleDonationDate = null;
     let eligibilityStatus = 'Eligible'; // Default
 
@@ -232,7 +232,7 @@ export const getDonorStats = async (req, res) => {
     if (lastDonationDate) {
       const lastDate = new Date(lastDonationDate);
       const nextDate = new Date(lastDate);
-      nextDate.setDate(nextDate.getDate() + 90); 
+      nextDate.setDate(nextDate.getDate() + 90);
       nextEligibleDonationDate = nextDate;
 
       if (nextEligibleDonationDate > new Date()) {
@@ -240,7 +240,7 @@ export const getDonorStats = async (req, res) => {
         eligibilityStatus = `Ineligible (Cooldown: ${remainingDays} days remaining)`;
       }
     }
-    
+
     // 2. Check general medical eligibility rules (overrides cooldown status)
     if (stats.age < 18 || stats.age > 65) {
       eligibilityStatus = 'Ineligible (Age constraint)';
@@ -261,7 +261,7 @@ export const getDonorStats = async (req, res) => {
 
   } catch (error) {
     console.error("Get Donor Stats Error:", error);
-    res.status(500).json({ success: false, message: "Failed to fetch donor statistics." });
+    res.status(5001).json({ success: false, message: "Failed to fetch donor statistics." });
   }
 };
 
@@ -273,13 +273,13 @@ export const getDonorStats = async (req, res) => {
 export const getDonorHistory = async (req, res) => {
   try {
     // FIX: Safely retrieve donorId using req.donor.id, which worked in getDonorProfile
-    const donorId = req.donor?.id || req.donor?._id; 
+    const donorId = req.donor?.id || req.donor?._id;
 
     if (!donorId) {
-        // If the middleware failed to attach the ID, return unauthorized
-        return res.status(401).json({ success: false, message: "Unauthorized: Donor ID missing from request." });
+      // If the middleware failed to attach the ID, return unauthorized
+      return res.status(401).json({ success: false, message: "Unauthorized: Donor ID missing from request." });
     }
-    
+
     const { page = 1, limit = 10 } = req.query;
 
     const skip = (parseInt(page) - 1) * parseInt(limit);
@@ -294,7 +294,7 @@ export const getDonorHistory = async (req, res) => {
           totalHistoryLength: { $size: "$donationHistory" }
         }
       },
-      
+
       // 3. Deconstruct the array field to generate a document for each item (Crucial for array pagination)
       { $unwind: "$donationHistory" },
 
@@ -306,7 +306,7 @@ export const getDonorHistory = async (req, res) => {
       { $limit: parseInt(limit) },
 
       // 6. Optionally, lookup facility details if they were not populated in getDonorProfile
-      { 
+      {
         $lookup: {
           from: 'facilities', // The name of the collection that stores Facility documents
           localField: 'donationHistory.facility',
@@ -330,9 +330,9 @@ export const getDonorHistory = async (req, res) => {
 
     // Extract total count and history array from the aggregation result
     // Total should be retrieved safely if the result array is not empty
-    const total = result.length > 0 ? result[0].total : 0; 
-    
-    const history = result.map(item => ({ 
+    const total = result.length > 0 ? result[0].total : 0;
+
+    const history = result.map(item => ({
       id: item.donation._id,
       donationDate: item.donation.donationDate,
       bloodGroup: item.donation.bloodGroup,
@@ -344,7 +344,7 @@ export const getDonorHistory = async (req, res) => {
       city: item.facility?.address?.city,
       state: item.facility?.address?.state,
     }));
-    
+
     res.json({
       success: true,
       history,
@@ -357,7 +357,7 @@ export const getDonorHistory = async (req, res) => {
 
   } catch (error) {
     console.error("Get Donor History Error:", error);
-    res.status(500).json({ success: false, message: "Failed to fetch donation history." });
+    res.status(5001).json({ success: false, message: "Failed to fetch donation history." });
   }
 };
 
@@ -383,14 +383,14 @@ export const searchDonor = async (req, res) => {
         { phone: { $regex: term, $options: "i" } }
       ]
     })
-    .select('fullName email phone bloodGroup lastDonationDate donationHistory')
-    .limit(20)
-    .sort({ lastDonationDate: -1 });
+      .select('fullName email phone bloodGroup lastDonationDate donationHistory')
+      .limit(20)
+      .sort({ lastDonationDate: -1 });
 
     res.status(200).json({ success: true, donors });
   } catch (err) {
     console.error("Search donor error:", err);
-    res.status(500).json({ success: false, message: "Server error" });
+    res.status(5001).json({ success: false, message: "Server error" });
   }
 };
 
@@ -415,18 +415,18 @@ export const markDonation = async (req, res) => {
       const lastDonation = new Date(donor.lastDonationDate);
       const threeMonthsAgo = new Date();
       threeMonthsAgo.setMonth(threeMonthsAgo.getMonth() - 3);
-      
+
       if (lastDonation > threeMonthsAgo) {
-        return res.status(400).json({ 
-          success: false, 
-          message: "Donor cannot donate yet. Minimum 3 months required between donations." 
+        return res.status(400).json({
+          success: false,
+          message: "Donor cannot donate yet. Minimum 3 months required between donations."
         });
       }
     }
 
     // Update last donation date
     donor.lastDonationDate = new Date();
-    
+
     // Update blood group if provided
     if (bloodGroup) {
       donor.bloodGroup = bloodGroup;
@@ -460,14 +460,14 @@ export const markDonation = async (req, res) => {
     const bloodType = bloodGroup || donor.bloodGroup;
     await addToBloodStock(labId, bloodType, quantity);
 
-    res.status(200).json({ 
-      success: true, 
-      message: "Donation recorded successfully", 
-      donor 
+    res.status(200).json({
+      success: true,
+      message: "Donation recorded successfully",
+      donor
     });
   } catch (err) {
     console.error("Mark donation error:", err);
-    res.status(500).json({ success: false, message: "Server error" });
+    res.status(5001).json({ success: false, message: "Server error" });
   }
 };
 
@@ -479,7 +479,7 @@ export const markDonation = async (req, res) => {
 export const getRecentDonations = async (req, res) => {
   try {
     const labId = req.user._id;
-    
+
     // Get today's start and end
     const today = new Date();
     today.setHours(0, 0, 0, 0);
@@ -496,31 +496,31 @@ export const getRecentDonations = async (req, res) => {
         'donationHistory.facility': labId,
         'donationHistory.donationDate': { $gte: today, $lt: tomorrow }
       }),
-      
+
       // This week's donations
       Donor.countDocuments({
         'donationHistory.facility': labId,
         'donationHistory.donationDate': { $gte: weekStart }
       }),
-      
+
       // Total donations
       Donor.aggregate([
         { $unwind: '$donationHistory' },
         { $match: { 'donationHistory.facility': labId } },
         { $count: 'total' }
       ]),
-      
+
       // Recent donations with donor details
       Donor.find({
         'donationHistory.facility': labId
       })
-      .select('fullName bloodGroup donationHistory')
-      .sort({ 'donationHistory.donationDate': -1 })
-      .limit(10)
+        .select('fullName bloodGroup donationHistory')
+        .sort({ 'donationHistory.donationDate': -1 })
+        .limit(10)
     ]);
 
     // Format recent donations
-    const recentDonations = recentDonors.flatMap(donor => 
+    const recentDonations = recentDonors.flatMap(donor =>
       donor.donationHistory
         .filter(d => d.facility.equals(labId))
         .slice(0, 3)
@@ -544,7 +544,7 @@ export const getRecentDonations = async (req, res) => {
     });
   } catch (err) {
     console.error("Get recent donations error:", err);
-    res.status(500).json({ success: false, message: "Failed to fetch recent donations" });
+    res.status(5001).json({ success: false, message: "Failed to fetch recent donations" });
   }
 };
 

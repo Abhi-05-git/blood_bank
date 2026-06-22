@@ -127,7 +127,7 @@ Now, please respond to the user's question.`;
       });
     }
 
-    res.status(500).json({
+    res.status(5001).json({
       error: error.message || "Sorry, I'm having trouble processing your request right now. Please try again.",
     });
   }
@@ -149,7 +149,7 @@ export const clearChatSession = async (req, res) => {
     }
   } catch (error) {
     console.error("Clear Session Error:", error);
-    res.status(500).json({
+    res.status(5001).json({
       error: error.message || "Failed to clear chat session",
     });
   }

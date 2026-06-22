@@ -62,7 +62,7 @@ const BloodCamps = () => {
 
   const token = localStorage.getItem("token");
   // Fixed API URL - removed /blood-lab if it doesn't exist
-  const API_URL = "http://localhost:500/api/blood-lab";
+  const API_URL = "http://localhost:5001/api/blood-lab";
 
   console.log("🔧 BloodCamps Component State:", {
     campsCount: camps.length,
@@ -623,7 +623,7 @@ const BloodCamps = () => {
                     console.log("🔍 Search filter:", e.target.value);
                     setFilters(prev => ({ ...prev, search: e.target.value }))
                   }}
-                  className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500"
+                  className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-5001 focus:border-red-5001"
                 />
               </div>
             </div>
@@ -633,7 +633,7 @@ const BloodCamps = () => {
                 console.log("📊 Status filter:", e.target.value);
                 setFilters(prev => ({ ...prev, status: e.target.value }))
               }}
-              className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500"
+              className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-5001 focus:border-red-5001"
             >
               <option value="all">All Status</option>
               <option value="Upcoming">Upcoming</option>
@@ -647,7 +647,7 @@ const BloodCamps = () => {
                 console.log("📈 Sort by:", e.target.value);
                 setFilters(prev => ({ ...prev, sortBy: e.target.value }))
               }}
-              className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500"
+              className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-5001 focus:border-red-5001"
             >
               <option value="date">Sort by Date</option>
               <option value="title">Sort by Title</option>
@@ -689,11 +689,11 @@ const BloodCamps = () => {
                   type="text"
                   value={formData.title}
                   onChange={(e) => handleInputChange('title', e.target.value)}
-                  className={`w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-red-500 focus:border-red-500 ${errors.title ? 'border-red-500' : ''
+                  className={`w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-red-5001 focus:border-red-5001 ${errors.title ? 'border-red-5001' : ''
                     }`}
                   placeholder="Enter camp title"
                 />
-                {errors.title && <p className="text-red-500 text-sm mt-1">{errors.title}</p>}
+                {errors.title && <p className="text-red-5001 text-sm mt-1">{errors.title}</p>}
               </div>
 
               {/* Date */}
@@ -705,10 +705,10 @@ const BloodCamps = () => {
                   type="date"
                   value={formData.date}
                   onChange={(e) => handleInputChange('date', e.target.value)}
-                  className={`w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-red-500 focus:border-red-500 ${errors.date ? 'border-red-500' : ''
+                  className={`w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-red-5001 focus:border-red-5001 ${errors.date ? 'border-red-5001' : ''
                     }`}
                 />
-                {errors.date && <p className="text-red-500 text-sm mt-1">{errors.date}</p>}
+                {errors.date && <p className="text-red-5001 text-sm mt-1">{errors.date}</p>}
               </div>
 
               {/* Times */}
@@ -721,10 +721,10 @@ const BloodCamps = () => {
                     type="time"
                     value={formData.startTime}
                     onChange={(e) => handleInputChange('startTime', e.target.value)}
-                    className={`w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-red-500 focus:border-red-500 ${errors.startTime ? 'border-red-500' : ''
+                    className={`w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-red-5001 focus:border-red-5001 ${errors.startTime ? 'border-red-5001' : ''
                       }`}
                   />
-                  {errors.startTime && <p className="text-red-500 text-sm mt-1">{errors.startTime}</p>}
+                  {errors.startTime && <p className="text-red-5001 text-sm mt-1">{errors.startTime}</p>}
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">
@@ -734,10 +734,10 @@ const BloodCamps = () => {
                     type="time"
                     value={formData.endTime}
                     onChange={(e) => handleInputChange('endTime', e.target.value)}
-                    className={`w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-red-500 focus:border-red-500 ${errors.endTime ? 'border-red-500' : ''
+                    className={`w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-red-5001 focus:border-red-5001 ${errors.endTime ? 'border-red-5001' : ''
                       }`}
                   />
-                  {errors.endTime && <p className="text-red-500 text-sm mt-1">{errors.endTime}</p>}
+                  {errors.endTime && <p className="text-red-5001 text-sm mt-1">{errors.endTime}</p>}
                 </div>
               </div>
 
@@ -750,11 +750,11 @@ const BloodCamps = () => {
                   type="text"
                   value={formData.venue}
                   onChange={(e) => handleInputChange('venue', e.target.value)}
-                  className={`w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-red-500 focus:border-red-500 ${errors.venue ? 'border-red-500' : ''
+                  className={`w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-red-5001 focus:border-red-5001 ${errors.venue ? 'border-red-5001' : ''
                     }`}
                   placeholder="Enter venue name"
                 />
-                {errors.venue && <p className="text-red-500 text-sm mt-1">{errors.venue}</p>}
+                {errors.venue && <p className="text-red-5001 text-sm mt-1">{errors.venue}</p>}
               </div>
 
               <div>
@@ -765,11 +765,11 @@ const BloodCamps = () => {
                   type="text"
                   value={formData.city}
                   onChange={(e) => handleInputChange('city', e.target.value)}
-                  className={`w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-red-500 focus:border-red-500 ${errors.city ? 'border-red-500' : ''
+                  className={`w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-red-5001 focus:border-red-5001 ${errors.city ? 'border-red-5001' : ''
                     }`}
                   placeholder="Enter city"
                 />
-                {errors.city && <p className="text-red-500 text-sm mt-1">{errors.city}</p>}
+                {errors.city && <p className="text-red-5001 text-sm mt-1">{errors.city}</p>}
               </div>
 
               <div>
@@ -780,11 +780,11 @@ const BloodCamps = () => {
                   type="text"
                   value={formData.state}
                   onChange={(e) => handleInputChange('state', e.target.value)}
-                  className={`w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-red-500 focus:border-red-500 ${errors.state ? 'border-red-500' : ''
+                  className={`w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-red-5001 focus:border-red-5001 ${errors.state ? 'border-red-5001' : ''
                     }`}
                   placeholder="Enter state"
                 />
-                {errors.state && <p className="text-red-500 text-sm mt-1">{errors.state}</p>}
+                {errors.state && <p className="text-red-5001 text-sm mt-1">{errors.state}</p>}
               </div>
 
               <div>
@@ -795,12 +795,12 @@ const BloodCamps = () => {
                   type="text"
                   value={formData.pincode}
                   onChange={(e) => handleInputChange('pincode', e.target.value)}
-                  className={`w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-red-500 focus:border-red-500 ${errors.pincode ? 'border-red-500' : ''
+                  className={`w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-red-5001 focus:border-red-5001 ${errors.pincode ? 'border-red-5001' : ''
                     }`}
                   placeholder="6-digit pincode"
                   maxLength={6}
                 />
-                {errors.pincode && <p className="text-red-500 text-sm mt-1">{errors.pincode}</p>}
+                {errors.pincode && <p className="text-red-5001 text-sm mt-1">{errors.pincode}</p>}
               </div>
 
               {/* Expected Donors */}
@@ -813,11 +813,11 @@ const BloodCamps = () => {
                   min="1"
                   value={formData.expectedDonors}
                   onChange={(e) => handleInputChange('expectedDonors', e.target.value)}
-                  className={`w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-red-500 focus:border-red-500 ${errors.expectedDonors ? 'border-red-500' : ''
+                  className={`w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-red-5001 focus:border-red-5001 ${errors.expectedDonors ? 'border-red-5001' : ''
                     }`}
                   placeholder="Expected number of donors"
                 />
-                {errors.expectedDonors && <p className="text-red-500 text-sm mt-1">{errors.expectedDonors}</p>}
+                {errors.expectedDonors && <p className="text-red-5001 text-sm mt-1">{errors.expectedDonors}</p>}
               </div>
 
               {/* Description */}
@@ -829,7 +829,7 @@ const BloodCamps = () => {
                   value={formData.description}
                   onChange={(e) => handleInputChange('description', e.target.value)}
                   rows={3}
-                  className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-red-500 focus:border-red-500"
+                  className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-red-5001 focus:border-red-5001"
                   placeholder="Enter camp description (optional)"
                 />
               </div>
@@ -851,7 +851,7 @@ const BloodCamps = () => {
                   setShowForm(false);
                   resetForm();
                 }}
-                className="bg-gray-500 hover:bg-gray-600 text-white px-6 py-2 rounded-lg transition-colors"
+                className="bg-gray-5001 hover:bg-gray-600 text-white px-6 py-2 rounded-lg transition-colors"
               >
                 Cancel
               </button>
@@ -936,7 +936,7 @@ const BloodCamps = () => {
                         )}
                         <button
                           onClick={() => handleDeleteCamp(camp._id)}
-                          className="text-red-500 hover:text-red-600 p-1 transition-colors"
+                          className="text-red-5001 hover:text-red-600 p-1 transition-colors"
                           title="Delete camp"
                         >
                           <Trash2 size={16} />
@@ -946,7 +946,7 @@ const BloodCamps = () => {
 
                     <div className="flex justify-between items-center mb-4">
                       <StatusBadge status={camp.status} />
-                      <span className="text-sm text-gray-500">
+                      <span className="text-sm text-gray-5001">
                         {new Date(camp.date).toLocaleDateString()}
                       </span>
                     </div>
@@ -959,17 +959,17 @@ const BloodCamps = () => {
 
                     <div className="space-y-2 text-sm text-gray-600">
                       <div className="flex items-center">
-                        <Clock size={16} className="mr-2 text-red-500 flex-shrink-0" />
+                        <Clock size={16} className="mr-2 text-red-5001 flex-shrink-0" />
                         <span>{camp.time.start} - {camp.time.end}</span>
                       </div>
                       <div className="flex items-start">
-                        <MapPin size={16} className="mr-2 text-red-500 flex-shrink-0 mt-0.5" />
+                        <MapPin size={16} className="mr-2 text-red-5001 flex-shrink-0 mt-0.5" />
                         <span className="line-clamp-2">
                           {camp.location.venue}, {camp.location.city}, {camp.location.state} - {camp.location.pincode}
                         </span>
                       </div>
                       <div className="flex items-center">
-                        <Users size={16} className="mr-2 text-red-500 flex-shrink-0" />
+                        <Users size={16} className="mr-2 text-red-5001 flex-shrink-0" />
                         <span>Expected: {camp.expectedDonors} donors</span>
                       </div>
                       {camp.actualDonors > 0 && (

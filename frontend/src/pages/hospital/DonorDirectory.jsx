@@ -53,7 +53,7 @@ const DonorDirectory = () => {
       });
 
       const res = await axios.get(
-        `http://localhost:500/api/hospital/donors?${queryParams}`,
+        `http://localhost:5001/api/hospital/donors?${queryParams}`,
         { headers: { Authorization: `Bearer ${token}` } }
       );
 
@@ -84,7 +84,7 @@ const DonorDirectory = () => {
     try {
       const token = localStorage.getItem("token");
       await axios.post(
-        `http://localhost:500/api/hopital/donors/${donorId}/contact`,
+        `http://localhost:5001/api/hopital/donors/${donorId}/contact`,
         {},
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -191,7 +191,7 @@ const DonorDirectory = () => {
                 <input
                   type="text"
                   placeholder="Search donors by name, email, phone, or city..."
-                  className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500"
+                  className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-5001 focus:border-red-5001"
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                 />
@@ -220,7 +220,7 @@ const DonorDirectory = () => {
                 <select
                   value={filters.bloodGroup}
                   onChange={(e) => setFilters({ ...filters, bloodGroup: e.target.value })}
-                  className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-red-500 focus:border-red-500"
+                  className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-red-5001 focus:border-red-5001"
                 >
                   <option value="all">All Blood Groups</option>
                   {bloodGroups.filter(bg => bg !== 'all').map(bg => (
@@ -237,7 +237,7 @@ const DonorDirectory = () => {
                 <select
                   value={filters.city}
                   onChange={(e) => setFilters({ ...filters, city: e.target.value })}
-                  className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-red-500 focus:border-red-500"
+                  className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-red-5001 focus:border-red-5001"
                 >
                   <option value="all">All Cities</option>
                   <option value="Mumbai">Mumbai</option>
@@ -258,7 +258,7 @@ const DonorDirectory = () => {
                 <select
                   value={filters.availability}
                   onChange={(e) => setFilters({ ...filters, availability: e.target.value })}
-                  className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-red-500 focus:border-red-500"
+                  className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-red-5001 focus:border-red-5001"
                 >
                   <option value="all">All Donors</option>
                   <option value="available">Available Now</option>
@@ -274,7 +274,7 @@ const DonorDirectory = () => {
                 <select
                   value={filters.sortBy}
                   onChange={(e) => setFilters({ ...filters, sortBy: e.target.value })}
-                  className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-red-500 focus:border-red-500"
+                  className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-red-5001 focus:border-red-5001"
                 >
                   <option value="lastDonation">Last Donation</option>
                   <option value="name">Name</option>
@@ -325,18 +325,18 @@ const DonorDirectory = () => {
                         <h3 className="font-semibold text-gray-800 text-lg">{donor.fullName}</h3>
                         <div className="flex items-center gap-2 mt-1">
                           <span className={`px-2 py-1 rounded-full text-xs font-medium ${donor.bloodGroup === 'O-' ? 'bg-red-100 text-red-800 border border-red-200' :
-                              donor.bloodGroup === 'O+' ? 'bg-orange-100 text-orange-800 border border-orange-200' :
-                                donor.bloodGroup === 'A-' ? 'bg-blue-100 text-blue-800 border border-blue-200' :
-                                  donor.bloodGroup === 'A+' ? 'bg-green-100 text-green-800 border border-green-200' :
-                                    donor.bloodGroup === 'B-' ? 'bg-purple-100 text-purple-800 border border-purple-200' :
-                                      donor.bloodGroup === 'B+' ? 'bg-indigo-100 text-indigo-800 border border-indigo-200' :
-                                        donor.bloodGroup === 'AB-' ? 'bg-pink-100 text-pink-800 border border-pink-200' :
-                                          'bg-gray-100 text-gray-800 border border-gray-200'
+                            donor.bloodGroup === 'O+' ? 'bg-orange-100 text-orange-800 border border-orange-200' :
+                              donor.bloodGroup === 'A-' ? 'bg-blue-100 text-blue-800 border border-blue-200' :
+                                donor.bloodGroup === 'A+' ? 'bg-green-100 text-green-800 border border-green-200' :
+                                  donor.bloodGroup === 'B-' ? 'bg-purple-100 text-purple-800 border border-purple-200' :
+                                    donor.bloodGroup === 'B+' ? 'bg-indigo-100 text-indigo-800 border border-indigo-200' :
+                                      donor.bloodGroup === 'AB-' ? 'bg-pink-100 text-pink-800 border border-pink-200' :
+                                        'bg-gray-100 text-gray-800 border border-gray-200'
                             }`}>
                             {donor.bloodGroup}
                           </span>
                           {isRare && (
-                            <Shield size={14} className="text-purple-500" />
+                            <Shield size={14} className="text-purple-5001" />
                           )}
                         </div>
                       </div>
@@ -349,25 +349,25 @@ const DonorDirectory = () => {
                   {/* Donor Details */}
                   <div className="space-y-3 mb-4">
                     <div className="flex items-center gap-2 text-sm text-gray-600">
-                      <Phone size={14} className="text-red-500 flex-shrink-0" />
+                      <Phone size={14} className="text-red-5001 flex-shrink-0" />
                       <span className="font-medium">{donor.phone}</span>
                     </div>
                     <div className="flex items-center gap-2 text-sm text-gray-600">
-                      <Mail size={14} className="text-red-500 flex-shrink-0" />
+                      <Mail size={14} className="text-red-5001 flex-shrink-0" />
                       <span>{donor.email}</span>
                     </div>
                     {donor.address?.city && (
                       <div className="flex items-center gap-2 text-sm text-gray-600">
-                        <MapPin size={14} className="text-red-500 flex-shrink-0" />
+                        <MapPin size={14} className="text-red-5001 flex-shrink-0" />
                         <span>{donor.address.city}, {donor.address.state}</span>
                       </div>
                     )}
                     <div className="flex items-center gap-2 text-sm text-gray-600">
-                      <Calendar size={14} className="text-red-500 flex-shrink-0" />
+                      <Calendar size={14} className="text-red-5001 flex-shrink-0" />
                       <span>Last donation: {getTimeSinceLastDonation(donor.lastDonationDate)}</span>
                     </div>
                     <div className="flex items-center gap-2 text-sm text-gray-600">
-                      <Droplet size={14} className="text-red-500 flex-shrink-0" />
+                      <Droplet size={14} className="text-red-5001 flex-shrink-0" />
                       <span>Total donations: {donor.donationHistory?.length || 0}</span>
                     </div>
                   </div>
@@ -448,7 +448,7 @@ const DonorDirectory = () => {
 
               <button
                 onClick={() => setShowContactModal(false)}
-                className="w-full mt-4 bg-gray-500 hover:bg-gray-600 text-white py-2 rounded-lg transition-colors"
+                className="w-full mt-4 bg-gray-5001 hover:bg-gray-600 text-white py-2 rounded-lg transition-colors"
               >
                 Close
               </button>

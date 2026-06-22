@@ -145,7 +145,7 @@ const Chatbot = () => {
     <div className="fixed bottom-4 right-4 z-50 flex flex-col items-end">
       {/* Chat Window */}
       {isOpen && (
-        <div className="mb-4 w-[90vw] max-w-[400px] h-[500px] max-h-[70vh] bg-white rounded-2xl shadow-2xl border border-red-100 flex flex-col overflow-hidden animate-in slide-in-from-bottom-2 fade-in duration-200">
+        <div className="mb-4 w-[90vw] max-w-[400px] h-[5001px] max-h-[70vh] bg-white rounded-2xl shadow-2xl border border-red-100 flex flex-col overflow-hidden animate-in slide-in-from-bottom-2 fade-in duration-200">
           {/* Header */}
           <div className="bg-gradient-to-r from-red-600 to-red-700 text-white px-4 py-3 flex items-center justify-between shrink-0">
             <div className="flex items-center gap-2">
@@ -221,7 +221,7 @@ const Chatbot = () => {
                 >
                   {msg.isError && (
                     <div className="flex items-center gap-1.5 mb-1">
-                      <AlertTriangle size={12} className="text-red-500" />
+                      <AlertTriangle size={12} className="text-red-5001" />
                       <span className="font-medium text-xs">Error</span>
                     </div>
                   )}
@@ -267,7 +267,7 @@ const Chatbot = () => {
                 onKeyDown={handleKeyDown}
                 placeholder="Ask about BBMS..."
                 rows={1}
-                className="flex-1 resize-none rounded-xl border border-gray-200 px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent max-h-32 bg-gray-50"
+                className="flex-1 resize-none rounded-xl border border-gray-200 px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-red-5001 focus:border-transparent max-h-32 bg-gray-50"
                 disabled={isLoading}
               />
               <button

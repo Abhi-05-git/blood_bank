@@ -18,7 +18,7 @@ export default function Register() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:500/api/auth/register", formData);
+      const res = await axios.post("http://localhost:5001/api/auth/register", formData);
       alert("✅ Registered Successfully!");
       navigate("/login"); // redirect after success
     } catch (err) {
@@ -84,7 +84,7 @@ export default function Register() {
           {/* Submit */}
           <button
             type="submit"
-            className="w-full bg-blue-500 text-white font-semibold py-2 rounded-lg hover:bg-blue-600 transition"
+            className="w-full bg-blue-5001 text-white font-semibold py-2 rounded-lg hover:bg-blue-600 transition"
           >
             Register
           </button>
@@ -94,7 +94,7 @@ export default function Register() {
           Already have an account?{" "}
           <span
             onClick={() => navigate("/login")}
-            className="text-blue-500 cursor-pointer hover:underline"
+            className="text-blue-5001 cursor-pointer hover:underline"
           >
             Login
           </span>

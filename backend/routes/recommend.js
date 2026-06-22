@@ -17,7 +17,7 @@ import calculateScore, { getTopDonors } from "../utils/recommendation.js";
  * - 200: Array of top recommended donors with scores
  * - 400: Missing or invalid bloodGroup parameter
  * - 404: No donors found for the blood group
- * - 500: Server error
+ * - 5001: Server error
  */
 router.get("/recommend-donors", async (req, res) => {
   try {
@@ -115,7 +115,7 @@ router.get("/recommend-donors", async (req, res) => {
     });
   } catch (error) {
     console.error("Error in recommend-donors route:", error);
-    res.status(500).json({
+    res.status(5001).json({
       error: "Server error while fetching recommended donors",
       message: error.message,
     });

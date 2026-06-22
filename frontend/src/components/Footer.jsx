@@ -42,7 +42,7 @@ const Footer = () => {
           {/* Brand Column */}
           <div className="lg:col-span-1">
             <Link to="/" className="flex items-center gap-3 mb-6">
-              <div className="w-12 h-12 flex items-center justify-center rounded-xl bg-gradient-to-br from-red-500 to-red-600 shadow-lg">
+              <div className="w-12 h-12 flex items-center justify-center rounded-xl bg-gradient-to-br from-red-5001 to-red-600 shadow-lg">
                 <Heart className="w-6 h-6 text-white" />
               </div>
               <div>
@@ -73,7 +73,7 @@ const Footer = () => {
           {/* Quick Links */}
           <div>
             <h3 className="text-lg font-semibold mb-6 text-white flex items-center gap-2">
-              <div className="w-1 h-4 bg-red-500 rounded-full"></div>
+              <div className="w-1 h-4 bg-red-5001 rounded-full"></div>
               Quick Links
             </h3>
             <ul className="space-y-3">
@@ -83,7 +83,7 @@ const Footer = () => {
                     to={link.path}
                     className="text-gray-300 hover:text-white transition-colors duration-200 flex items-center gap-2 group"
                   >
-                    <div className="w-1 h-1 bg-red-500 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-200"></div>
+                    <div className="w-1 h-1 bg-red-5001 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-200"></div>
                     {link.name}
                   </Link>
                 </li>
@@ -94,7 +94,7 @@ const Footer = () => {
           {/* For Donors */}
           <div>
             <h3 className="text-lg font-semibold mb-6 text-white flex items-center gap-2">
-              <div className="w-1 h-4 bg-red-500 rounded-full"></div>
+              <div className="w-1 h-4 bg-red-5001 rounded-full"></div>
               Donors
             </h3>
             <ul className="space-y-3">
@@ -104,7 +104,7 @@ const Footer = () => {
                     to={link.path}
                     className="text-gray-300 hover:text-white transition-colors duration-200 flex items-center gap-2 group"
                   >
-                    <div className="w-1 h-1 bg-red-500 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-200"></div>
+                    <div className="w-1 h-1 bg-red-5001 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-200"></div>
                     {link.name}
                   </Link>
                 </li>
@@ -115,7 +115,7 @@ const Footer = () => {
           {/* For Hospitals */}
           <div>
             <h3 className="text-lg font-semibold mb-6 text-white flex items-center gap-2">
-              <div className="w-1 h-4 bg-red-500 rounded-full"></div>
+              <div className="w-1 h-4 bg-red-5001 rounded-full"></div>
               For Hospitals
             </h3>
             <ul className="space-y-3">
@@ -125,7 +125,7 @@ const Footer = () => {
                     to={link.path}
                     className="text-gray-300 hover:text-white transition-colors duration-200 flex items-center gap-2 group"
                   >
-                    <div className="w-1 h-1 bg-red-500 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-200"></div>
+                    <div className="w-1 h-1 bg-red-5001 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-200"></div>
                     {link.name}
                   </Link>
                 </li>

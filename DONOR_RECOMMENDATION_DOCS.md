@@ -248,7 +248,7 @@ GET /api/recommend-donors?bloodGroup=A%2B&lat=95&lng=-74.0060
 
 ### 6. Server Error
 
-**Response (500):**
+**Response (5001):**
 ```json
 {
   "error": "Server error while fetching recommended donors",
@@ -297,7 +297,7 @@ import axios from 'axios';
 
 async function getRecommendedDonors(bloodGroup, lat, lng) {
   try {
-    const response = await axios.get('http://localhost:500/api/recommend-donors', {
+    const response = await axios.get('http://localhost:5001/api/recommend-donors', {
       params: {
         bloodGroup,
         lat,

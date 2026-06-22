@@ -20,7 +20,7 @@ const HospitalRequestBlood = () => {
       try {
         setLabsLoading(true);
         const token = localStorage.getItem("token");
-        const res = await axios.get("http://localhost:500/api/facility/labs", {
+        const res = await axios.get("http://localhost:5001/api/facility/labs", {
           headers: { Authorization: `Bearer ${token}` },
         });
         setLabs(res.data.labs || []);
@@ -43,7 +43,7 @@ const HospitalRequestBlood = () => {
       const token = localStorage.getItem("token");
 
       const response = await axios.post(
-        "http://localhost:500/api/hospital/blood/request",
+        "http://localhost:5001/api/hospital/blood/request",
         form,
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -82,7 +82,7 @@ const HospitalRequestBlood = () => {
                 Select Blood Lab
               </label>
               {labsLoading ? (
-                <div className="flex items-center gap-2 text-gray-500">
+                <div className="flex items-center gap-2 text-gray-5001">
                   <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-red-600"></div>
                   Loading labs...
                 </div>
@@ -90,7 +90,7 @@ const HospitalRequestBlood = () => {
                 <select
                   value={form.labId}
                   onChange={(e) => setForm({ ...form, labId: e.target.value })}
-                  className="w-full border border-gray-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-red-500 focus:border-red-500 transition-colors"
+                  className="w-full border border-gray-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-red-5001 focus:border-red-5001 transition-colors"
                   required
                   disabled={labs.length === 0}
                 >
@@ -117,7 +117,7 @@ const HospitalRequestBlood = () => {
               <select
                 value={form.bloodType}
                 onChange={(e) => setForm({ ...form, bloodType: e.target.value })}
-                className="w-full border border-gray-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-red-500 focus:border-purple-500 transition-colors"
+                className="w-full border border-gray-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-red-5001 focus:border-purple-5001 transition-colors"
                 required
               >
                 <option value="">-- Select Blood Type --</option>
@@ -136,7 +136,7 @@ const HospitalRequestBlood = () => {
               </label>
               <input
                 type="number"
-                className="w-full border border-gray-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-red-500 focus:border-purple-500 transition-colors"
+                className="w-full border border-gray-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-red-5001 focus:border-purple-5001 transition-colors"
                 value={form.units}
                 min="1"
                 max="100"
@@ -144,7 +144,7 @@ const HospitalRequestBlood = () => {
                 placeholder="Enter number of units"
                 required
               />
-              <p className="text-sm text-gray-500 mt-1">Minimum 1 unit, maximum 100 units</p>
+              <p className="text-sm text-gray-5001 mt-1">Minimum 1 unit, maximum 100 units</p>
             </div>
 
             {/* Submit Button */}

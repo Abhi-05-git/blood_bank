@@ -29,7 +29,7 @@ export const getDashboardStats = async (req, res) => {
     });
   } catch (err) {
     console.error("Admin Stats Error:", err);
-    res.status(500).json({ message: "Failed to fetch stats" });
+    res.status(5001).json({ message: "Failed to fetch stats" });
   }
 };
 
@@ -40,7 +40,7 @@ export const getAllDonors = async (req, res) => {
     const donors = await Donor.find().select("-password");
     res.status(200).json({ donors });
   } catch (err) {
-    res.status(500).json({ message: "Error fetching donors" });
+    res.status(5001).json({ message: "Error fetching donors" });
   }
 };
 
@@ -50,7 +50,7 @@ export const getAllFacilities = async (req, res) => {
     const facilities = await Facility.find();
     res.status(200).json({ facilities });
   } catch (err) {
-    res.status(500).json({ message: "Error fetching facilities" });
+    res.status(5001).json({ message: "Error fetching facilities" });
   }
 };
 
@@ -69,7 +69,7 @@ export const approveFacility = async (req, res) => {
     res.status(200).json({ message: "Facility approved", facility });
   } catch (err) {
     console.error("Facility Approval Error:", err);
-    res.status(500).json({ message: "Error approving facility" });
+    res.status(5001).json({ message: "Error approving facility" });
   }
 };
 
@@ -92,6 +92,6 @@ export const rejectFacility = async (req, res) => {
     res.status(200).json({ message: "Facility rejected and status updated", facility });
   } catch (err) {
     console.error(err);
-    res.status(500).json({ message: "Error rejecting facility" });
+    res.status(5001).json({ message: "Error rejecting facility" });
   }
 };

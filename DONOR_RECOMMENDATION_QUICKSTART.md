@@ -31,7 +31,7 @@ Your AI-based donor recommendation system is ready with:
 cd backend
 npm start
 ```
-Server runs on `http://localhost:500`
+Server runs on `http://localhost:5001`
 
 ### 2. Start Your Frontend
 ```bash
@@ -77,17 +77,17 @@ import DonorRecommendationSystem from './components/DonorRecommendationSystem';
 
 ### Get Donors (No Location)
 ```bash
-curl "http://localhost:500/api/recommend-donors?bloodGroup=A%2B"
+curl "http://localhost:5001/api/recommend-donors?bloodGroup=A%2B"
 ```
 
 ### Get Donors (With Location)
 ```bash
-curl "http://localhost:500/api/recommend-donors?bloodGroup=O%2B&lat=40.7128&lng=-74.0060"
+curl "http://localhost:5001/api/recommend-donors?bloodGroup=O%2B&lat=40.7128&lng=-74.0060"
 ```
 
 ### Get Top 3 Donors
 ```bash
-curl "http://localhost:500/api/recommend-donors?bloodGroup=B%2B&lat=40.7128&lng=-74.0060&limit=3"
+curl "http://localhost:5001/api/recommend-donors?bloodGroup=B%2B&lat=40.7128&lng=-74.0060&limit=3"
 ```
 
 ---

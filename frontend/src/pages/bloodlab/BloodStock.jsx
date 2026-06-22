@@ -22,7 +22,7 @@ const BloodStock = () => {
   });
 
   const token = localStorage.getItem("token");
-  const API_URL = "http://localhost:500/api/blood-lab";
+  const API_URL = "http://localhost:5001/api/blood-lab";
 
   // Blood types for dropdown
   const bloodTypes = ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"];
@@ -153,7 +153,7 @@ const BloodStock = () => {
             <select
               value={form.bloodType}
               onChange={(e) => setForm({ ...form, bloodType: e.target.value })}
-              className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent"
+              className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-red-5001 focus:border-transparent"
               required
             >
               <option value="">Select Blood Type</option>
@@ -173,7 +173,7 @@ const BloodStock = () => {
               type="number"
               min="1"
               placeholder="0"
-              className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent"
+              className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-red-5001 focus:border-transparent"
               value={form.quantity}
               onChange={(e) => setForm({ ...form, quantity: e.target.value })}
               required
@@ -187,7 +187,7 @@ const BloodStock = () => {
             <select
               value={action}
               onChange={(e) => setAction(e.target.value)}
-              className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent"
+              className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-red-5001 focus:border-transparent"
             >
               <option value="add">Add Stock</option>
               <option value="remove">Remove Stock</option>
@@ -223,7 +223,7 @@ const BloodStock = () => {
             <Droplets className="w-5 h-5 text-red-600" />
             Current Blood Inventory
           </h2>
-          <div className="text-sm text-gray-500">
+          <div className="text-sm text-gray-5001">
             Total: {stock.reduce((sum, item) => sum + item.quantity, 0)} units
           </div>
         </div>
@@ -231,10 +231,10 @@ const BloodStock = () => {
         {loading ? (
           <div className="text-center py-8">
             <RefreshCw className="w-8 h-8 text-gray-400 animate-spin mx-auto mb-2" />
-            <p className="text-gray-500">Loading blood stock...</p>
+            <p className="text-gray-5001">Loading blood stock...</p>
           </div>
         ) : stock.length === 0 ? (
-          <div className="text-center py-8 text-gray-500">
+          <div className="text-center py-8 text-gray-5001">
             <Droplets className="w-12 h-12 text-gray-300 mx-auto mb-3" />
             <p>No blood stock available.</p>
             <p className="text-sm">Start by adding some blood units to your inventory.</p>

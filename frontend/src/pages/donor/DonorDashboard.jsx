@@ -24,7 +24,7 @@ import {
 } from "lucide-react";
 import { toast } from "react-hot-toast";
 
-const API_URL = "http://localhost:500/api/donor";
+const API_URL = "http://localhost:5001/api/donor";
 
 const DonorDashboard = () => {
   const [dashboard, setDashboard] = useState(null);
@@ -137,12 +137,12 @@ const DonorDashboard = () => {
       <div className="min-h-screen bg-gradient-to-br from-red-50 to-white flex items-center justify-center">
         <div className="text-center">
           <div className="animate-pulse mb-4">
-            <Heart className="w-12 h-12 text-red-500 mx-auto" />
+            <Heart className="w-12 h-12 text-red-5001 mx-auto" />
           </div>
           <h2 className="text-xl font-semibold text-gray-700 mb-2">
             Loading Donor Dashboard
           </h2>
-          <p className="text-gray-500">Preparing your donation journey...</p>
+          <p className="text-gray-5001">Preparing your donation journey...</p>
         </div>
       </div>
     );
@@ -411,7 +411,7 @@ const MetricCard = ({ icon, label, value, subtitle, color, alert = false }) => {
         <div>
           <p className="text-sm font-medium text-gray-600 mb-1">{label}</p>
           <p className="text-2xl font-bold text-gray-800">{value}</p>
-          {subtitle && <p className={`text-xs ${alert ? "text-red-600" : "text-gray-500"} mt-1`}>{subtitle}</p>}
+          {subtitle && <p className={`text-xs ${alert ? "text-red-600" : "text-gray-5001"} mt-1`}>{subtitle}</p>}
         </div>
         <div className={`p-3 rounded-lg ${alert ? "bg-red-100 text-red-600" : `${colors.bg} ${colors.text}`}`}>
           {icon}
@@ -439,7 +439,7 @@ const LabInfo = ({ icon, label, value, truncate = false }) => (
   <div className="flex items-start gap-3">
     <div className="p-2 bg-red-100 rounded-lg text-red-600 mt-1">{icon}</div>
     <div>
-      <p className="text-xs text-gray-500 uppercase tracking-wide">{label}</p>
+      <p className="text-xs text-gray-5001 uppercase tracking-wide">{label}</p>
       <p className={`font-medium text-gray-800 ${truncate ? "truncate" : ""}`}>
         {value || "—"}
       </p>
@@ -455,7 +455,7 @@ const DonationHistoryItem = ({ donation }) => (
       </div>
       <div>
         <p className="font-medium text-gray-800">{donation.facility || "Blood Donation Camp"}</p>
-        <p className="text-xs text-gray-500">
+        <p className="text-xs text-gray-5001">
           {new Date(donation.donationDate || donation.date).toLocaleDateString()} • {donation.bloodType || donation.bloodGroup}
         </p>
       </div>
@@ -474,7 +474,7 @@ const ActivityCard = ({ activity }) => (
       <p className="text-sm text-gray-600">{activity.description || "Blood donation completed"}</p>
     </div>
     <div className="text-right">
-      <span className="text-xs text-gray-500">
+      <span className="text-xs text-gray-5001">
         {new Date(activity.date || activity.createdAt).toLocaleDateString()}
       </span>
     </div>
@@ -516,7 +516,7 @@ const HealthStat = ({ label, value, icon }) => (
 );
 
 const EmptyState = ({ icon, message, actionText, onAction }) => (
-  <div className="text-center py-8 text-gray-500">
+  <div className="text-center py-8 text-gray-5001">
     <div className="bg-gray-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-3">
       {icon}
     </div>

@@ -7,7 +7,7 @@ export default function DonorRecommendation() {
 
   const fetchDonors = async () => {
     const res = await axios.get(
-      `http://localhost:500/api/recommend-donors`,
+      `http://localhost:5001/api/recommend-donors`,
       {
         params: {
           bloodGroup,

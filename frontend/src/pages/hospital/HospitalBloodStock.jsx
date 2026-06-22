@@ -20,7 +20,7 @@ const HospitalBloodStock = () => {
       setLoading(true);
       const token = localStorage.getItem("token");
       // In HospitalBloodStock component, change the API call:
-      const res = await axios.get("http://localhost:500/api/hospital/blood/stock", {
+      const res = await axios.get("http://localhost:5001/api/hospital/blood/stock", {
         headers: { Authorization: `Bearer ${token}` },
       });
 
@@ -258,9 +258,9 @@ const HospitalBloodStock = () => {
                         <td className="p-4">
                           <div className="flex items-center gap-2">
                             <span className="text-xl font-bold text-gray-800">{item.quantity}</span>
-                            <span className="text-sm text-gray-500">units</span>
+                            <span className="text-sm text-gray-5001">units</span>
                             {item.quantity < 5 && (
-                              <Minus size={16} className="text-red-500" />
+                              <Minus size={16} className="text-red-5001" />
                             )}
                           </div>
                         </td>

@@ -20,7 +20,7 @@ import {
 } from "lucide-react";
 
 // NOTE: Using localStorage and hardcoded URL for API connection as per previous context.
-const API_BASE_URL = "http://localhost:500/api";
+const API_BASE_URL = "http://localhost:5001/api";
 
 // Define a default structured object for operating hours
 const defaultOperatingHours = {
@@ -271,12 +271,12 @@ const LabProfile = () => {
       <div className="min-h-screen bg-gradient-to-br from-red-50 to-white flex items-center justify-center">
         <div className="text-center">
           <div className="animate-pulse mb-4">
-            <Droplet className="w-12 h-12 text-red-500 mx-auto" />
+            <Droplet className="w-12 h-12 text-red-5001 mx-auto" />
           </div>
           <h2 className="text-xl font-semibold text-gray-700 mb-2">
             Loading Laboratory Profile
           </h2>
-          <p className="text-gray-500">Preparing your facility information...</p>
+          <p className="text-gray-5001">Preparing your facility information...</p>
         </div>
       </div>
     );
@@ -286,7 +286,7 @@ const LabProfile = () => {
     return (
       <div className="min-h-screen bg-gradient-to-br from-red-50 to-white flex items-center justify-center">
         <div className="text-center bg-white rounded-2xl shadow-lg border border-red-100 p-8">
-          <Droplet className="w-16 h-16 text-red-500 mx-auto mb-4" />
+          <Droplet className="w-16 h-16 text-red-5001 mx-auto mb-4" />
           <h3 className="text-lg font-semibold text-gray-800 mb-2">
             Facility Profile Error
           </h3>
@@ -323,7 +323,7 @@ const LabProfile = () => {
                   {facility.name || "Laboratory Profile"}
                 </h1>
                 <p className="text-gray-600 mt-1 flex items-center gap-2">
-                  <FlaskConical size={16} className="text-red-500" />
+                  <FlaskConical size={16} className="text-red-5001" />
                   {facility.facilityCategory?.toUpperCase() || "BLOOD LAB"} •
                   <span className="font-mono text-sm">{facility.registrationNumber}</span>
                 </p>
@@ -379,10 +379,10 @@ const LabProfile = () => {
                 <div className="flex justify-between items-center">
                   <span className="text-sm text-gray-600">Status</span>
                   <span className={`px-3 py-1 rounded-full text-xs font-bold ${facility.status === "approved"
-                      ? "bg-green-100 text-green-700"
-                      : facility.status === "pending"
-                        ? "bg-yellow-100 text-yellow-700"
-                        : "bg-red-100 text-red-700"
+                    ? "bg-green-100 text-green-700"
+                    : facility.status === "pending"
+                      ? "bg-yellow-100 text-yellow-700"
+                      : "bg-red-100 text-red-700"
                     }`}>
                     {facility.status?.charAt(0).toUpperCase() + facility.status?.slice(1)}
                   </span>
@@ -417,18 +417,18 @@ const LabProfile = () => {
               </h3>
               <div className="space-y-3">
                 <div className="flex items-center gap-3 text-sm">
-                  <Mail className="w-4 h-4 text-red-500" />
+                  <Mail className="w-4 h-4 text-red-5001" />
                   <span className="text-gray-600">{facility.email}</span>
                 </div>
                 {facility.phone && (
                   <div className="flex items-center gap-3 text-sm">
-                    <Phone className="w-4 h-4 text-red-500" />
+                    <Phone className="w-4 h-4 text-red-5001" />
                     <span className="text-gray-600">{facility.phone}</span>
                   </div>
                 )}
                 {facility.emergencyContact && (
                   <div className="flex items-center gap-3 text-sm">
-                    <Phone className="w-4 h-4 text-red-500" />
+                    <Phone className="w-4 h-4 text-red-5001" />
                     <span className="text-gray-600">Emergency: {facility.emergencyContact}</span>
                   </div>
                 )}
@@ -460,8 +460,8 @@ const LabProfile = () => {
                       onChange={handleChange}
                       disabled={!isEditing}
                       className={`w-full px-4 py-3 rounded-xl border ${isEditing
-                          ? "border-gray-300 bg-white focus:ring-2 focus:ring-red-500 focus:border-red-500"
-                          : "bg-gray-50 border-gray-200"
+                        ? "border-gray-300 bg-white focus:ring-2 focus:ring-red-5001 focus:border-red-5001"
+                        : "bg-gray-50 border-gray-200"
                         }`}
                       placeholder="e.g., Central Diagnostics Lab"
                     />
@@ -479,8 +479,8 @@ const LabProfile = () => {
                       onChange={handleChange}
                       disabled={!isEditing}
                       className={`w-full px-4 py-3 rounded-xl border ${isEditing
-                          ? "border-gray-300 bg-white focus:ring-2 focus:ring-red-500 focus:border-red-500"
-                          : "bg-gray-50 border-gray-200"
+                        ? "border-gray-300 bg-white focus:ring-2 focus:ring-red-5001 focus:border-red-5001"
+                        : "bg-gray-50 border-gray-200"
                         }`}
                       placeholder="e.g., Blood Lab, Radiology Center"
                     />
@@ -508,13 +508,13 @@ const LabProfile = () => {
                       onChange={handleChange}
                       disabled={!isEditing}
                       className={`w-full px-4 py-3 rounded-xl border ${isEditing
-                          ? "border-gray-300 bg-white focus:ring-2 focus:ring-red-500 focus:border-red-500"
-                          : "bg-gray-50 border-gray-200"
-                        } ${errors.phone ? "border-red-500" : ""}`}
+                        ? "border-gray-300 bg-white focus:ring-2 focus:ring-red-5001 focus:border-red-5001"
+                        : "bg-gray-50 border-gray-200"
+                        } ${errors.phone ? "border-red-5001" : ""}`}
                       placeholder="10-digit phone number"
                     />
                     {errors.phone && (
-                      <p className="text-red-500 text-xs mt-2">{errors.phone}</p>
+                      <p className="text-red-5001 text-xs mt-2">{errors.phone}</p>
                     )}
                   </div>
 
@@ -530,13 +530,13 @@ const LabProfile = () => {
                       onChange={handleChange}
                       disabled={!isEditing}
                       className={`w-full px-4 py-3 rounded-xl border ${isEditing
-                          ? "border-gray-300 bg-white focus:ring-2 focus:ring-red-500 focus:border-red-500"
-                          : "bg-gray-50 border-gray-200"
-                        } ${errors.emergencyContact ? "border-red-500" : ""}`}
+                        ? "border-gray-300 bg-white focus:ring-2 focus:ring-red-5001 focus:border-red-5001"
+                        : "bg-gray-50 border-gray-200"
+                        } ${errors.emergencyContact ? "border-red-5001" : ""}`}
                       placeholder="Emergency contact number"
                     />
                     {errors.emergencyContact && (
-                      <p className="text-red-500 text-xs mt-2">{errors.emergencyContact}</p>
+                      <p className="text-red-5001 text-xs mt-2">{errors.emergencyContact}</p>
                     )}
                   </div>
 
@@ -552,8 +552,8 @@ const LabProfile = () => {
                       onChange={handleChange}
                       disabled={!isEditing}
                       className={`w-full px-4 py-3 rounded-xl border ${isEditing
-                          ? "border-gray-300 bg-white focus:ring-2 focus:ring-red-500 focus:border-red-500"
-                          : "bg-gray-50 border-gray-200"
+                        ? "border-gray-300 bg-white focus:ring-2 focus:ring-red-5001 focus:border-red-5001"
+                        : "bg-gray-50 border-gray-200"
                         }`}
                       placeholder="Primary contact person name"
                     />
@@ -580,14 +580,14 @@ const LabProfile = () => {
                         onChange={handleChange}
                         disabled={!isEditing}
                         className={`w-full px-4 py-3 rounded-xl border ${isEditing
-                            ? "border-gray-300 bg-white focus:ring-2 focus:ring-red-500 focus:border-red-500"
-                            : "bg-gray-50 border-gray-200"
-                          } ${field === "pincode" && errors["address.pincode"] ? "border-red-500" : ""
+                          ? "border-gray-300 bg-white focus:ring-2 focus:ring-red-5001 focus:border-red-5001"
+                          : "bg-gray-50 border-gray-200"
+                          } ${field === "pincode" && errors["address.pincode"] ? "border-red-5001" : ""
                           }`}
                         placeholder={`Enter ${field === "pincode" ? "PIN code" : field}`}
                       />
                       {field === "pincode" && errors["address.pincode"] && (
-                        <p className="text-red-500 text-xs mt-2">{errors["address.pincode"]}</p>
+                        <p className="text-red-5001 text-xs mt-2">{errors["address.pincode"]}</p>
                       )}
                     </div>
                   ))}
@@ -614,8 +614,8 @@ const LabProfile = () => {
                       onChange={handleChange}
                       disabled={!isEditing}
                       className={`w-full px-4 py-3 rounded-xl border ${isEditing
-                          ? "border-gray-300 bg-white focus:ring-2 focus:ring-red-500 focus:border-red-500"
-                          : "bg-gray-50 border-gray-200"
+                        ? "border-gray-300 bg-white focus:ring-2 focus:ring-red-5001 focus:border-red-5001"
+                        : "bg-gray-50 border-gray-200"
                         }`}
                       placeholder="e.g., 9:00 AM to 5:00 PM"
                     />
@@ -633,8 +633,8 @@ const LabProfile = () => {
                       onChange={handleChange}
                       disabled={!isEditing}
                       className={`w-full px-4 py-3 rounded-xl border ${isEditing
-                          ? "border-gray-300 bg-white focus:ring-2 focus:ring-red-500 focus:border-red-500"
-                          : "bg-gray-50 border-gray-200"
+                        ? "border-gray-300 bg-white focus:ring-2 focus:ring-red-5001 focus:border-red-5001"
+                        : "bg-gray-50 border-gray-200"
                         }`}
                       placeholder="e.g., 9:00 AM to 1:00 PM or Closed"
                     />
@@ -652,8 +652,8 @@ const LabProfile = () => {
                       disabled={!isEditing}
                       rows={2}
                       className={`w-full px-4 py-3 rounded-xl border ${isEditing
-                          ? "border-gray-300 bg-white focus:ring-2 focus:ring-red-500 focus:border-red-500"
-                          : "bg-gray-50 border-gray-200"
+                        ? "border-gray-300 bg-white focus:ring-2 focus:ring-red-5001 focus:border-red-5001"
+                        : "bg-gray-50 border-gray-200"
                         }`}
                       placeholder="e.g., Emergency services available 24/7."
                     />

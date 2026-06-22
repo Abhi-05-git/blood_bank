@@ -69,7 +69,7 @@ Create a `.env` file:
 ```bash
 MONGO_URI=your_mongo_uri
 JWT_SECRET=your_jwt_secret
-PORT=500
+PORT=5001
 ```
 
 ### Important: Seed Admin Account (First Time Setup)

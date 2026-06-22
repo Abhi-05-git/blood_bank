@@ -46,7 +46,7 @@ export const getBloodLabDashboard = async (req, res) => {
     });
   } catch (error) {
     console.error("Dashboard Error:", error);
-    res.status(500).json({ message: "Failed to fetch blood lab dashboard data" });
+    res.status(5001).json({ message: "Failed to fetch blood lab dashboard data" });
   }
 };
 
@@ -76,7 +76,7 @@ export const getBloodLabHistory = async (req, res) => {
     res.json({ activity, logins });
   } catch (error) {
     console.error("History Error:", error);
-    res.status(500).json({ message: "Failed to fetch blood lab history" });
+    res.status(5001).json({ message: "Failed to fetch blood lab history" });
   }
 };
 
@@ -148,7 +148,7 @@ export const createBloodCamp = async (req, res) => {
     });
   } catch (error) {
     console.error("Create Blood Camp Error:", error);
-    res.status(500).json({ success: false, message: "Internal server error" });
+    res.status(5001).json({ success: false, message: "Internal server error" });
   }
 };
 
@@ -185,7 +185,7 @@ export const getBloodLabCamps = async (req, res) => {
     });
   } catch (error) {
     console.error("Get Blood Camps Error:", error);
-    res.status(500).json({ success: false, message: "Failed to fetch blood camps" });
+    res.status(5001).json({ success: false, message: "Failed to fetch blood camps" });
   }
 };
 
@@ -221,7 +221,7 @@ export const deleteBloodCamp = async (req, res) => {
     res.json({ success: true, message: "Camp deleted successfully" });
   } catch (error) {
     console.error("Delete Camp Error:", error);
-    res.status(500).json({ success: false, message: "Failed to delete camp" });
+    res.status(5001).json({ success: false, message: "Failed to delete camp" });
   }
 };
 
@@ -277,7 +277,7 @@ export const updateBloodCamp = async (req, res) => {
     });
   } catch (error) {
     console.error("Update Blood Camp Error:", error);
-    res.status(500).json({ success: false, message: "Failed to update camp" });
+    res.status(5001).json({ success: false, message: "Failed to update camp" });
   }
 };
 
@@ -331,7 +331,7 @@ export const updateCampStatus = async (req, res) => {
     });
   } catch (error) {
     console.error("Update Camp Status Error:", error);
-    res.status(500).json({ success: false, message: "Failed to update camp status" });
+    res.status(5001).json({ success: false, message: "Failed to update camp status" });
   }
 };
 
@@ -396,7 +396,7 @@ export const addBloodStock = async (req, res) => {
     });
   } catch (error) {
     console.error("Add Blood Stock Error:", error);
-    res.status(500).json({
+    res.status(5001).json({
       success: false,
       message: error.message || "Server Error",
     });
@@ -463,7 +463,7 @@ export const removeBloodStock = async (req, res) => {
     });
   } catch (error) {
     console.error("Remove Blood Stock Error:", error);
-    res.status(500).json({
+    res.status(5001).json({
       success: false,
       message: error.message || "Server Error",
     });
@@ -487,7 +487,7 @@ export const getBloodStock = async (req, res) => {
     });
   } catch (error) {
     console.error("Get Blood Stock Error:", error);
-    res.status(500).json({
+    res.status(5001).json({
       success: false,
       message: "Failed to fetch stock",
     });
@@ -518,7 +518,7 @@ export const getLabBloodRequests = async (req, res) => {
     });
   } catch (err) {
     console.error("Get Lab Requests Error:", err);
-    res.status(500).json({
+    res.status(5001).json({
       success: false,
       message: "Failed to fetch blood requests"
     });
@@ -537,37 +537,37 @@ export const updateBloodRequestStatus = async (req, res) => {
     const labId = req.user._id;
 
     if (!["accept", "reject"].includes(action)) {
-      return res.status(400).json({ 
-        success: false, 
-        message: "Invalid action. Must be 'accept' or 'reject'" 
+      return res.status(400).json({
+        success: false,
+        message: "Invalid action. Must be 'accept' or 'reject'"
       });
     }
 
     // Find the request
-    const request = await BloodRequest.findOne({ 
-      _id: id, 
-      labId 
+    const request = await BloodRequest.findOne({
+      _id: id,
+      labId
     }).populate("hospitalId", "name");
 
     if (!request) {
-      return res.status(404).json({ 
-        success: false, 
-        message: "Request not found" 
+      return res.status(404).json({
+        success: false,
+        message: "Request not found"
       });
     }
 
     if (request.status !== "pending") {
-      return res.status(400).json({ 
-        success: false, 
-        message: "Request already processed" 
+      return res.status(400).json({
+        success: false,
+        message: "Request already processed"
       });
     }
 
     // If accepting, check stock availability
     if (action === "accept") {
-      const labStock = await Blood.findOne({ 
-        bloodLab: labId, 
-        bloodGroup: request.bloodType 
+      const labStock = await Blood.findOne({
+        bloodLab: labId,
+        bloodGroup: request.bloodType
       });
 
       if (!labStock || labStock.quantity < request.units) {
@@ -579,7 +579,7 @@ export const updateBloodRequestStatus = async (req, res) => {
 
       // Remove from lab stock
       labStock.quantity -= request.units;
-      
+
       if (labStock.quantity === 0) {
         await Blood.findByIdAndDelete(labStock._id);
       } else {
@@ -650,17 +650,17 @@ export const updateBloodRequestStatus = async (req, res) => {
     request.processedAt = new Date();
     await request.save();
 
-    res.status(200).json({ 
-      success: true, 
+    res.status(200).json({
+      success: true,
       message: `Request ${action}ed successfully`,
       data: request
     });
 
   } catch (err) {
     console.error("Update Request Status Error:", err);
-    res.status(500).json({ 
-      success: false, 
-      message: err.message || "Failed to process request" 
+    res.status(5001).json({
+      success: false,
+      message: err.message || "Failed to process request"
     });
   }
 };
@@ -683,7 +683,7 @@ export const getAllLabs = async (req, res) => {
     });
   } catch (error) {
     console.error("Get Labs Error:", error);
-    res.status(500).json({
+    res.status(5001).json({
       success: false,
       message: "Error fetching blood labs"
     });

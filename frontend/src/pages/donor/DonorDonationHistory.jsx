@@ -18,7 +18,7 @@ import {
 } from "lucide-react";
 import { toast } from "react-hot-toast";
 
-const API_URL = "http://localhost:500/api/donor";
+const API_URL = "http://localhost:5001/api/donor";
 
 const DonorDonationHistory = () => {
   const [history, setHistory] = useState([]);
@@ -115,24 +115,24 @@ const DonorDonationHistory = () => {
     if (count >= 10)
       return {
         level: "Hero",
-        color: "from-purple-500 to-pink-500",
+        color: "from-purple-5001 to-pink-5001",
         icon: <Award className="w-5 h-5" />,
       };
     if (count >= 5)
       return {
         level: "Champion",
-        color: "from-red-500 to-orange-500",
+        color: "from-red-5001 to-orange-5001",
         icon: <Star className="w-5 h-5" />,
       };
     if (count >= 3)
       return {
         level: "Supporter",
-        color: "from-green-500 to-teal-500",
+        color: "from-green-5001 to-teal-5001",
         icon: <TrendingUp className="w-5 h-5" />,
       };
     return {
       level: "Starter",
-      color: "from-blue-500 to-cyan-500",
+      color: "from-blue-5001 to-cyan-5001",
       icon: <Heart className="w-5 h-5" />,
     };
   };
@@ -324,7 +324,7 @@ const DonorDonationHistory = () => {
                 <input
                   type="text"
                   placeholder="Search by facility, city, or blood group..."
-                  className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-red-500 focus:border-red-500 bg-gray-50"
+                  className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-red-5001 focus:border-red-5001 bg-gray-50"
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                 />
@@ -337,7 +337,7 @@ const DonorDonationHistory = () => {
                 <select
                   value={filterType}
                   onChange={(e) => setFilterType(e.target.value)}
-                  className="border border-gray-300 bg-white px-4 py-3 rounded-xl focus:ring-2 focus:ring-red-500 focus:border-red-500"
+                  className="border border-gray-300 bg-white px-4 py-3 rounded-xl focus:ring-2 focus:ring-red-5001 focus:border-red-5001"
                 >
                   <option value="all">All Time</option>
                   <option value="last3">Last 3 Months</option>
@@ -349,7 +349,7 @@ const DonorDonationHistory = () => {
               <select
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value)}
-                className="border border-gray-300 bg-white px-4 py-3 rounded-xl focus:ring-2 focus:ring-red-500 focus:border-red-500"
+                className="border border-gray-300 bg-white px-4 py-3 rounded-xl focus:ring-2 focus:ring-red-5001 focus:border-red-5001"
               >
                 <option value="date-desc">Newest First</option>
                 <option value="date-asc">Oldest First</option>
@@ -374,7 +374,7 @@ const DonorDonationHistory = () => {
             <p className="text-lg font-semibold text-gray-700">
               Loading your heroic journey...
             </p>
-            <p className="text-gray-500">
+            <p className="text-gray-5001">
               Fetching your life-saving contributions
             </p>
           </div>
@@ -430,8 +430,8 @@ const DonorDonationHistory = () => {
                       <div className="flex items-start gap-4 flex-1">
                         <div
                           className={`p-3 rounded-xl ${isRecent
-                              ? "bg-green-100 text-green-600"
-                              : "bg-blue-100 text-blue-600"
+                            ? "bg-green-100 text-green-600"
+                            : "bg-blue-100 text-blue-600"
                             }`}
                         >
                           <Droplet className="w-6 h-6" />
@@ -454,7 +454,7 @@ const DonorDonationHistory = () => {
 
                           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm text-gray-600">
                             <div className="flex items-center gap-2">
-                              <Calendar className="w-4 h-4 text-red-500" />
+                              <Calendar className="w-4 h-4 text-red-5001" />
                               <span>
                                 {date.toLocaleDateString("en-IN", {
                                   weekday: "short",
@@ -467,7 +467,7 @@ const DonorDonationHistory = () => {
                           </div>
 
                           {item.city && (
-                            <p className="text-sm text-gray-500 mt-2 flex items-center gap-1">
+                            <p className="text-sm text-gray-5001 mt-2 flex items-center gap-1">
                               <MapPin className="w-3 h-3" />
                               {item.city}
                               {item.state && `, ${item.state}`}
@@ -477,10 +477,10 @@ const DonorDonationHistory = () => {
                       </div>
 
                       <div className="flex flex-col items-center gap-2">
-                        <div className="w-10 h-10 bg-gradient-to-r from-red-500 to-pink-500 rounded-full flex items-center justify-center text-white font-bold text-lg">
+                        <div className="w-10 h-10 bg-gradient-to-r from-red-5001 to-pink-5001 rounded-full flex items-center justify-center text-white font-bold text-lg">
                           +{item.quantity || 1}
                         </div>
-                        <p className="text-xs text-gray-500 mt-1">Units</p>
+                        <p className="text-xs text-gray-5001 mt-1">Units</p>
                       </div>
                     </div>
                   </div>

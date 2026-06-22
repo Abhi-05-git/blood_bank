@@ -28,7 +28,7 @@ export default function Login() {
     }
 
     try {
-      const res = await fetch("http://localhost:500/api/auth/login", {
+      const res = await fetch("http://localhost:5001/api/auth/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
@@ -86,7 +86,7 @@ export default function Login() {
         <h2 className="text-2xl font-bold text-center text-gray-900 mb-4">
           Login to Blood Bank
         </h2>
-        <p className="text-center text-gray-500 mb-6">
+        <p className="text-center text-gray-5001 mb-6">
           Access your donor, hospital, or lab dashboard
         </p>
 
@@ -110,7 +110,7 @@ export default function Login() {
               onChange={handleChange}
               required
               disabled={loading}
-              className="w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none transition disabled:opacity-50"
+              className="w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-red-5001 focus:border-red-5001 outline-none transition disabled:opacity-50"
             />
           </div>
 
@@ -126,7 +126,7 @@ export default function Login() {
               onChange={handleChange}
               required
               disabled={loading}
-              className="w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none transition disabled:opacity-50"
+              className="w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-red-5001 focus:border-red-5001 outline-none transition disabled:opacity-50"
             />
           </div>
 

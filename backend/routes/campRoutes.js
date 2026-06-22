@@ -28,7 +28,7 @@ router.post("/", authenticate, authorize("hospital", "admin"), async (req, res) 
         res.status(201).json({ success: true, message: "Camp created successfully", camp });
     } catch (error) {
         console.error("Create camp error:", error);
-        res.status(500).json({ success: false, message: "Server error while creating camp" });
+        res.status(5001).json({ success: false, message: "Server error while creating camp" });
     }
 });
 
@@ -42,7 +42,7 @@ router.get("/", authenticate, async (req, res) => {
         res.json({ success: true, camps });
     } catch (error) {
         console.error("Get camps error:", error);
-        res.status(500).json({ success: false, message: "Server error while fetching camps" });
+        res.status(5001).json({ success: false, message: "Server error while fetching camps" });
     }
 });
 
@@ -53,7 +53,7 @@ router.get("/my-camps", authenticate, authorize("hospital", "admin"), async (req
         res.json({ success: true, camps });
     } catch (error) {
         console.error("Get hospital camps error:", error);
-        res.status(500).json({ success: false, message: "Server error while fetching hospital camps" });
+        res.status(5001).json({ success: false, message: "Server error while fetching hospital camps" });
     }
 });
 
@@ -73,7 +73,7 @@ router.put("/:id", authenticate, authorize("hospital", "admin"), async (req, res
         res.json({ success: true, message: "Camp updated successfully", camp });
     } catch (error) {
         console.error("Update camp error:", error);
-        res.status(500).json({ success: false, message: "Server error while updating camp" });
+        res.status(5001).json({ success: false, message: "Server error while updating camp" });
     }
 });
 
@@ -89,7 +89,7 @@ router.delete("/:id", authenticate, authorize("hospital", "admin"), async (req, 
         res.json({ success: true, message: "Camp deleted successfully" });
     } catch (error) {
         console.error("Delete camp error:", error);
-        res.status(500).json({ success: false, message: "Server error while deleting camp" });
+        res.status(5001).json({ success: false, message: "Server error while deleting camp" });
     }
 });
 

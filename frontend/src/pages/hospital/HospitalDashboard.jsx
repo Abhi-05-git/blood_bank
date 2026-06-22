@@ -41,7 +41,7 @@ const HospitalDashboard = () => {
         }
 
         // Fetch hospital profile
-        const profileRes = await fetch("http://localhost:500/api/facility/profile", {
+        const profileRes = await fetch("http://localhost:5001/api/facility/profile", {
           headers: { Authorization: `Bearer ${token}` },
         });
 
@@ -61,12 +61,12 @@ const HospitalDashboard = () => {
         }
 
         // Fetch blood stock
-        const stockRes = await axios.get("http://localhost:500/api/hospital/blood/stock", {
+        const stockRes = await axios.get("http://localhost:5001/api/hospital/blood/stock", {
           headers: { Authorization: `Bearer ${token}` },
         });
 
         // Fetch blood requests
-        const requestsRes = await axios.get("http://localhost:500/api/hospital/blood/requests", {
+        const requestsRes = await axios.get("http://localhost:5001/api/hospital/blood/requests", {
           headers: { Authorization: `Bearer ${token}` },
         });
 
@@ -197,7 +197,7 @@ const HospitalDashboard = () => {
     return (
       <div className="min-h-screen bg-gradient-to-br from-red-50 to-white p-6">
         <div className="max-w-7xl mx-auto text-center py-12">
-          <AlertTriangle className="w-16 h-16 text-red-500 mx-auto mb-4" />
+          <AlertTriangle className="w-16 h-16 text-red-5001 mx-auto mb-4" />
           <h2 className="text-2xl font-bold text-gray-800 mb-2">Failed to load hospital data</h2>
           <p className="text-gray-600 mb-4">Please try refreshing the page or contact support.</p>
           <button
@@ -235,16 +235,16 @@ const HospitalDashboard = () => {
               <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
                 <div>
                   <h2 className="text-2xl font-semibold text-gray-800">{hospital.name}</h2>
-                  <p className="text-gray-500">{hospital.email}</p>
+                  <p className="text-gray-5001">{hospital.email}</p>
 
                   <div className="flex flex-wrap gap-4 mt-3">
                     <p className="text-gray-600 flex items-center gap-2">
-                      <MapPin className="w-4 h-4 text-red-500" />
+                      <MapPin className="w-4 h-4 text-red-5001" />
                       {hospital.address}
                     </p>
 
                     <p className="text-gray-600 flex items-center gap-2">
-                      <Phone className="w-4 h-4 text-red-500" />
+                      <Phone className="w-4 h-4 text-red-5001" />
                       {hospital.phone}
                     </p>
 
@@ -259,7 +259,7 @@ const HospitalDashboard = () => {
                     <CheckCircle size={14} />
                     {hospital.status?.toUpperCase() || "ACTIVE"}
                   </div>
-                  <p className="text-sm text-gray-500 mt-2">
+                  <p className="text-sm text-gray-5001 mt-2">
                     Last Login: {hospital.lastLogin ? new Date(hospital.lastLogin).toLocaleString() : "Never"}
                   </p>
                 </div>
@@ -397,8 +397,8 @@ const HospitalDashboard = () => {
                       </div>
                     </div>
                     <span className={`px-2 py-1 rounded text-xs font-medium ${request.status === 'accepted' ? 'bg-green-100 text-green-800' :
-                        request.status === 'rejected' ? 'bg-red-100 text-red-800' :
-                          'bg-yellow-100 text-yellow-800'
+                      request.status === 'rejected' ? 'bg-red-100 text-red-800' :
+                        'bg-yellow-100 text-yellow-800'
                       }`}>
                       {request.status}
                     </span>
@@ -427,7 +427,7 @@ const HospitalDashboard = () => {
             </h3>
 
             {loginHistory.length === 0 ? (
-              <p className="text-gray-500 text-center py-4">No login history available</p>
+              <p className="text-gray-5001 text-center py-4">No login history available</p>
             ) : (
               <div className="space-y-3">
                 {loginHistory.map((login, index) => (
@@ -453,7 +453,7 @@ const HospitalDashboard = () => {
             </h3>
 
             {recentActivity.length === 0 ? (
-              <p className="text-gray-500 text-center py-4">No recent activity</p>
+              <p className="text-gray-5001 text-center py-4">No recent activity</p>
             ) : (
               <div className="space-y-3">
                 {recentActivity.map((activity, index) => (
@@ -462,7 +462,7 @@ const HospitalDashboard = () => {
                       <span className="font-medium text-gray-800 capitalize">
                         {activity.eventType?.toLowerCase().replace('_', ' ')}
                       </span>
-                      <span className="text-sm text-gray-500">
+                      <span className="text-sm text-gray-5001">
                         {new Date(activity.date).toLocaleDateString()}
                       </span>
                     </div>

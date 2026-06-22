@@ -19,7 +19,7 @@ import {
 } from "lucide-react";
 
 // NOTE: Ensure this URL matches your running backend API endpoint
-const API_BASE_URL = "http://localhost:500/api";
+const API_BASE_URL = "http://localhost:5001/api";
 
 const STATUS_OPTIONS = [
   { value: "all", label: "All Camps" },
@@ -88,7 +88,7 @@ const CampCard = ({ camp }) => {
       }`}>
       {/* Header with status badge */}
       <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-3 mb-4">
-        <h4 className={`text-xl font-bold leading-tight ${isCancelled ? 'text-gray-500' : 'text-gray-800'
+        <h4 className={`text-xl font-bold leading-tight ${isCancelled ? 'text-gray-5001' : 'text-gray-800'
           }`}>
           {camp.title}
         </h4>
@@ -99,7 +99,7 @@ const CampCard = ({ camp }) => {
 
       {/* Hospital/Facility Name */}
       <div className="flex items-center gap-3 text-sm text-gray-700 mb-3 font-semibold">
-        <Building2 className="w-4 h-4 text-red-500 flex-shrink-0" />
+        <Building2 className="w-4 h-4 text-red-5001 flex-shrink-0" />
         <span className="truncate">{hospitalName}</span>
       </div>
 
@@ -107,15 +107,15 @@ const CampCard = ({ camp }) => {
       <div className="space-y-3 text-sm text-gray-600 mb-4">
         {/* Full Address Display */}
         <div className="flex items-start gap-3">
-          <MapPin className="w-4 h-4 text-red-500 flex-shrink-0 mt-0.5" />
+          <MapPin className="w-4 h-4 text-red-5001 flex-shrink-0 mt-0.5" />
           <span className="leading-relaxed">{locationStr}</span>
         </div>
         <div className="flex items-center gap-3">
-          <Calendar className="w-4 h-4 text-red-500 flex-shrink-0" />
+          <Calendar className="w-4 h-4 text-red-5001 flex-shrink-0" />
           <span>{dateStr}</span>
         </div>
         <div className="flex items-center gap-3">
-          <Clock className="w-4 h-4 text-red-500 flex-shrink-0" />
+          <Clock className="w-4 h-4 text-red-5001 flex-shrink-0" />
           <span>{timeStr}</span>
         </div>
       </div>
@@ -124,7 +124,7 @@ const CampCard = ({ camp }) => {
       <div className="pt-4 border-t border-gray-100 flex flex-col justify-between items-start gap-3">
         {/* Donor Capacity Display (Updated logic) */}
         <div className="flex items-center gap-2 text-sm">
-          <Users className="w-4 h-4 text-red-500" />
+          <Users className="w-4 h-4 text-red-5001" />
           <span className="font-semibold text-gray-700">Capacity:</span>
           {renderDonorCapacity()}
         </div>
@@ -132,7 +132,7 @@ const CampCard = ({ camp }) => {
         {/* Remaining Need - Only visible if not Completed or Cancelled */}
         {!isCompleted && !isCancelled && (
           <div className="flex items-center gap-2 text-sm">
-            <ListPlus className="w-4 h-4 text-red-500" />
+            <ListPlus className="w-4 h-4 text-red-5001" />
             <span className="font-semibold text-gray-700">Remaining Need:</span>
             <span className={`font-bold ${isFull ? 'text-red-600' : 'text-green-600'
               }`}>
@@ -296,7 +296,7 @@ export const DonorCampsList = () => {
                   placeholder="Search camps, locations, hospital name..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="w-full pl-10 pr-4 py-2.5 border border-gray-300 rounded-xl text-sm bg-white focus:ring-2 focus:ring-red-500 focus:border-red-500 transition-all"
+                  className="w-full pl-10 pr-4 py-2.5 border border-gray-300 rounded-xl text-sm bg-white focus:ring-2 focus:ring-red-5001 focus:border-red-5001 transition-all"
                 />
               </div>
 
@@ -306,7 +306,7 @@ export const DonorCampsList = () => {
                 <select
                   value={filter}
                   onChange={(e) => handleFilterChange(e.target.value)}
-                  className="flex-1 px-3 py-2.5 border border-gray-300 rounded-xl text-sm bg-white focus:ring-2 focus:ring-red-500 focus:border-red-500 transition-all"
+                  className="flex-1 px-3 py-2.5 border border-gray-300 rounded-xl text-sm bg-white focus:ring-2 focus:ring-red-5001 focus:border-red-5001 transition-all"
                   disabled={loading}
                 >
                   {STATUS_OPTIONS.map(option => (
@@ -350,9 +350,9 @@ export const DonorCampsList = () => {
         {/* Loading State */}
         {loading && (
           <div className="text-center p-12 bg-white rounded-2xl shadow-lg border border-red-100">
-            <Loader2 className="w-8 h-8 text-red-500 mx-auto animate-spin mb-4" />
+            <Loader2 className="w-8 h-8 text-red-5001 mx-auto animate-spin mb-4" />
             <p className="text-gray-600 font-medium">Loading camps...</p>
-            <p className="text-sm text-gray-500 mt-1">Finding the best donation opportunities for you</p>
+            <p className="text-sm text-gray-5001 mt-1">Finding the best donation opportunities for you</p>
           </div>
         )}
 
@@ -360,7 +360,7 @@ export const DonorCampsList = () => {
         {error && !loading && camps.length === 0 && (
           <div className="text-center p-8 sm:p-12 bg-red-50 rounded-2xl shadow-lg border border-red-300">
             <div className="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
-              <Droplet className="w-6 h-6 text-red-500" />
+              <Droplet className="w-6 h-6 text-red-5001" />
             </div>
             <p className="text-red-700 font-semibold mb-2">Unable to Load Camps</p>
             <p className="text-sm text-red-600 mb-6 max-w-md mx-auto">{error}</p>
@@ -406,7 +406,7 @@ export const DonorCampsList = () => {
                 </button>
               </div>
 
-              <span className="text-sm text-gray-500 text-center sm:text-left">
+              <span className="text-sm text-gray-5001 text-center sm:text-left">
                 {pagination.total} Total Camps • {pagination.limit} per page
               </span>
             </div>
@@ -417,12 +417,12 @@ export const DonorCampsList = () => {
         {!loading && displayedCamps.length === 0 && !error && (
           <div className="text-center p-8 sm:p-12 bg-white rounded-2xl shadow-lg border border-red-100">
             <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
-              <Droplet className="w-8 h-8 text-red-500" />
+              <Droplet className="w-8 h-8 text-red-5001" />
             </div>
             <h3 className="text-lg font-semibold text-gray-800 mb-2">
               {searchTerm ? 'No Matching Camps Found' : 'No Camps Available'}
             </h3>
-            <p className="text-gray-500 max-w-md mx-auto">
+            <p className="text-gray-5001 max-w-md mx-auto">
               {searchTerm
                 ? `No camps found matching "${searchTerm}" with the current filter.`
                 : "There are no camps matching the current filter. Try adjusting your filter."

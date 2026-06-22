@@ -34,7 +34,7 @@ const AdminDashboard = () => {
 
       console.log("🔄 Fetching admin dashboard stats...");
 
-      const res = await fetch("http://localhost:500/api/admin/dashboard", {
+      const res = await fetch("http://localhost:5001/api/admin/dashboard", {
         headers: {
           Authorization: `Bearer ${token}`,
           'Content-Type': 'application/json'
@@ -74,12 +74,12 @@ const AdminDashboard = () => {
       <div className="min-h-screen bg-gradient-to-br from-red-50 to-white flex items-center justify-center">
         <div className="text-center">
           <div className="animate-pulse mb-4">
-            <Shield className="w-12 h-12 text-red-500 mx-auto" />
+            <Shield className="w-12 h-12 text-red-5001 mx-auto" />
           </div>
           <h2 className="text-xl font-semibold text-gray-700 mb-2">
             Loading Admin Dashboard
           </h2>
-          <p className="text-gray-500">Preparing system overview...</p>
+          <p className="text-gray-5001">Preparing system overview...</p>
         </div>
       </div>
     );
@@ -89,7 +89,7 @@ const AdminDashboard = () => {
     return (
       <div className="min-h-screen bg-gradient-to-br from-red-50 to-white flex items-center justify-center">
         <div className="text-center bg-white rounded-2xl shadow-lg border border-red-100 p-8">
-          <Shield className="w-16 h-16 text-red-500 mx-auto mb-4" />
+          <Shield className="w-16 h-16 text-red-5001 mx-auto mb-4" />
           <h3 className="text-lg font-semibold text-gray-800 mb-2">
             Failed to load dashboard
           </h3>
@@ -125,7 +125,7 @@ const AdminDashboard = () => {
             <p className="text-sm font-medium text-gray-600 mb-1">{label}</p>
             <p className="text-3xl font-bold text-gray-800">{value?.toLocaleString()}</p>
             {subtitle && (
-              <p className="text-xs text-gray-500 mt-1">{subtitle}</p>
+              <p className="text-xs text-gray-5001 mt-1">{subtitle}</p>
             )}
           </div>
           <div className={`p-3 rounded-xl ${colors.bg} ${colors.text}`}>
@@ -134,9 +134,9 @@ const AdminDashboard = () => {
         </div>
         {trend && (
           <div className="flex items-center gap-1 mt-3 text-xs">
-            <TrendingUp className="w-3 h-3 text-green-500" />
+            <TrendingUp className="w-3 h-3 text-green-5001" />
             <span className="text-green-600 font-medium">{trend}%</span>
-            <span className="text-gray-500">from last month</span>
+            <span className="text-gray-5001">from last month</span>
           </div>
         )}
       </div>
@@ -407,7 +407,7 @@ const AdminDashboard = () => {
                     </div>
                     <span className="text-sm text-gray-700">{activity.description}</span>
                   </div>
-                  <span className="text-xs text-gray-500">
+                  <span className="text-xs text-gray-5001">
                     {new Date(activity.timestamp).toLocaleDateString()}
                   </span>
                 </div>
