@@ -255,37 +255,7 @@ const Chatbot = () => {
           </div>
 
 
-          <form
-            onSubmit={handleSend}
-            className="border-t border-gray-200 p-3 bg-white shrink-0"
-          >
-            <div className="flex gap-2 items-end">
-              <textarea
-                ref={inputRef}
-                value={input}
-                onChange={(e) => setInput(e.target.value)}
-                onKeyDown={handleKeyDown}
-                placeholder="Ask about BBMS..."
-                rows={1}
-                className="flex-1 resize-none rounded-xl border border-gray-200 px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-red-5001 focus:border-transparent max-h-32 bg-gray-50"
-                disabled={isLoading}
-              />
-              <button
-                type="submit"
-                disabled={isLoading || !input.trim()}
-                className="p-2.5 bg-red-600 text-white rounded-xl hover:bg-red-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors shrink-0"
-              >
-                {isLoading ? (
-                  <Loader2 size={18} className="animate-spin" />
-                ) : (
-                  <Send size={18} />
-                )}
-              </button>
-            </div>
-            <p className="text-[10px] text-gray-400 mt-1.5 text-center">
-              Powered by BBMS AI • Responses may be limited to blood bank topics
-            </p>
-          </form>
+
         </div>
       )}
 

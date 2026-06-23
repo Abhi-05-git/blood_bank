@@ -105,20 +105,7 @@ const DashboardLayout = ({ userRole = "donor" }) => {
         { path: "/hospital/blood-request-history", label: "History", icon: Ambulance, badge: null },
       ],
     },
-    blood_lab: {
-      title: "Blood Lab Center",
-      subtitle: "Testing & Quality Control",
-      shortTitle: "Lab",
-      icon: TestTube,
-      items: [
-        { path: "/lab", label: "Dashboard", icon: BarChart3, badge: null },
-        { path: "/lab/inventory", label: "Inventory", icon: Droplet, badge: null },
-        { path: "/lab/Donor", label: "Donors", icon: User, badge: null },
-        { path: "/lab/camps", label: "Camps", icon: Calendar, badge: null },
-        { path: "/lab/requests", label: "Requests", icon: ClipboardList, badge: null },
-        { path: "/lab/profile", label: "Profile", icon: CheckCircle, badge: null },
-      ],
-    },
+
     admin: {
       title: "BBMS Admin Panel",
       subtitle: "System Administration",
@@ -372,8 +359,8 @@ const DashboardLayout = ({ userRole = "donor" }) => {
                       setSidebarOpen(false);
                     }}
                     className={`flex items-center gap-3 w-full p-3 rounded-xl transition-all duration-200 relative group ${isActive
-                        ? "shadow-md font-semibold transform scale-[1.02]"
-                        : "hover:shadow-md hover:transform hover:scale-[1.02] hover:bg-red-50"
+                      ? "shadow-md font-semibold transform scale-[1.02]"
+                      : "hover:shadow-md hover:transform hover:scale-[1.02] hover:bg-red-50"
                       } ${isActive ? "text-white" : "text-gray-700 hover:text-red-700"
                       }`}
                     style={{
