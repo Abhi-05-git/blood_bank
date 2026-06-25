@@ -105,7 +105,20 @@ const DashboardLayout = ({ userRole = "donor" }) => {
         { path: "/hospital/blood-request-history", label: "History", icon: Ambulance, badge: null },
       ],
     },
+    blood_lab: {
+      title: "Blood Lab Center",
+      subtitle: "Testing & Quality Control",
+      shortTitle: "Lab",
+      icon: TestTube,
+      items: [
+        { path: "/lab", label: "Dashboard", icon: BarChart3, badge: null },
+        { path: "/lab/inventory", label: "Inventory", icon: Droplet, badge: null },
+        { path: "/lab/Donor", label: "Donors", icon: User, badge: null },
+        { path: "/lab/camps", label: "Camps", icon: Calendar, badge: null },
 
+        { path: "/lab/profile", label: "Profile", icon: CheckCircle, badge: null },
+      ],
+    },
     admin: {
       title: "BBMS Admin Panel",
       subtitle: "System Administration",
