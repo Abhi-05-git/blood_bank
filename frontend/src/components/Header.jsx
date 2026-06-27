@@ -47,7 +47,7 @@ export default function Header({ currentUser }) {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-400 ${scrolled
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled
         ? "bg-white/95 backdrop-blur-md shadow-lg border-b border-gray-100"
         : "bg-white/90 backdrop-blur-sm border-b border-gray-100"
         }`}
@@ -59,9 +59,9 @@ export default function Header({ currentUser }) {
             to="/"
             className="flex items-center gap-3 group"
           >
-            <div className="w-10 h-10 flex items-center justify-center rounded-xl bg-gradient-to-br from-red-5001 to-red-600 shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-105">
+            <div className="w-10 h-10 flex items-center justify-center rounded-xl bg-gradient-to-br from-red-500 to-red-600 shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-105">
               <svg
-                xmlns="http://www.w3.org/2001/svg"
+                xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
                 fill="currentColor"
                 className="w-5 h-5 text-white"
@@ -70,10 +70,10 @@ export default function Header({ currentUser }) {
               </svg>
             </div>
             <div className="flex flex-col">
-              <h1 className="text-lg font-bold text-gray-200 group-hover:text-red-600 transition-colors duration-200">
+              <h1 className="text-lg font-bold text-gray-900 group-hover:text-red-600 transition-colors duration-200">
                 {WEBSITE_NAME}
               </h1>
-              <p className="text-xs text-gray-5001 -mt-0.5 font-medium">
+              <p className="text-xs text-gray-500 -mt-0.5 font-medium">
                 Blood Management System
               </p>
             </div>
@@ -115,24 +115,7 @@ export default function Header({ currentUser }) {
             ))}
           </nav>
 
-          {/* Mobile Menu Button */}
-          <button
-            onClick={() => setMobileOpen(!mobileOpen)}
-            className={`md:hidden p-2 rounded-xl transition-all duration-200 ${mobileOpen
-              ? "bg-red-50 text-red-600"
-              : "hover:bg-gray-100 text-gray-600"
-              }`}
-            aria-label="Toggle menu"
-          >
-            <div className="relative w-6 h-6">
-              <span className={`absolute top-1/2 left-1/2 w-5 h-0.5 bg-current transform -translate-x-1/2 -translate-y-1/2 transition-all duration-200 ${mobileOpen ? "rotate-45" : "-translate-y-1.5"
-                }`}></span>
-              <span className={`absolute top-1/2 left-1/2 w-5 h-0.5 bg-current transform -translate-x-1/2 -translate-y-1/2 transition-all duration-200 ${mobileOpen ? "opacity-0" : "opacity-100"
-                }`}></span>
-              <span className={`absolute top-1/2 left-1/2 w-5 h-0.5 bg-current transform -translate-x-1/2 -translate-y-1/2 transition-all duration-200 ${mobileOpen ? "-rotate-45" : "translate-y-1.5"
-                }`}></span>
-            </div>
-          </button>
+
         </div>
 
         {/* Mobile Dropdown */}
@@ -146,7 +129,7 @@ export default function Header({ currentUser }) {
                   key={link.name}
                   to={link.path}
                   className={`block px-4 py-3 rounded-xl text-base font-medium transition-all duration-200 ${isActiveLink(link.path)
-                    ? "bg-red-50 text-red-700 border-l-4 border-red-5001"
+                    ? "bg-red-50 text-red-700 border-l-4 border-red-500"
                     : "text-gray-700 hover:bg-gray-50 hover:text-red-600"
                     }`}
                   onClick={() => setMobileOpen(false)}
@@ -156,27 +139,11 @@ export default function Header({ currentUser }) {
               ))}
             </div>
 
-            {/* Auth Links */}
-            <div className="space-y-2 border-t border-gray-200 pt-4">
-              {authLinks.map((link) => (
-                <Link
-                  key={link.name}
-                  to={link.path}
-                  className={`block px-4 py-3 rounded-xl text-base font-medium transition-all duration-200 ${link.name.includes("Register")
-                    ? "bg-gradient-to-r from-red-600 to-red-700 text-white shadow-lg text-center hover:shadow-xl"
-                    : isActiveLink(link.path)
-                      ? "bg-red-50 text-red-700 border-l-4 border-red-5001"
-                      : "text-gray-700 hover:bg-gray-50 hover:text-red-600 text-center"
-                    }`}
-                  onClick={() => setMobileOpen(false)}
-                >
-                  {link.name}
-                </Link>
-              ))}
-            </div>
+
           </div>
         </div>
       </div>
-    </header>
+
+    </header >
   );
 }
