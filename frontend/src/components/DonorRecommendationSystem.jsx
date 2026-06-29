@@ -119,7 +119,7 @@ const DonorRecommendationSystem = () => {
             🩸 Blood Donor Recommendation System
           </h1>
           <p className="text-gray-600">
-            Find compatible and nearby donors based on blood group and location
+            Find compatible and nearby donors based on blood group and location. Use your current location or enter coordinates manually.
           </p>
         </div>
 
@@ -138,8 +138,8 @@ const DonorRecommendationSystem = () => {
                     type="button"
                     onClick={() => setBloodGroup(bg)}
                     className={`py-2 px-3 rounded-lg font-semibold transition-all ${bloodGroup === bg
-                        ? "bg-red-600 text-white shadow-lg"
-                        : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                      ? "bg-red-600 text-white shadow-lg"
+                      : "bg-gray-200 text-gray-700 hover:bg-gray-200"
                       }`}
                   >
                     {bg}
@@ -288,8 +288,8 @@ const DonorRecommendationSystem = () => {
                     {/* Eligible Status */}
                     <div className="flex items-center gap-2">
                       <span className={`inline-block px-2 py-1 rounded text-xs font-bold ${donor.eligibleToDonate
-                          ? "bg-green-100 text-green-800"
-                          : "bg-gray-100 text-gray-800"
+                        ? "bg-green-100 text-green-800"
+                        : "bg-gray-100 text-gray-800"
                         }`}>
                         {donor.eligibleToDonate ? "✓ Eligible" : "⊘ Not Eligible"}
                       </span>
