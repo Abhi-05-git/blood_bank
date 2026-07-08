@@ -56,7 +56,7 @@ const LabManageRequests = () => {
     const IconComponent = config.icon;
 
     return (
-      <span className={`px-3 py-1 rounded-full text-sm font-medium flex items-center gap-1 ${config.color}`}>
+      <span className={`px-3 rounded-full text-sm font-medium flex items-center gap-1 ${config.color}`}>
         <IconComponent size={14} />
         {status}
       </span>

@@ -46,7 +46,13 @@ const LandingPage = () => {
         "Monitor blood inventory levels, expiration dates, and distribution in real-time across all partner facilities.",
       color: "blue",
     },
-
+    {
+      icon: Zap,
+      title: "Quick Response",
+      description:
+        "Emergency request system with automated matching and notification to ensure rapid response in critical situations.",
+      color: "green",
+    },
   ];
 
   const processSteps = [
@@ -263,25 +269,25 @@ const LandingPage = () => {
               >
                 <div
                   className={`text-2xl font-bold mb-2 ${blood.need === "Critical"
-                    ? "text-red-600"
-                    : blood.need === "High"
-                      ? "text-orange-5001"
-                      : "text-green-5001"
+                      ? "text-red-600"
+                      : blood.need === "High"
+                        ? "text-orange-500"
+                        : "text-green-500"
                     }`}
                 >
                   {blood.type}
                 </div>
                 <div
                   className={`text-sm font-medium px-2 py-1 rounded-full ${blood.need === "Critical"
-                    ? "bg-red-100 text-red-700"
-                    : blood.need === "High"
-                      ? "bg-orange-100 text-orange-700"
-                      : "bg-green-100 text-green-700"
+                      ? "bg-red-100 text-red-700"
+                      : blood.need === "High"
+                        ? "bg-orange-100 text-orange-700"
+                        : "bg-green-100 text-green-700"
                     }`}
                 >
                   {blood.need} Need
                 </div>
-                <div className="text-xs text-slate-5001 mt-2">
+                <div className="text-xs text-slate-500 mt-2">
                   {blood.donors} Donors
                 </div>
               </div>
@@ -309,7 +315,7 @@ const LandingPage = () => {
               return (
                 <div
                   key={index}
-                  className="bg-slate-50 rounded-2xl shadow-lg p-6 text-center hover:shadow-xl transition-all duration-300 border-t-4 border-red-5001"
+                  className="bg-slate-50 rounded-2xl shadow-lg p-6 text-center hover:shadow-xl transition-all duration-300 border-t-4 border-red-500"
                 >
                   <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-red-100 flex items-center justify-center">
                     <Icon className="w-8 h-8 text-red-600" />
@@ -394,12 +400,12 @@ const LandingPage = () => {
               const Icon = step.icon;
               return (
                 <div key={index} className="text-center group">
-                  <div className="bg-white rounded-2xl shadow-lg p-6 hover:shadow-xl transition-all duration-300 border-t-4 border-red-5001 group-hover:transform group-hover:-translate-y-2">
+                  <div className="bg-white rounded-2xl shadow-lg p-6 hover:shadow-xl transition-all duration-300 border-t-4 border-red-500 group-hover:transform group-hover:-translate-y-2">
                     <div className="w-12 h-12 mx-auto mb-4 rounded-full bg-red-100 flex items-center justify-center text-red-600 font-bold">
                       {step.step}
                     </div>
                     {Icon && (
-                      <div className="w-12 h-12 mx-auto mb-4 rounded-full bg-red-5001 flex items-center justify-center">
+                      <div className="w-12 h-12 mx-auto mb-4 rounded-full bg-red-500 flex items-center justify-center">
                         <Icon className="w-6 h-6 text-white" />
                       </div>
                     )}
@@ -448,7 +454,7 @@ const LandingPage = () => {
                         key={itemIndex}
                         className="flex items-start gap-3 text-slate-600"
                       >
-                        <CheckCircle className="w-5 h-5 text-green-5001 flex-shrink-0 mt-0.5" />
+                        <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
                         <span>{item}</span>
                       </li>
                     ))}
@@ -480,7 +486,7 @@ const LandingPage = () => {
               return (
                 <div
                   key={index}
-                  className="bg-white rounded-2xl shadow-lg p-6 text-center hover:shadow-xl transition-all duration-300 border-t-4 border-red-5001"
+                  className="bg-white rounded-2xl shadow-lg p-6 text-center hover:shadow-xl transition-all duration-300 border-t-4 border-red-500"
                 >
                   <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-red-100 flex items-center justify-center">
                     <Icon className="w-8 h-8 text-red-600" />
@@ -514,15 +520,15 @@ const LandingPage = () => {
               </p>
               <ul className="space-y-2">
                 <li className="flex items-center text-slate-600">
-                  <div className="w-2 h-2 bg-red-5001 rounded-full mr-3"></div>
+                  <div className="w-2 h-2 bg-red-500 rounded-full mr-3"></div>
                   HIPAA compliant data handling
                 </li>
                 <li className="flex items-center text-slate-600">
-                  <div className="w-2 h-2 bg-red-5001 rounded-full mr-3"></div>
+                  <div className="w-2 h-2 bg-red-500 rounded-full mr-3"></div>
                   End-to-end encryption
                 </li>
                 <li className="flex items-center text-slate-600">
-                  <div className="w-2 h-2 bg-red-5001 rounded-full mr-3"></div>
+                  <div className="w-2 h-2 bg-red-500 rounded-full mr-3"></div>
                   Regular security audits
                 </li>
               </ul>
@@ -530,7 +536,7 @@ const LandingPage = () => {
             <div className="flex-1 bg-red-50 rounded-2xl p-8 border border-red-100">
               <div className="aspect-video bg-gradient-to-br from-red-100 to-red-200 rounded-xl flex items-center justify-center">
                 <div className="text-center p-4">
-                  <Shield className="w-12 h-12 text-red-5001 mx-auto mb-4" />
+                  <Shield className="w-12 h-12 text-red-500 mx-auto mb-4" />
                   <p className="text-red-700 font-medium">
                     Secure Blood Bank Management
                   </p>
