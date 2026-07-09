@@ -56,7 +56,7 @@ const LabManageRequests = () => {
     const IconComponent = config.icon;
 
     return (
-      <span className={`px-3 rounded-full text-sm font-medium flex items-center gap-1 ${config.color}`}>
+      <span className={`px-3 py-1 rounded-full text-sm font-medium flex items-center gap-1 ${config.color}`}>
         <IconComponent size={14} />
         {status}
       </span>
@@ -149,7 +149,7 @@ const LabManageRequests = () => {
                           </div>
                           <div>
                             <div className="font-medium text-gray-800">{req.hospitalId?.name || "Unknown Hospital"}</div>
-                            <div className="flex items-center gap-1 text-sm text-gray-5001">
+                            <div className="flex items-center gap-1 text-sm text-gray-500">
                               <MapPin size={12} />
                               {req.hospitalId?.address?.city || "Unknown City"}
                             </div>
@@ -163,7 +163,7 @@ const LabManageRequests = () => {
                       </td>
                       <td className="p-4">
                         <span className="text-lg font-semibold text-gray-800">{req.units}</span>
-                        <span className="text-sm text-gray-5001 ml-1">units</span>
+                        <span className="text-sm text-gray-500 ml-1">units</span>
                       </td>
                       <td className="p-4">
                         {getStatusBadge(req.status)}
@@ -195,7 +195,7 @@ const LabManageRequests = () => {
                           </div>
                         )}
                         {req.status !== "pending" && (
-                          <span className="text-gray-5001 text-sm">
+                          <span className="text-gray-500 text-sm">
                             Processed on {new Date(req.processedAt).toLocaleDateString()}
                           </span>
                         )}
