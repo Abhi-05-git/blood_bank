@@ -99,8 +99,8 @@ const BloodCamps = () => {
     if (!data.startTime) newErrors.startTime = "Start time is required";
     if (!data.endTime) newErrors.endTime = "End time is required";
     if (!data.venue?.trim()) newErrors.venue = "Venue is required";
-    if (!data.city?.trim()) newErrors.city = "City is required";
-    if (!data.state?.trim()) newErrors.state = "State is required";
+
+    // if (!data.state?.trim()) newErrors.state = "State is required";
     if (!data.pincode?.match(/^[1-9][0-9]{5}$/)) newErrors.pincode = "Valid 6-digit pincode required";
     if (!data.expectedDonors || data.expectedDonors < 1) newErrors.expectedDonors = "Expected donors must be at least 1";
 
