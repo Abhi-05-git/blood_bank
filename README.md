@@ -119,6 +119,3 @@ npm run dev
 <img width="1920" height="1518" alt="image" src="https://github.com/user-attachments/assets/7aafa2aa-d2d4-4f20-982b-136de08df71a" />
 
 
-**Inventory Overview**
-
-<img width="1920" height="1121" alt="image" src="https://github.com/user-attachments/assets/65110412-2e41-4c0f-824d-7ee9ebed91bb" />
