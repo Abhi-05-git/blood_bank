@@ -269,20 +269,20 @@ const LandingPage = () => {
               >
                 <div
                   className={`text-2xl font-bold mb-2 ${blood.need === "Critical"
-                      ? "text-red-600"
-                      : blood.need === "High"
-                        ? "text-orange-500"
-                        : "text-green-500"
+                    ? "text-red-600"
+                    : blood.need === "High"
+                      ? "text-orange-500"
+                      : "text-green-500"
                     }`}
                 >
                   {blood.type}
                 </div>
                 <div
                   className={`text-sm font-medium px-2 py-1 rounded-full ${blood.need === "Critical"
-                      ? "bg-red-100 text-red-700"
-                      : blood.need === "High"
-                        ? "bg-orange-100 text-orange-700"
-                        : "bg-green-100 text-green-700"
+                    ? "bg-red-100 text-red-700"
+                    : blood.need === "High"
+                      ? "bg-orange-100 text-orange-700"
+                      : "bg-green-100 text-green-700"
                     }`}
                 >
                   {blood.need} Need
@@ -571,4 +571,4 @@ const LandingPage = () => {
   );
 };
 
-export default LandingPage;
+export default LandingPages;
