@@ -82,7 +82,7 @@ function GetAllDonors() {
     fetchAllDonors();
   }, []);
 
-  // Filter and sort donors
+
   const filteredDonors = donors
     .filter(donor => {
       const matchesSearch = !filters.search ||
