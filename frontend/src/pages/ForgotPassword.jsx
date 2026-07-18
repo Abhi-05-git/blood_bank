@@ -20,12 +20,12 @@ export default function ForgotPassword() {
         <input
           type="email"
           placeholder="Enter Email"
-          className="border p-2 mb-3"
+          className="border p-2 w-full mb-3"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
         />
-        <button className="bg-purple-5001 text-white py-2 px-4 rounded w-full">
+        <button className="bg-purple-500 text-white py-2 px-4 rounded w-full">
           Reset Password
         </button>
       </form>
