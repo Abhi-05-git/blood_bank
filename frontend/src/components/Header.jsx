@@ -156,11 +156,27 @@ export default function Header({ currentUser }) {
               ))}
             </div>
 
-
+            {/* Auth Links */}
+            <div className="space-y-2 border-t border-gray-200 pt-4">
+              {authLinks.map((link) => (
+                <Link
+                  key={link.name}
+                  to={link.path}
+                  className={`block px-4 py-3 rounded-xl text-base font-medium transition-all duration-200 ${link.name.includes("Register")
+                    ? "bg-gradient-to-r from-red-600 to-red-700 text-white shadow-lg text-center hover:shadow-xl"
+                    : isActiveLink(link.path)
+                      ? "bg-red-50 text-red-700 border-l-4 border-red-500"
+                      : "text-gray-700 hover:bg-gray-50 hover:text-red-600 text-center"
+                    }`}
+                  onClick={() => setMobileOpen(false)}
+                >
+                  {link.name}
+                </Link>
+              ))}
+            </div>
           </div>
         </div>
       </div>
-
-    </header >
+    </header>
   );
 }
