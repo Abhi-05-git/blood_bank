@@ -116,43 +116,50 @@ export default function Header({ currentUser }) {
           </nav>
 
           {/* Mobile Menu Button */}
+          <button
+            onClick={() => setMobileOpen(!mobileOpen)}
+            className={`md:hidden p-2 rounded-xl transition-all duration-200 ${mobileOpen
+              ? "bg-red-50 text-red-600"
+              : "hover:bg-gray-100 text-gray-600"
+              }`}
+            aria-label="Toggle menu"
+          >
+            <div className="relative w-6 h-6">
+              <span className={`absolute top-1/2 left-1/2 w-5 h-0.5 bg-current transform -translate-x-1/2 -translate-y-1/2 transition-all duration-200 ${mobileOpen ? "rotate-45" : "-translate-y-1.5"
+                }`}></span>
+              <span className={`absolute top-1/2 left-1/2 w-5 h-0.5 bg-current transform -translate-x-1/2 -translate-y-1/2 transition-all duration-200 ${mobileOpen ? "opacity-0" : "opacity-100"
+                }`}></span>
+              <span className={`absolute top-1/2 left-1/2 w-5 h-0.5 bg-current transform -translate-x-1/2 -translate-y-1/2 transition-all duration-200 ${mobileOpen ? "-rotate-45" : "translate-y-1.5"
+                }`}></span>
+            </div>
+          </button>
+        </div>
 
-          <div className="relative w-6 h-6">
-            <span className={`absolute top-1/2 left-1/2 w-5 h-0.5 bg-current transform -translate-x-1/2 -translate-y-1/2 transition-all duration-200 ${mobileOpen ? "rotate-45" : "-translate-y-1.5"
-              }`}></span>
-            <span className={`absolute top-1/2 left-1/2 w-5 h-0.5 bg-current transform -translate-x-1/2 -translate-y-1/2 transition-all duration-200 ${mobileOpen ? "opacity-0" : "opacity-100"
-              }`}></span>
-            <span className={`absolute top-1/2 left-1/2 w-5 h-0.5 bg-current transform -translate-x-1/2 -translate-y-1/2 transition-all duration-200 ${mobileOpen ? "-rotate-45" : "translate-y-1.5"
-              }`}></span>
+        {/* Mobile Dropdown */}
+        <div className={`md:hidden overflow-hidden transition-all duration-300 ${mobileOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+          }`}>
+          <div className="border-t border-gray-200 pt-4 pb-6 px-3 bg-white/95 backdrop-blur-sm rounded-b-2xl shadow-lg">
+            {/* Main Navigation Links */}
+            <div className="space-y-1 mb-4">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.name}
+                  to={link.path}
+                  className={`block px-4 py-3 rounded-xl text-base font-medium transition-all duration-200 ${isActiveLink(link.path)
+                    ? "bg-red-50 text-red-700 border-l-4 border-red-500"
+                    : "text-gray-700 hover:bg-gray-50 hover:text-red-600"
+                    }`}
+                  onClick={() => setMobileOpen(false)}
+                >
+                  {link.name}
+                </Link>
+              ))}
+            </div>
+
+
           </div>
-        </button>
-      </div>
-
-      {/* Mobile Dropdown */}
-      <div className={`md:hidden overflow-hidden transition-all duration-300 ${mobileOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
-        }`}>
-        <div className="border-t border-gray-200 pt-4 pb-6 px-3 bg-white/95 backdrop-blur-sm rounded-b-2xl shadow-lg">
-          {/* Main Navigation Links */}
-          <div className="space-y-1 mb-4">
-            {navLinks.map((link) => (
-              <Link
-                key={link.name}
-                to={link.path}
-                className={`block px-4 py-3 rounded-xl text-base font-medium transition-all duration-200 ${isActiveLink(link.path)
-                  ? "bg-red-50 text-red-700 border-l-4 border-red-500"
-                  : "text-gray-700 hover:bg-gray-50 hover:text-red-600"
-                  }`}
-                onClick={() => setMobileOpen(false)}
-              >
-                {link.name}
-              </Link>
-            ))}
-          </div>
-
-
         </div>
       </div>
-    </div>
 
     </header >
   );
